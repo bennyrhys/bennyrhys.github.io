@@ -16,6 +16,8 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
 
 
 <script id="hexo-configurations">
@@ -56,7 +58,7 @@
 <meta property="og:description" content="[TOC] Hexo提升篇-切换一个主题第一轮测试-页面局部显示疑npm install 导致显示不全，测试二不安装依赖 123456789&#x2F;&#x2F;挑选主题https:&#x2F;&#x2F;hexo.io&#x2F;themes&#x2F;&#x2F;&#x2F;克隆主题到本地,放置thmemesbennyrhys&gt;git clone https:&#x2F;&#x2F;g">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-12-26T06:55:04.000Z">
-<meta property="article:modified_time" content="2019-12-27T14:48:01.026Z">
+<meta property="article:modified_time" content="2019-12-28T07:26:46.661Z">
 <meta property="article:author" content="郭瑞新">
 <meta property="article:tag" content="博客搭建">
 <meta property="article:tag" content="快速搭建博客">
@@ -249,7 +251,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-27 22:48:01" itemprop="dateModified" datetime="2019-12-27T22:48:01+08:00">2019-12-27</time>
+                <time title="修改时间：2019-12-28 15:26:46" itemprop="dateModified" datetime="2019-12-28T15:26:46+08:00">2019-12-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -284,7 +286,8 @@
         <p>[TOC]</p>
 <h2 id="Hexo提升篇-切换一个主题"><a href="#Hexo提升篇-切换一个主题" class="headerlink" title="Hexo提升篇-切换一个主题"></a>Hexo提升篇-切换一个主题</h2><h3 id="第一轮测试-页面局部显示"><a href="#第一轮测试-页面局部显示" class="headerlink" title="第一轮测试-页面局部显示"></a>第一轮测试-页面局部显示</h3><p>疑npm install 导致显示不全，测试二不安装依赖</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;挑选主题</span><br><span class="line">https:&#x2F;&#x2F;hexo.io&#x2F;themes&#x2F;</span><br><span class="line">&#x2F;&#x2F;克隆主题到本地,放置thmemes</span><br><span class="line">bennyrhys&gt;git clone https:&#x2F;&#x2F;github.com&#x2F;theme-next&#x2F;hexo-theme-next.git </span><br><span class="line">&#x2F;&#x2F;更改配置文件</span><br><span class="line">theme: hexo-theme-next</span><br><span class="line">&#x2F;&#x2F;安装依赖插件</span><br><span class="line">$ cd hexo-theme-next</span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
-<h3 id="第二轮测试-未安装依赖，局部显示"><a href="#第二轮测试-未安装依赖，局部显示" class="headerlink" title="第二轮测试-未安装依赖，局部显示"></a>第二轮测试-未安装依赖，局部显示</h3><p>疑配置文件未打开。</p>
+<h3 id="第二轮测试-全部显示（未安装依赖，切换主题风格）"><a href="#第二轮测试-全部显示（未安装依赖，切换主题风格）" class="headerlink" title="第二轮测试-全部显示（未安装依赖，切换主题风格）"></a>第二轮测试-全部显示（未安装依赖，切换主题风格）</h3><a id="more"></a>
+<p>疑配置文件未打开。</p>
 <ul>
 <li>在 Hexo 中有两份主要的配置文件，其名称都是 _config.yml。 </li>
 <li>其中，一份位于站点根目录下，主要包含 Hexo 本身的配置；另一份位于主题目录下，这份配置由主题作者提供，主要用于配置主题相关的选项。</li>
@@ -295,6 +298,8 @@
 <h4 id="头像设置"><a href="#头像设置" class="headerlink" title="头像设置"></a>头像设置</h4>打开 主题配置文件 找到Sidebar Avatar字段<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># Sidebar Avatar</span><br><span class="line">avatar: &#x2F;images&#x2F;header.jpg</span><br></pre></td></tr></table></figure>
 这是头像的路径，只需把你的头像命名为header.jpg（随便命名）放入themes/next/source/images中，将avatar的路径名改成你的头像名就OK啦！</li>
 </ul>
+<p>//最新方法-配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># Sidebar Avatar</span><br><span class="line">avatar:</span><br><span class="line">  # Replace the default image and set the url here.</span><br><span class="line">  url: &#x2F;images&#x2F;head_logo.jpg</span><br><span class="line">  # If true, the avatar will be dispalyed in circle.</span><br><span class="line">  rounded: true</span><br><span class="line">  # If true, the avatar will be rotated with the cursor.</span><br><span class="line">  rotated: true</span><br><span class="line"></span><br><span class="line"># Posts &#x2F; Categories &#x2F; Tags in sidebar.</span><br><span class="line">site_state: true</span><br></pre></td></tr></table></figure>
 <h4 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;命令创建</span><br><span class="line">hexo new page &quot;tags&quot; </span><br><span class="line">&#x2F;&#x2F;修改创建的文件</span><br><span class="line">---</span><br><span class="line">title: 标签</span><br><span class="line">date: 2019-12-26 19:23:43</span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line">---</span><br><span class="line">&#x2F;&#x2F;打开主题的tag</span><br><span class="line">&#x2F;&#x2F;给文章加个标签</span><br></pre></td></tr></table></figure>
 <h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;命令创建</span><br><span class="line">hexo new page &quot;categories&quot;</span><br><span class="line">&#x2F;&#x2F;修改新生成的文件</span><br><span class="line">---</span><br><span class="line">title: 分类</span><br><span class="line">date: 2019-12-26 19:37:01</span><br><span class="line">type: &quot;categories&quot;</span><br><span class="line">---</span><br><span class="line">&#x2F;&#x2F;打开categories</span><br></pre></td></tr></table></figure>
 
@@ -305,7 +310,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">busuanzi_count:</span><br><span class="line">  enable:true</span><br></pre></td></tr></table></figure>
 <p>\themes\next\layout_third-party\下的busuanzi.swing<br>将<br>src=“<a href="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js”" target="_blank" rel="noopener">https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js”</a><br>修改为<br>src=“<a href="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js”" target="_blank" rel="noopener">https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js”</a></p>
 <h4 id="添加动态背景"><a href="#添加动态背景" class="headerlink" title="添加动态背景"></a>添加动态背景</h4><p>js文件放在\themes\next\source\js\src<br>更新\themes\next\layout_layout.swig文件，在末尾（在前面引用会出现找不到的bug）添加以下 js 引入代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;&#x2F;js&#x2F;src&#x2F;back.js&quot; &gt;&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;&#x2F;js&#x2F;src&#x2F;back.js&quot; &gt;&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;法二</span><br><span class="line">配置文件，不太靠谱</span><br><span class="line">canvas_nest:</span><br><span class="line">  enable: false</span><br></pre></td></tr></table></figure>
 <h4 id="gitalk评论"><a href="#gitalk评论" class="headerlink" title="gitalk评论"></a>gitalk评论</h4><p>gitalk：一个基于 Github Issue 和 Preact 开发的评论插件<br>详情Demo可见：<a href="https://gitalk.github.io/" target="_blank" rel="noopener">https://gitalk.github.io/</a><br>在GitHub上注册新应用，链接：<a href="https://github.com/settings/applications/new" target="_blank" rel="noopener">https://github.com/settings/applications/new</a><br>参数说明：<br>Application name： # 应用名称，随意<br>Homepage URL： # 网站URL，如<a href="https://asdfv1929.github.io" target="_blank" rel="noopener">https://asdfv1929.github.io</a><br>Application description # 描述，随意<br>Authorization callback URL：# 网站URL，<a href="https://asdfv1929.github.io" target="_blank" rel="noopener">https://asdfv1929.github.io</a></p>
 <p>点击注册后，页面跳转如下，其中Client ID和Client Secret在后面的配置中需要用到，到时复制粘贴即可：<br>Client ID<br>-52515de43eada8e083b<br>Client Secret<br>-ee2994d96e2d4a5684188df17a49fe8e9a6c3d6<br>gitalk.swig<br>新建/layout/_third-party/comments/gitalk.swig文件，并添加内容：</p>
 <h4 id="valine评论"><a href="#valine评论" class="headerlink" title="valine评论"></a>valine评论</h4><p>//注册LeanCloud<br>注册地址 <a href="https://leancloud.cn/" target="_blank" rel="noopener">https://leancloud.cn/</a><br>获取key，添加安全，网站链接<br>配置文件valine对应id</p>
@@ -313,15 +318,42 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">.site-author-image &#123;</span><br><span class="line">  display: block;</span><br><span class="line">  margin: 0 auto;</span><br><span class="line">  padding: $site-author-image-padding;</span><br><span class="line">  max-width: $site-author-image-width;</span><br><span class="line">  height: $site-author-image-height;</span><br><span class="line">  border: $site-author-image-border-width solid $site-author-image-border-color;</span><br><span class="line">  </span><br><span class="line">&#x2F;* 头像圆形 *&#x2F;</span><br><span class="line">  border-radius: 80px;</span><br><span class="line">  -webkit-border-radius: 80px;</span><br><span class="line">  -moz-border-radius: 80px;</span><br><span class="line">  box-shadow: inset 0 -1px 0 #333sf;</span><br><span class="line"></span><br><span class="line">  &#x2F;* 鼠标经过头像旋转360度 *&#x2F;</span><br><span class="line">  -webkit-transition: -webkit-transform 1.5s ease-out;</span><br><span class="line">  -moz-transition: -moz-transform 1.5s ease-out;</span><br><span class="line">  transition: transform 1.5s ease-out;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">img:hover &#123;</span><br><span class="line">  &#x2F;* 鼠标经过头像旋转360度 *&#x2F;</span><br><span class="line">  -webkit-transform: rotateZ(360deg);</span><br><span class="line">  -moz-transform: rotateZ(360deg);</span><br><span class="line">  transform: rotateZ(360deg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="阅读进度条"><a href="#阅读进度条" class="headerlink" title="阅读进度条"></a>阅读进度条</h4><p>reading_progress:<br>  enable: true</p>
 <h4 id="百度推送"><a href="#百度推送" class="headerlink" title="百度推送"></a>百度推送</h4><p>//配置文件<br>baidu_push: true</p>
-<h4 id="优化SEO。"><a href="#优化SEO。" class="headerlink" title="优化SEO。"></a>优化SEO。</h4><p>更改网站副标题（将是主要网站描述）和所有文章/页面标题的标题层次结构，以便更好地</p>
+<h4 id="优化SEO"><a href="#优化SEO" class="headerlink" title="优化SEO"></a>优化SEO</h4><p>更改网站副标题（将是主要网站描述）和所有文章/页面标题的标题层次结构，以便更好地</p>
 <p>seo: true //建议 true</p>
 <h4 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h4><p>npm install hexo-generator-searchdb –save</p>
-
+<h4 id="友链"><a href="#友链" class="headerlink" title="友链"></a>友链</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># Blog rolls</span><br><span class="line">links_settings:</span><br><span class="line">  icon: link</span><br><span class="line">  title: 友链</span><br><span class="line">  # Available values: block | inline</span><br><span class="line">  layout: block</span><br><span class="line"></span><br><span class="line">links:</span><br><span class="line">  #Title: http:&#x2F;&#x2F;yoursite.com</span><br><span class="line">  吉他易学网&#x2F;EasyGuitar: https:&#x2F;&#x2F;www.996cloud.work</span><br></pre></td></tr></table></figure>
+<h4 id="开启打赏"><a href="#开启打赏" class="headerlink" title="开启打赏"></a>开启打赏</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">reward_settings:</span><br><span class="line">  # If true, reward will be displayed in every article by default.</span><br><span class="line">  enable: true</span><br><span class="line">  animation: true</span><br><span class="line">  comment: 请作者喝杯茶～</span><br><span class="line"></span><br><span class="line">reward:</span><br><span class="line">  wechatpay: &#x2F;images&#x2F;wechatpay.png</span><br><span class="line">  alipay: &#x2F;images&#x2F;alipay.jpg</span><br><span class="line">  #bitcoin: &#x2F;images&#x2F;bitcoin.jpg</span><br></pre></td></tr></table></figure>
+<h4 id="开启订阅公众号"><a href="#开启订阅公众号" class="headerlink" title="开启订阅公众号"></a>开启订阅公众号</h4><p>有些版本在，wechat属性配置，升级版没有</p>
+<h4 id="阅读更多"><a href="#阅读更多" class="headerlink" title="阅读更多"></a>阅读更多</h4><p>老版本auto_excer属性配置高度<br>新版替代法</p>
+<!-- more -->//夹在文章中
+<h4 id="分享"><a href="#分享" class="headerlink" title="分享"></a>分享</h4><p>配置文件jiathis：true<br>已经淘汰</p>
+<h4 id="加载效果"><a href="#加载效果" class="headerlink" title="加载效果"></a>加载效果</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">pace:</span><br><span class="line">  enable: true</span><br><span class="line">  # Themes list:</span><br><span class="line">  # big-counter | bounce | barber-shop | center-atom | center-circle | center-radar | center-simple</span><br><span class="line">  # corner-indicator | fill-left | flat-top | flash | loading-bar | mac-osx | material | minimal</span><br><span class="line">  theme: minimal</span><br></pre></td></tr></table></figure>
+<h4 id="字数统计，阅读时长"><a href="#字数统计，阅读时长" class="headerlink" title="字数统计，阅读时长"></a>字数统计，阅读时长</h4><h4 id="标题toc优化"><a href="#标题toc优化" class="headerlink" title="标题toc优化"></a>标题toc优化</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">toc:</span><br><span class="line">  enable: true</span><br><span class="line">  # Automatically add list number to toc.</span><br><span class="line">  number: true</span><br><span class="line">  # If true, all words will placed on next lines if header width longer then sidebar width.</span><br><span class="line">  wrap: true</span><br><span class="line">  # If true, all level of TOC in a post will be displayed, rather than the activated part of it.</span><br><span class="line">  expand_all: true</span><br><span class="line">  # Maximum heading depth of generated toc.</span><br><span class="line">  max_depth: 6</span><br></pre></td></tr></table></figure>
     </div>
 
     
     
     
+        <div class="reward-container">
+  <div>请作者喝杯茶～</div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="郭瑞新 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="郭瑞新 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
 
       <footer class="post-footer">
           <div class="post-tags">
@@ -400,7 +432,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo提升篇-切换一个主题"><span class="nav-number">1.</span> <span class="nav-text">Hexo提升篇-切换一个主题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一轮测试-页面局部显示"><span class="nav-number">1.1.</span> <span class="nav-text">第一轮测试-页面局部显示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二轮测试-未安装依赖，局部显示"><span class="nav-number">1.2.</span> <span class="nav-text">第二轮测试-未安装依赖，局部显示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#主题配置文件-菜单"><span class="nav-number">1.2.1.</span> <span class="nav-text">主题配置文件-菜单</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Next主题还有4种风格"><span class="nav-number">1.2.2.</span> <span class="nav-text">Next主题还有4种风格</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#侧栏设置"><span class="nav-number">1.2.3.</span> <span class="nav-text">侧栏设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#头像设置"><span class="nav-number">1.2.4.</span> <span class="nav-text">头像设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#标签"><span class="nav-number">1.2.5.</span> <span class="nav-text">标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分类"><span class="nav-number">1.2.6.</span> <span class="nav-text">分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#媒体外链"><span class="nav-number">1.2.7.</span> <span class="nav-text">媒体外链</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关于"><span class="nav-number">1.2.8.</span> <span class="nav-text">关于</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#相册"><span class="nav-number">1.2.9.</span> <span class="nav-text">相册</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#阅读量"><span class="nav-number">1.2.10.</span> <span class="nav-text">阅读量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加动态背景"><span class="nav-number">1.2.11.</span> <span class="nav-text">添加动态背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gitalk评论"><span class="nav-number">1.2.12.</span> <span class="nav-text">gitalk评论</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#valine评论"><span class="nav-number">1.2.13.</span> <span class="nav-text">valine评论</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#头像圆形旋转"><span class="nav-number">1.2.14.</span> <span class="nav-text">头像圆形旋转</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#阅读进度条"><span class="nav-number">1.2.15.</span> <span class="nav-text">阅读进度条</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#百度推送"><span class="nav-number">1.2.16.</span> <span class="nav-text">百度推送</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#优化SEO。"><span class="nav-number">1.2.17.</span> <span class="nav-text">优化SEO。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#搜索"><span class="nav-number">1.2.18.</span> <span class="nav-text">搜索</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo提升篇-切换一个主题"><span class="nav-number">1.</span> <span class="nav-text">Hexo提升篇-切换一个主题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一轮测试-页面局部显示"><span class="nav-number">1.1.</span> <span class="nav-text">第一轮测试-页面局部显示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二轮测试-全部显示（未安装依赖，切换主题风格）"><span class="nav-number">1.2.</span> <span class="nav-text">第二轮测试-全部显示（未安装依赖，切换主题风格）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#主题配置文件-菜单"><span class="nav-number">1.2.1.</span> <span class="nav-text">主题配置文件-菜单</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Next主题还有4种风格"><span class="nav-number">1.2.2.</span> <span class="nav-text">Next主题还有4种风格</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#侧栏设置"><span class="nav-number">1.2.3.</span> <span class="nav-text">侧栏设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#头像设置"><span class="nav-number">1.2.4.</span> <span class="nav-text">头像设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#标签"><span class="nav-number">1.2.5.</span> <span class="nav-text">标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分类"><span class="nav-number">1.2.6.</span> <span class="nav-text">分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#媒体外链"><span class="nav-number">1.2.7.</span> <span class="nav-text">媒体外链</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关于"><span class="nav-number">1.2.8.</span> <span class="nav-text">关于</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#相册"><span class="nav-number">1.2.9.</span> <span class="nav-text">相册</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#阅读量"><span class="nav-number">1.2.10.</span> <span class="nav-text">阅读量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加动态背景"><span class="nav-number">1.2.11.</span> <span class="nav-text">添加动态背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gitalk评论"><span class="nav-number">1.2.12.</span> <span class="nav-text">gitalk评论</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#valine评论"><span class="nav-number">1.2.13.</span> <span class="nav-text">valine评论</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#头像圆形旋转"><span class="nav-number">1.2.14.</span> <span class="nav-text">头像圆形旋转</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#阅读进度条"><span class="nav-number">1.2.15.</span> <span class="nav-text">阅读进度条</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#百度推送"><span class="nav-number">1.2.16.</span> <span class="nav-text">百度推送</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#优化SEO"><span class="nav-number">1.2.17.</span> <span class="nav-text">优化SEO</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#搜索"><span class="nav-number">1.2.18.</span> <span class="nav-text">搜索</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#友链"><span class="nav-number">1.2.19.</span> <span class="nav-text">友链</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#开启打赏"><span class="nav-number">1.2.20.</span> <span class="nav-text">开启打赏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#开启订阅公众号"><span class="nav-number">1.2.21.</span> <span class="nav-text">开启订阅公众号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#阅读更多"><span class="nav-number">1.2.22.</span> <span class="nav-text">阅读更多</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分享"><span class="nav-number">1.2.23.</span> <span class="nav-text">分享</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#加载效果"><span class="nav-number">1.2.24.</span> <span class="nav-text">加载效果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字数统计，阅读时长"><span class="nav-number">1.2.25.</span> <span class="nav-text">字数统计，阅读时长</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#标题toc优化"><span class="nav-number">1.2.26.</span> <span class="nav-text">标题toc优化</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -436,23 +468,34 @@
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/bennyrhys" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;bennyrhys" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/bennyrhys" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;bennyrhys" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://blog.csdn.net/weixin_43469680" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_43469680" rel="noopener" target="_blank"><i class="fa fa-fw fa-chain"></i>CSDN</a>
+        <a href="https://blog.csdn.net/weixin_43469680" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_43469680" rel="noopener" target="_blank"><i class="fa fa-fw fa-contao"></i></a>
       </span>
       <span class="links-of-author-item">
-        <a href="/2389992466" title="QQ → 2389992466"><i class="fa fa-fw fa-qq"></i>QQ</a>
+        <a href="/2389992466" title="QQ → 2389992466"><i class="fa fa-fw fa-qq"></i></a>
       </span>
       <span class="links-of-author-item">
-        <a href="/bennyrhys-sir" title="WC → bennyrhys-sir"><i class="fa fa-fw fa-weixin"></i>WC</a>
+        <a href="/bennyrhys-sir" title="WC → bennyrhys-sir"><i class="fa fa-fw fa-weixin"></i></a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:bennyrhys@163.com" title="E-Mail → mailto:bennyrhys@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+        <a href="mailto:bennyrhys@163.com" title="E-Mail → mailto:bennyrhys@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
       </span>
   </div>
 
 
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.996cloud.work/" title="https:&#x2F;&#x2F;www.996cloud.work" rel="noopener" target="_blank">吉他易学网/EasyGuitar</a>
+        </li>
+    </ul>
+  </div>
 
       </div>
 

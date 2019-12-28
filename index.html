@@ -16,6 +16,8 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
 
 
 <script id="hexo-configurations">
@@ -246,7 +248,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-27 22:48:01" itemprop="dateModified" datetime="2019-12-27T22:48:01+08:00">2019-12-27</time>
+                <time title="修改时间：2019-12-28 15:26:46" itemprop="dateModified" datetime="2019-12-28T15:26:46+08:00">2019-12-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -274,39 +276,15 @@
           <p>[TOC]</p>
 <h2 id="Hexo提升篇-切换一个主题"><a href="#Hexo提升篇-切换一个主题" class="headerlink" title="Hexo提升篇-切换一个主题"></a>Hexo提升篇-切换一个主题</h2><h3 id="第一轮测试-页面局部显示"><a href="#第一轮测试-页面局部显示" class="headerlink" title="第一轮测试-页面局部显示"></a>第一轮测试-页面局部显示</h3><p>疑npm install 导致显示不全，测试二不安装依赖</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;挑选主题</span><br><span class="line">https:&#x2F;&#x2F;hexo.io&#x2F;themes&#x2F;</span><br><span class="line">&#x2F;&#x2F;克隆主题到本地,放置thmemes</span><br><span class="line">bennyrhys&gt;git clone https:&#x2F;&#x2F;github.com&#x2F;theme-next&#x2F;hexo-theme-next.git </span><br><span class="line">&#x2F;&#x2F;更改配置文件</span><br><span class="line">theme: hexo-theme-next</span><br><span class="line">&#x2F;&#x2F;安装依赖插件</span><br><span class="line">$ cd hexo-theme-next</span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
-<h3 id="第二轮测试-未安装依赖，局部显示"><a href="#第二轮测试-未安装依赖，局部显示" class="headerlink" title="第二轮测试-未安装依赖，局部显示"></a>第二轮测试-未安装依赖，局部显示</h3><p>疑配置文件未打开。</p>
-<ul>
-<li>在 Hexo 中有两份主要的配置文件，其名称都是 _config.yml。 </li>
-<li>其中，一份位于站点根目录下，主要包含 Hexo 本身的配置；另一份位于主题目录下，这份配置由主题作者提供，主要用于配置主题相关的选项。</li>
-<li>为了描述方便，在以下说明中，将前者称为站点配置文件， 后者称为主题配置文件。</li>
-<li>以下所有终端执行的命令都在你的Hexo根目录下<h4 id="主题配置文件-菜单"><a href="#主题配置文件-菜单" class="headerlink" title="主题配置文件-菜单"></a>主题配置文件-菜单</h4>我们刚开始默认的菜单只有首页和归档两个，不能够满足我们的要求，所以需要添加菜单，打开 主题配置文件 找到Menu Settings<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: &#x2F; || home                          &#x2F;&#x2F;首页</span><br><span class="line">  archives: &#x2F;archives&#x2F; || archive          &#x2F;&#x2F;归档</span><br><span class="line">  categories: &#x2F;categories&#x2F; || th           &#x2F;&#x2F;分类</span><br><span class="line">  tags: &#x2F;tags&#x2F; || tags                     &#x2F;&#x2F;标签</span><br><span class="line">  about: &#x2F;about&#x2F; || user                   &#x2F;&#x2F;关于</span><br><span class="line">  #schedule: &#x2F;schedule&#x2F; || calendar        &#x2F;&#x2F;日程表</span><br><span class="line">  #sitemap: &#x2F;sitemap.xml || sitemap        &#x2F;&#x2F;站点地图</span><br><span class="line">  #commonweal: &#x2F;404&#x2F; || heartbeat          &#x2F;&#x2F;公益404</span><br></pre></td></tr></table></figure>
-看看你需要哪个菜单就把哪个取消注释打开就行了；<br>关于后面的格式，以archives: /archives/ || archive为例：<br>|| 之前的/archives/表示标题“归档”，关于标题的格式可以去themes/next/languages/zh-Hans.yml中参考或修改<br>||之后的archive表示图标，可以去Font Awesome中查看或修改，Next主题所有的图标都来自Font Awesome。<h4 id="Next主题还有4种风格"><a href="#Next主题还有4种风格" class="headerlink" title="Next主题还有4种风格"></a>Next主题还有4种风格</h4>我们百里挑一选择了Next主题，不过Next主题还有4种风格供我们选择，打开 主题配置文件 找到Scheme Settings<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Schemes</span><br><span class="line">#scheme: Muse</span><br><span class="line">#scheme: Mist</span><br><span class="line">#scheme: Pisces</span><br><span class="line">scheme: Gemini</span><br></pre></td></tr></table></figure>
-4种风格大同小异，本人用的是<a href="https://bennyrhys.github.io">Gemini</a>风格，你们可以选择自己喜欢的风格。<h4 id="侧栏设置"><a href="#侧栏设置" class="headerlink" title="侧栏设置"></a>侧栏设置</h4>侧栏设置包括：侧栏位置、侧栏显示与否、文章间距、返回顶部按钮等等<br>打开 主题配置文件 找到sidebar字段<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">sidebar:</span><br><span class="line"># Sidebar Position - 侧栏位置（只对Pisces | Gemini两种风格有效）</span><br><span class="line">  position: left        &#x2F;&#x2F;靠左放置</span><br><span class="line">  #position: right      &#x2F;&#x2F;靠右放置</span><br><span class="line"></span><br><span class="line"># Sidebar Display - 侧栏显示时机（只对Muse | Mist两种风格有效）</span><br><span class="line">  #display: post        &#x2F;&#x2F;默认行为，在文章页面（拥有目录列表）时显示</span><br><span class="line">  display: always       &#x2F;&#x2F;在所有页面中都显示</span><br><span class="line">  #display: hide        &#x2F;&#x2F;在所有页面中都隐藏（可以手动展开）</span><br><span class="line">  #display: remove      &#x2F;&#x2F;完全移除</span><br><span class="line"></span><br><span class="line">  offset: 12            &#x2F;&#x2F;文章间距（只对Pisces | Gemini两种风格有效）</span><br><span class="line"></span><br><span class="line">  b2t: false            &#x2F;&#x2F;返回顶部按钮（只对Pisces | Gemini两种风格有效）</span><br><span class="line"></span><br><span class="line">  scrollpercent: true   &#x2F;&#x2F;返回顶部按钮的百分比</span><br></pre></td></tr></table></figure>
-<h4 id="头像设置"><a href="#头像设置" class="headerlink" title="头像设置"></a>头像设置</h4>打开 主题配置文件 找到Sidebar Avatar字段<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># Sidebar Avatar</span><br><span class="line">avatar: &#x2F;images&#x2F;header.jpg</span><br></pre></td></tr></table></figure>
-这是头像的路径，只需把你的头像命名为header.jpg（随便命名）放入themes/next/source/images中，将avatar的路径名改成你的头像名就OK啦！</li>
-</ul>
-<h4 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;命令创建</span><br><span class="line">hexo new page &quot;tags&quot; </span><br><span class="line">&#x2F;&#x2F;修改创建的文件</span><br><span class="line">---</span><br><span class="line">title: 标签</span><br><span class="line">date: 2019-12-26 19:23:43</span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line">---</span><br><span class="line">&#x2F;&#x2F;打开主题的tag</span><br><span class="line">&#x2F;&#x2F;给文章加个标签</span><br></pre></td></tr></table></figure>
-<h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;命令创建</span><br><span class="line">hexo new page &quot;categories&quot;</span><br><span class="line">&#x2F;&#x2F;修改新生成的文件</span><br><span class="line">---</span><br><span class="line">title: 分类</span><br><span class="line">date: 2019-12-26 19:37:01</span><br><span class="line">type: &quot;categories&quot;</span><br><span class="line">---</span><br><span class="line">&#x2F;&#x2F;打开categories</span><br></pre></td></tr></table></figure>
-
-<h4 id="媒体外链"><a href="#媒体外链" class="headerlink" title="媒体外链"></a>媒体外链</h4><p>//配置文件<br>social:<br>  GitHub: <a href="https://github.com/bennyrhys" target="_blank" rel="noopener">https://github.com/bennyrhys</a> || github<br>  E-Mail: mailto:<a href="mailto:bennyrhys@163.com">bennyrhys@163.com</a> || envelope<br>  QQ: 2389992466 || qq<br>  WeiChat: bennyrhys-sir || weixin<br>  CSDN: <a href="https://blog.csdn.net/weixin_43469680" target="_blank" rel="noopener">https://blog.csdn.net/weixin_43469680</a> || fa-link<br>//修改图标<br>图标网站：<a href="http://www.fontawesome.com.cn/" target="_blank" rel="noopener">点击访问</a></p>
-<h4 id="关于"><a href="#关于" class="headerlink" title="关于"></a>关于</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;创建</span><br><span class="line">hexo new page &quot;about&quot; </span><br><span class="line">&#x2F;&#x2F;配置文件</span><br><span class="line">&#x2F;&#x2F;启用</span><br></pre></td></tr></table></figure>
-<h4 id="相册"><a href="#相册" class="headerlink" title="相册"></a>相册</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;命令创建</span><br><span class="line">hexo new page &quot;photos&quot;</span><br><span class="line">&#x2F;&#x2F;第三方github工具</span><br><span class="line">justified-gallery</span><br></pre></td></tr></table></figure>
-<h4 id="阅读量"><a href="#阅读量" class="headerlink" title="阅读量"></a>阅读量</h4><p>//打开配置busuanzi</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">busuanzi_count:</span><br><span class="line">  enable:true</span><br></pre></td></tr></table></figure>
-<p>\themes\next\layout_third-party\下的busuanzi.swing<br>将<br>src=“<a href="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js”" target="_blank" rel="noopener">https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js”</a><br>修改为<br>src=“<a href="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js”" target="_blank" rel="noopener">https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js”</a></p>
-<h4 id="添加动态背景"><a href="#添加动态背景" class="headerlink" title="添加动态背景"></a>添加动态背景</h4><p>js文件放在\themes\next\source\js\src<br>更新\themes\next\layout_layout.swig文件，在末尾（在前面引用会出现找不到的bug）添加以下 js 引入代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;&#x2F;js&#x2F;src&#x2F;back.js&quot; &gt;&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-<h4 id="gitalk评论"><a href="#gitalk评论" class="headerlink" title="gitalk评论"></a>gitalk评论</h4><p>gitalk：一个基于 Github Issue 和 Preact 开发的评论插件<br>详情Demo可见：<a href="https://gitalk.github.io/" target="_blank" rel="noopener">https://gitalk.github.io/</a><br>在GitHub上注册新应用，链接：<a href="https://github.com/settings/applications/new" target="_blank" rel="noopener">https://github.com/settings/applications/new</a><br>参数说明：<br>Application name： # 应用名称，随意<br>Homepage URL： # 网站URL，如<a href="https://asdfv1929.github.io" target="_blank" rel="noopener">https://asdfv1929.github.io</a><br>Application description # 描述，随意<br>Authorization callback URL：# 网站URL，<a href="https://asdfv1929.github.io" target="_blank" rel="noopener">https://asdfv1929.github.io</a></p>
-<p>点击注册后，页面跳转如下，其中Client ID和Client Secret在后面的配置中需要用到，到时复制粘贴即可：<br>Client ID<br>-52515de43eada8e083b<br>Client Secret<br>-ee2994d96e2d4a5684188df17a49fe8e9a6c3d6<br>gitalk.swig<br>新建/layout/_third-party/comments/gitalk.swig文件，并添加内容：</p>
-<h4 id="valine评论"><a href="#valine评论" class="headerlink" title="valine评论"></a>valine评论</h4><p>//注册LeanCloud<br>注册地址 <a href="https://leancloud.cn/" target="_blank" rel="noopener">https://leancloud.cn/</a><br>获取key，添加安全，网站链接<br>配置文件valine对应id</p>
-<h4 id="头像圆形旋转"><a href="#头像圆形旋转" class="headerlink" title="头像圆形旋转"></a>头像圆形旋转</h4><p>介绍一下实现头像圆形，鼠标经过旋转或者一直让旋转效果，主要是修改 Hexo 目录下 \themes\next\source\css_common\components\sidebar\sidebar-author.styl 文件。<br>修改 sidebar-author.styl 文件中 .site-author-image CSS 样式如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">.site-author-image &#123;</span><br><span class="line">  display: block;</span><br><span class="line">  margin: 0 auto;</span><br><span class="line">  padding: $site-author-image-padding;</span><br><span class="line">  max-width: $site-author-image-width;</span><br><span class="line">  height: $site-author-image-height;</span><br><span class="line">  border: $site-author-image-border-width solid $site-author-image-border-color;</span><br><span class="line">  </span><br><span class="line">&#x2F;* 头像圆形 *&#x2F;</span><br><span class="line">  border-radius: 80px;</span><br><span class="line">  -webkit-border-radius: 80px;</span><br><span class="line">  -moz-border-radius: 80px;</span><br><span class="line">  box-shadow: inset 0 -1px 0 #333sf;</span><br><span class="line"></span><br><span class="line">  &#x2F;* 鼠标经过头像旋转360度 *&#x2F;</span><br><span class="line">  -webkit-transition: -webkit-transform 1.5s ease-out;</span><br><span class="line">  -moz-transition: -moz-transform 1.5s ease-out;</span><br><span class="line">  transition: transform 1.5s ease-out;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">img:hover &#123;</span><br><span class="line">  &#x2F;* 鼠标经过头像旋转360度 *&#x2F;</span><br><span class="line">  -webkit-transform: rotateZ(360deg);</span><br><span class="line">  -moz-transform: rotateZ(360deg);</span><br><span class="line">  transform: rotateZ(360deg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="阅读进度条"><a href="#阅读进度条" class="headerlink" title="阅读进度条"></a>阅读进度条</h4><p>reading_progress:<br>  enable: true</p>
-<h4 id="百度推送"><a href="#百度推送" class="headerlink" title="百度推送"></a>百度推送</h4><p>//配置文件<br>baidu_push: true</p>
-<h4 id="优化SEO。"><a href="#优化SEO。" class="headerlink" title="优化SEO。"></a>优化SEO。</h4><p>更改网站副标题（将是主要网站描述）和所有文章/页面标题的标题层次结构，以便更好地</p>
-<p>seo: true //建议 true</p>
-<h4 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h4><p>npm install hexo-generator-searchdb –save</p>
-
+<h3 id="第二轮测试-全部显示（未安装依赖，切换主题风格）"><a href="#第二轮测试-全部显示（未安装依赖，切换主题风格）" class="headerlink" title="第二轮测试-全部显示（未安装依赖，切换主题风格）"></a>第二轮测试-全部显示（未安装依赖，切换主题风格）</h3>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/26/Hexo-%E5%88%87%E6%8D%A2%E4%B8%80%E4%B8%AA%E4%B8%BB%E9%A2%98/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -491,23 +469,34 @@
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/bennyrhys" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;bennyrhys" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/bennyrhys" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;bennyrhys" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://blog.csdn.net/weixin_43469680" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_43469680" rel="noopener" target="_blank"><i class="fa fa-fw fa-chain"></i>CSDN</a>
+        <a href="https://blog.csdn.net/weixin_43469680" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_43469680" rel="noopener" target="_blank"><i class="fa fa-fw fa-contao"></i></a>
       </span>
       <span class="links-of-author-item">
-        <a href="/2389992466" title="QQ → 2389992466"><i class="fa fa-fw fa-qq"></i>QQ</a>
+        <a href="/2389992466" title="QQ → 2389992466"><i class="fa fa-fw fa-qq"></i></a>
       </span>
       <span class="links-of-author-item">
-        <a href="/bennyrhys-sir" title="WC → bennyrhys-sir"><i class="fa fa-fw fa-weixin"></i>WC</a>
+        <a href="/bennyrhys-sir" title="WC → bennyrhys-sir"><i class="fa fa-fw fa-weixin"></i></a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:bennyrhys@163.com" title="E-Mail → mailto:bennyrhys@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+        <a href="mailto:bennyrhys@163.com" title="E-Mail → mailto:bennyrhys@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
       </span>
   </div>
 
 
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.996cloud.work/" title="https:&#x2F;&#x2F;www.996cloud.work" rel="noopener" target="_blank">吉他易学网/EasyGuitar</a>
+        </li>
+    </ul>
+  </div>
 
       </div>
 
