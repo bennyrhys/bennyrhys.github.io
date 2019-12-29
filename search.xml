@@ -1,6 +1,388 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>教程详解-极客浪漫表白红包</title>
+    <url>/2019/12/29/%E6%95%99%E7%A8%8B%E8%AF%A6%E8%A7%A3-%E6%9E%81%E5%AE%A2%E6%B5%AA%E6%BC%AB%E8%A1%A8%E7%99%BD%E7%BA%A2%E5%8C%85/</url>
+    <content><![CDATA[<p>[TOC]</p>
+<h1 id="【让宝宝不要输在起跑线】文档说明"><a href="#【让宝宝不要输在起跑线】文档说明" class="headerlink" title="【让宝宝不要输在起跑线】文档说明"></a>【让宝宝不要输在起跑线】文档说明</h1><p>作者：<a href="mailto:bennyrhys@163.com">bennyrhys@163.com</a></p>
+<h2 id="版本配置"><a href="#版本配置" class="headerlink" title="版本配置"></a>版本配置</h2><p>Jdk1.8.111</p>
+<p>meaven3.5.4</p>
+<p>springboot2.1.3</p>
+<h1 id="【初识】SpringBoot-hello-world"><a href="#【初识】SpringBoot-hello-world" class="headerlink" title="【初识】SpringBoot-hello world"></a>【初识】SpringBoot-hello world</h1><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bennyrhys.luckymoney;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMethod;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line"><span class="comment">//    @GetMapping("/hello")</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/hello"</span>, method = RequestMethod.GET)</span><br><span class="line">    <span class="function"><span class="keyword">public</span>  String <span class="title">hello</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"hello world"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>命令行启动</p>
+<figure class="highlight plain"><figcaption><span>bennyrhys$ mvn spring-boot:run```</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">终止</span><br><span class="line"></span><br><span class="line">ctrl+c</span><br><span class="line"></span><br><span class="line">## 解决打包失败</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;xml</span><br><span class="line">&lt;!--            为了打包后加的--&gt;</span><br><span class="line">            &lt;plugin&gt;</span><br><span class="line">                &lt;groupId&gt;org.apache.maven.plugins&lt;&#x2F;groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;maven-surefire-plugin&lt;&#x2F;artifactId&gt;</span><br><span class="line">                &lt;configuration&gt;</span><br><span class="line">                    &lt;skipTests&gt;true&lt;&#x2F;skipTests&gt;</span><br><span class="line">                &lt;&#x2F;configuration&gt;</span><br><span class="line">            &lt;&#x2F;plugin&gt;</span><br></pre></td></tr></table></figure>
+
+<p>查看jar包</p>
+<p>ls target/</p>
+<p>运行jar</p>
+<p>java -jar target/luckymoney-0.0.1-SNAPSHOT.jar</p>
+<p>访问：<a href="http://localhost:8080/hello" target="_blank" rel="noopener">http://localhost:8080/hello</a></p>
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><h3 id="application-properties"><a href="#application-properties" class="headerlink" title="application.properties"></a>application.properties</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">server.servlet.context-path=/luckymoney</span><br><span class="line">server.port=8081</span><br></pre></td></tr></table></figure>
+
+<h3 id="application-yml-推荐"><a href="#application-yml-推荐" class="headerlink" title="application.yml(推荐)"></a>application.yml(推荐)</h3><figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8081</span></span><br><span class="line">  <span class="attr">servlet:</span></span><br><span class="line">    <span class="attr">context-path:</span> <span class="string">/luckymoney</span></span><br></pre></td></tr></table></figure>
+
+<p>访问：<a href="http://localhost:8081/luckymoney/hello" target="_blank" rel="noopener">http://localhost:8081/luckymoney/hello</a></p>
+<h2 id="git提交-：helloworld-yml启动及简单配置"><a href="#git提交-：helloworld-yml启动及简单配置" class="headerlink" title="git提交 ：helloworld+yml启动及简单配置"></a>git提交 ：helloworld+yml启动及简单配置</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;初始化</span><br><span class="line">springboot2小时浪漫红包 bennyrhys$ git init</span><br><span class="line">&#x2F;&#x2F;配置提交用户</span><br><span class="line">git config user.name bennyrhys</span><br><span class="line">git config user.email bennyrhys@163.com</span><br><span class="line">&#x2F;&#x2F;验证用户信息</span><br><span class="line">cat .git&#x2F;config</span><br><span class="line">[core]</span><br><span class="line">	repositoryformatversion &#x3D; 0</span><br><span class="line">	filemode &#x3D; true</span><br><span class="line">	bare &#x3D; false</span><br><span class="line">	logallrefupdates &#x3D; true</span><br><span class="line">	ignorecase &#x3D; true</span><br><span class="line">	precomposeunicode &#x3D; true</span><br><span class="line">[user]</span><br><span class="line">	name &#x3D; bennyrhys</span><br><span class="line">	email &#x3D; bennyrhys@163.com</span><br><span class="line">&#x2F;&#x2F;查看文件状态</span><br><span class="line">git status</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">No commits yet</span><br><span class="line"></span><br><span class="line">Untracked files:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</span><br><span class="line"></span><br><span class="line">	.DS_Store</span><br><span class="line">	luckymoney&#x2F;</span><br><span class="line">&#x2F;&#x2F;添加修改文件到暂存区</span><br><span class="line">git add luckymoney&#x2F;</span><br><span class="line">&#x2F;&#x2F;添加文件到数据库</span><br><span class="line">git commit -m &quot;hello world+yml 简单配置启动&quot;</span><br><span class="line">&#x2F;&#x2F;建立远程连接</span><br><span class="line">&#x2F;&#x2F;列出已经存在的远程分支 -v详情</span><br><span class="line">git remote -v</span><br><span class="line">&#x2F;&#x2F;创建远程分支</span><br><span class="line">git remote add  origin_lm https:&#x2F;&#x2F;github.com&#x2F;bennyrhys&#x2F;LuckyMoney.git </span><br><span class="line">&#x2F;&#x2F;检测分支</span><br><span class="line">git remote -v</span><br><span class="line">origin_lm	https:&#x2F;&#x2F;github.com&#x2F;bennyrhys&#x2F;LuckyMoney.git (fetch)</span><br><span class="line">origin_lm	https:&#x2F;&#x2F;github.com&#x2F;bennyrhys&#x2F;LuckyMoney.git (push)</span><br><span class="line">&#x2F;&#x2F;此处切记更改上传人密钥信息</span><br><span class="line">&#x2F;&#x2F;push文件</span><br><span class="line">git push origin_lm master</span><br><span class="line">&#x2F;&#x2F;远程仓库名冲突，修改远程分支</span><br><span class="line">git remote remove origin_lm</span><br><span class="line">&#x2F;&#x2F;新建远程分支</span><br><span class="line">git remote add origin_lm  https:&#x2F;&#x2F;github.com&#x2F;bennyrhys&#x2F;LuckyMoney-SpringBootProject.git</span><br><span class="line">&#x2F;&#x2F;因为github原有README.md文档需要解决冲突</span><br><span class="line">git pull origin_lm master</span><br><span class="line">&#x2F;&#x2F;git push origin_lm master</span><br></pre></td></tr></table></figure>
+
+<h1 id="【君子之交-淡如水】解放双手，配置红包"><a href="#【君子之交-淡如水】解放双手，配置红包" class="headerlink" title="【君子之交-淡如水】解放双手，配置红包"></a>【君子之交-淡如水】解放双手，配置红包</h1><h2 id="手动单个配置"><a href="#手动单个配置" class="headerlink" title="手动单个配置"></a>手动单个配置</h2><p>1 .application.yml</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">mixMoney</span>: <span class="string">1</span></span><br><span class="line"><span class="attr">maxMoney</span>: <span class="string">99</span></span><br><span class="line"><span class="attr">description</span>: <span class="string">最少要发$&#123;mixMoney&#125;元</span></span><br></pre></td></tr></table></figure>
+
+<p>2 .HelloController</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line"><span class="comment">//法1：手动引入配置信息</span></span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;mixMoney&#125;"</span>)</span><br><span class="line">    <span class="keyword">private</span> BigDecimal mixMoney;</span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;description&#125;"</span>)</span><br><span class="line">    <span class="keyword">private</span> String description;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/hello"</span>)</span><br><span class="line"><span class="comment">//    @RequestMapping(value = "/hello", method = RequestMethod.GET)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span>  String <span class="title">hello</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"mixMoney"</span>+mixMoney+<span class="string">"说明"</span>+description;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>访问<a href="http://localhost:8081/luckymoney/hello" target="_blank" rel="noopener">http://localhost:8081/luckymoney/hello</a></li>
+<li>输出：mixMoney1说明最少要发1元</li>
+<li>Git上传到分支confmoney</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bennyrhysdeMacBook-Pro:LuckyMoney-SpringBootProject bennyrhys$ git branch</span><br><span class="line">* master</span><br><span class="line">bennyrhysdeMacBook-Pro:LuckyMoney-SpringBootProject bennyrhys$ git checkout -b confmoney</span><br><span class="line">M	luckymoney&#x2F;src&#x2F;main&#x2F;java&#x2F;com&#x2F;bennyrhys&#x2F;luckymoney&#x2F;HelloController.java</span><br><span class="line">M	luckymoney&#x2F;src&#x2F;main&#x2F;resources&#x2F;application.yml</span><br><span class="line">M	luckymoney_note.md</span><br><span class="line">Switched to a new branch &#39;confmoney&#39;</span><br><span class="line">bennyrhysdeMacBook-Pro:LuckyMoney-SpringBootProject bennyrhys$ git branch</span><br><span class="line">* confmoney</span><br><span class="line">  master</span><br><span class="line">bennyrhysdeMacBook-Pro:LuckyMoney-SpringBootProject bennyrhys$ git status</span><br><span class="line">On branch confmoney</span><br><span class="line">Changes not staged for commit:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)</span><br><span class="line">  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)</span><br><span class="line"></span><br><span class="line">	modified:   luckymoney&#x2F;src&#x2F;main&#x2F;java&#x2F;com&#x2F;bennyrhys&#x2F;luckymoney&#x2F;HelloController.java</span><br><span class="line">	modified:   luckymoney&#x2F;src&#x2F;main&#x2F;resources&#x2F;application.yml</span><br><span class="line">	modified:   luckymoney_note.md</span><br><span class="line"></span><br><span class="line">Untracked files:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</span><br><span class="line"></span><br><span class="line">	.DS_Store</span><br><span class="line">	luckymoney&#x2F;.DS_Store</span><br><span class="line"></span><br><span class="line">no changes added to commit (use &quot;git add&quot; and&#x2F;or &quot;git commit -a&quot;)</span><br><span class="line">bennyrhysdeMacBook-Pro:LuckyMoney-SpringBootProject bennyrhys$ git add .</span><br><span class="line">bennyrhysdeMacBook-Pro:LuckyMoney-SpringBootProject bennyrhys$ git commit -m &quot;红包金额-手动配置&quot;</span><br><span class="line">[confmoney bde8c36] 红包金额-手动配置</span><br><span class="line"> 5 files changed, 59 insertions(+), 5 deletions(-)</span><br><span class="line"> create mode 100644 .DS_Store</span><br><span class="line"> create mode 100644 luckymoney&#x2F;.DS_Store</span><br><span class="line">bennyrhysdeMacBook-Pro:LuckyMoney-SpringBootProject bennyrhys$ git remote -v</span><br><span class="line">origin	https:&#x2F;&#x2F;github.com&#x2F;bennyrhys&#x2F;LuckyMoney-SpringBootProject.git (fetch)</span><br><span class="line">origin	https:&#x2F;&#x2F;github.com&#x2F;bennyrhys&#x2F;LuckyMoney-SpringBootProject.git (push)</span><br><span class="line">origin_lm	https:&#x2F;&#x2F;github.com&#x2F;bennyrhys&#x2F;LuckyMoney-SpringBootProject.git (fetch)</span><br><span class="line">origin_lm	https:&#x2F;&#x2F;github.com&#x2F;bennyrhys&#x2F;LuckyMoney-SpringBootProject.git (push)</span><br><span class="line">bennyrhysdeMacBook-Pro:LuckyMoney-SpringBootProject bennyrhys$ git push origin_lm confmoney</span><br><span class="line">Enumerating objects: 27, done.</span><br><span class="line">Counting objects: 100% (27&#x2F;27), done.</span><br><span class="line">Delta compression using up to 4 threads</span><br><span class="line">Compressing objects: 100% (11&#x2F;11), done.</span><br><span class="line">Writing objects: 100% (15&#x2F;15), 2.37 KiB | 2.37 MiB&#x2F;s, done.</span><br><span class="line">Total 15 (delta 3), reused 0 (delta 0)</span><br><span class="line">remote: Resolving deltas: 100% (3&#x2F;3), completed with 2 local objects.</span><br><span class="line">remote: </span><br><span class="line">remote: Create a pull request for &#39;confmoney&#39; on GitHub by visiting:</span><br><span class="line">remote:      https:&#x2F;&#x2F;github.com&#x2F;bennyrhys&#x2F;LuckyMoney-SpringBootProject&#x2F;pull&#x2F;new&#x2F;confmoney</span><br><span class="line">remote: </span><br><span class="line">To https:&#x2F;&#x2F;github.com&#x2F;bennyrhys&#x2F;LuckyMoney-SpringBootProject.git</span><br><span class="line"> * [new branch]      confmoney -&gt; confmoney</span><br></pre></td></tr></table></figure>
+
+<h2 id="自动多个配置红包金额【limit类限制金额范围】"><a href="#自动多个配置红包金额【limit类限制金额范围】" class="headerlink" title="自动多个配置红包金额【limit类限制金额范围】"></a>自动多个配置红包金额【limit类限制金额范围】</h2><ol>
+<li>application.yml</li>
+</ol>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">limit</span>:<span class="string"></span></span><br><span class="line">  <span class="attr">minMoney</span>: <span class="string">1</span></span><br><span class="line">  <span class="attr">maxMoney</span>: <span class="string">99</span></span><br><span class="line">  <span class="attr">description</span>: <span class="string">最少要发$&#123;limit.minMoney&#125;元,最多发$&#123;limit.maxMoney&#125;元</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>LimitConfig</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bennyrhys.luckymoney;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Value;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMethod;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.math.BigDecimal;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">//法2；自动注入</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    LimitConfig limitConfig;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/hello"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span>  String <span class="title">hello</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"说明"</span>+limitConfig.getDescription();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>HelloController</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bennyrhys.luckymoney;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Value;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMethod;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.math.BigDecimal;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">//法2；自动注入</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    LimitConfig limitConfig;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/hello"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span>  String <span class="title">hello</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"说明"</span>+limitConfig.getDescription();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>输出</li>
+</ol>
+<p><a href="http://localhost:8081/luckymoney/hello" target="_blank" rel="noopener">http://localhost:8081/luckymoney/hello</a></p>
+<p>说明最少要发1元,最多发99元</p>
+<ol start="5">
+<li>git提交</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bennyrhysdeMacBook-Pro:LuckyMoney-SpringBootProject bennyrhys$ git branch</span><br><span class="line">* confmoney</span><br><span class="line">  master</span><br><span class="line">bennyrhysdeMacBook-Pro:LuckyMoney-SpringBootProject bennyrhys$ git status</span><br><span class="line">On branch confmoney</span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)</span><br><span class="line"></span><br><span class="line">	new file:   luckymoney&#x2F;src&#x2F;main&#x2F;java&#x2F;com&#x2F;bennyrhys&#x2F;luckymoney&#x2F;LimitConfig.java</span><br><span class="line"></span><br><span class="line">Changes not staged for commit:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)</span><br><span class="line">  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)</span><br><span class="line"></span><br><span class="line">	modified:   README.md</span><br><span class="line">	modified:   luckymoney&#x2F;src&#x2F;main&#x2F;java&#x2F;com&#x2F;bennyrhys&#x2F;luckymoney&#x2F;HelloController.java</span><br><span class="line">	modified:   luckymoney&#x2F;src&#x2F;main&#x2F;java&#x2F;com&#x2F;bennyrhys&#x2F;luckymoney&#x2F;LimitConfig.java</span><br><span class="line">	modified:   luckymoney&#x2F;src&#x2F;main&#x2F;resources&#x2F;application.yml</span><br><span class="line">	modified:   luckymoney_note.md</span><br><span class="line"></span><br><span class="line">Untracked files:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</span><br><span class="line"></span><br><span class="line">	README.assets&#x2F;</span><br><span class="line"></span><br><span class="line">bennyrhysdeMacBook-Pro:LuckyMoney-SpringBootProject bennyrhys$ git add .</span><br><span class="line">bennyrhysdeMacBook-Pro:LuckyMoney-SpringBootProject bennyrhys$ git commit -m &quot;limit类限制金额自动配置&quot;</span><br></pre></td></tr></table></figure>
+
+<h1 id="生成环境开发环境划分"><a href="#生成环境开发环境划分" class="headerlink" title="生成环境开发环境划分"></a>生成环境开发环境划分</h1><ol>
+<li>思路</li>
+</ol>
+<blockquote>
+<p>dev开发模式</p>
+<p>prod生产模式</p>
+<p>由yml控制选择模式</p>
+<p>场景</p>
+<p>dev：测试0.1 元</p>
+<p>prod：正式1元</p>
+</blockquote>
+<ol start="2">
+<li>application-dev.yml</li>
+</ol>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring</span>:<span class="string"></span></span><br><span class="line">  <span class="attr">profiles</span>:<span class="string"></span></span><br><span class="line">    <span class="attr">active</span>: <span class="string">dev #设定部署的测试配置开发、生产(如果正式上线，可以不修改此处，打包后命令切换环境)</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>application-dev.yml</li>
+</ol>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">server</span>:<span class="string"></span></span><br><span class="line">  <span class="attr">port</span>: <span class="string">8081</span></span><br><span class="line">  <span class="attr">servlet</span>:<span class="string"></span></span><br><span class="line">    <span class="meta">context-path</span>: <span class="string">/luckymoney</span></span><br><span class="line"><span class="attr">limit</span>:<span class="string"></span></span><br><span class="line">  <span class="attr">minMoney</span>: <span class="string">0.1</span></span><br><span class="line">  <span class="attr">maxMoney</span>: <span class="string">99</span></span><br><span class="line">  <span class="attr">description</span>: <span class="string">最少要发$&#123;limit.minMoney&#125;元,最多发$&#123;limit.maxMoney&#125;元</span></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>application-prod.yml</li>
+</ol>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">server</span>:<span class="string"></span></span><br><span class="line">  <span class="attr">port</span>: <span class="string">8081</span></span><br><span class="line">  <span class="attr">servlet</span>:<span class="string"></span></span><br><span class="line">    <span class="meta">context-path</span>: <span class="string">/luckymoney</span></span><br><span class="line"><span class="attr">limit</span>:<span class="string"></span></span><br><span class="line">  <span class="attr">minMoney</span>: <span class="string">1</span></span><br><span class="line">  <span class="attr">maxMoney</span>: <span class="string">99</span></span><br><span class="line">  <span class="attr">description</span>: <span class="string">最少要发$&#123;limit.minMoney&#125;元,最多发$&#123;limit.maxMoney&#125;元</span></span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>输出</li>
+</ol>
+<blockquote>
+<p>Dev:说明最少要发0.1元,最多发99元</p>
+<p>Prod:说明最少要发1元,最多发99元</p>
+</blockquote>
+<ol start="6">
+<li>打包命令切换开发环境</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">meaven使用</span><br><span class="line">&#x2F;&#x2F;项目根目录打包</span><br><span class="line">mvn clean package</span><br><span class="line">&#x2F;&#x2F;普通启动-开发环境</span><br><span class="line">java -jar target&#x2F;luckymoney-0.0.1-SNAPSHOT.jar</span><br><span class="line">&#x2F;&#x2F;启动时修改-生产环境</span><br><span class="line">java -jar -Dspring.profiles.active&#x3D;prod  target&#x2F;luckymoney-0.0.1-SNAPSHOT.jar</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="6">
+<li>git上传</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bennyrhysdeMacBook-Pro:LuckyMoney-SpringBootProject bennyrhys$ git branch</span><br><span class="line">* confmoney</span><br><span class="line">  master</span><br><span class="line">bennyrhysdeMacBook-Pro:LuckyMoney-SpringBootProject bennyrhys$ git add .</span><br><span class="line">bennyrhysdeMacBook-Pro:LuckyMoney-SpringBootProject bennyrhys$ git commit -m &quot;多环境配置-生产、开发&quot;</span><br><span class="line">[confmoney b3f8623] 多环境配置-生产、开发</span><br><span class="line"> 4 files changed, 137 insertions(+), 10 deletions(-)</span><br><span class="line"> create mode 100644 luckymoney&#x2F;src&#x2F;main&#x2F;resources&#x2F;application-dev.yml</span><br><span class="line"> create mode 100644 luckymoney&#x2F;src&#x2F;main&#x2F;resources&#x2F;application-prod.yml</span><br><span class="line">bennyrhysdeMacBook-Pro:LuckyMoney-SpringBootProject bennyrhys$ git push origin_lm confmoney</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>@Value //单个配置</p>
+<p>@Component     @ConfigurationProperties//多个配置</p>
+<p>多环境配置</p>
+<h1 id="【人生若只如初见】从“程序”入口Controller开始"><a href="#【人生若只如初见】从“程序”入口Controller开始" class="headerlink" title="【人生若只如初见】从“程序”入口Controller开始"></a>【人生若只如初见】从“程序”入口Controller开始</h1><img data-src="luckymoney_note.assets/image-20191229164313530.png" alt="image-20191229164313530" style="zoom:50%;">
+
+<p>@requestmapping旧版使用，新版@getmapping，但有个别场景还是会使用到它的</p>
+<h2 id="controller-thymeleaf（不推荐，前后端不分离）"><a href="#controller-thymeleaf（不推荐，前后端不分离）" class="headerlink" title="controller+thymeleaf（不推荐，前后端不分离）"></a>controller+thymeleaf（不推荐，前后端不分离）</h2><p>将restcontrller改成contrllre（报错），增添thymeleaf模版，返回指定templates-index页面</p>
+<ol>
+<li>改成旧版controller</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bennyrhys.luckymoney;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Value;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMethod;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.math.BigDecimal;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">//法2；自动注入</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    LimitConfig limitConfig;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/hello"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span>  String <span class="title">hello</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//        return "说明"+limitConfig.getDescription();</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"index"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>pom.xml,新增thymeleaf模版</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-thymeleaf<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>新建thymeleaf模版index页面</li>
+</ol>
+<p>4.访问</p>
+<p><a href="http://localhost:8081/luckymoney/hello" target="_blank" rel="noopener">http://localhost:8081/luckymoney/hello</a></p>
+<p>hello world</p>
+<ol start="5">
+<li>git上传</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bennyrhysdeMacBook-Pro:LuckyMoney-SpringBootProject bennyrhys$ git add .</span><br><span class="line">bennyrhysdeMacBook-Pro:LuckyMoney-SpringBootProject bennyrhys$ git commit -m &quot;controller+thymeleaf&quot;</span><br><span class="line">[confmoney 0c07f43] controller+thymeleaf</span><br><span class="line"> 6 files changed, 94 insertions(+), 2 deletions(-)</span><br><span class="line"> create mode 100644 luckymoney&#x2F;src&#x2F;main&#x2F;resources&#x2F;templates&#x2F;index.html</span><br><span class="line"> create mode 100644 luckymoney_note.assets&#x2F;image-20191229164307062.png</span><br><span class="line"> create mode 100644 luckymoney_note.assets&#x2F;image-20191229164313530.png</span><br><span class="line">bennyrhysdeMacBook-Pro:LuckyMoney-SpringBootProject bennyrhys$ git push origin_lm confmoney</span><br></pre></td></tr></table></figure>
+
+<h2 id="恢复访问-Controller-ResponseBody"><a href="#恢复访问-Controller-ResponseBody" class="headerlink" title="恢复访问@Controller+@ResponseBody"></a>恢复访问@Controller+@ResponseBody</h2><p>注销thymeleaf，新增@RestponseBody恢复页面访问，消除报错</p>
+<p><strong>@RestponseBody使用，当同时两个方法使用，@RestponseBody添加返回字符串，不加返回h5页面</strong></p>
+<p><a href="http://localhost:8081/luckymoney/hello" target="_blank" rel="noopener">http://localhost:8081/luckymoney/hello</a></p>
+<p><a href="http://localhost:8081/luckymoney/hello2" target="_blank" rel="noopener">http://localhost:8081/luckymoney/hello2</a></p>
+<ol>
+<li>pom.xml</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">  &lt;!--      &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-boot-starter-thymeleaf&lt;&#x2F;artifactId&gt;</span><br><span class="line">        &lt;&#x2F;dependency&gt;</span><br><span class="line">--&gt;</span><br><span class="line">&#x2F;&#x2F;注销模版使用，记得每次修改meaven要重新import一下</span><br><span class="line">&#x2F;&#x2F;@Controller+@ResponseBody&#x3D;@RestController</span><br><span class="line">&#x2F;&#x2F;@ResponseBody可以放在方法上用</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>HelloController//单独合并两个注解功能</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bennyrhys.luckymoney;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Value;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.math.BigDecimal;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="comment">//@ResponseBody</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">//法2；自动注入</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    LimitConfig limitConfig;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/hello"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span>  String <span class="title">hello</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"说明"</span>+limitConfig.getDescription();</span><br><span class="line"><span class="comment">//        return "index";</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>HelloController同时返回 字符串+thymeleaf h5</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bennyrhys.luckymoney;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Value;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.math.BigDecimal;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="comment">//@ResponseBody</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">//法2；自动注入</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    LimitConfig limitConfig;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/hello"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span>  String <span class="title">hello</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"说明"</span>+limitConfig.getDescription();</span><br><span class="line"><span class="comment">//        return "index";</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/hello2"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span>  String <span class="title">hello2</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"index"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>git上传</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git commit -m &quot;@controller+@ResponseBody&quot;</span><br><span class="line">git push origin_lm confmoney</span><br></pre></td></tr></table></figure>
+
+<h2 id="多访问url同返回（名称数组）"><a href="#多访问url同返回（名称数组）" class="headerlink" title="多访问url同返回（名称数组）"></a>多访问url同返回（名称数组）</h2><p>快捷键：command+p//查看@GetMapping(“/hello”)，括号内参数类型</p>
+<ul>
+<li><a href="http://localhost:8081/luckymoney/hi" target="_blank" rel="noopener">http://localhost:8081/luckymoney/hi</a>  == <a href="http://localhost:8081/luckymoney/hello" target="_blank" rel="noopener">http://localhost:8081/luckymoney/hello</a> 不同名访问同返回</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@GetMapping(&#123;&quot;&#x2F;hello&quot;,&quot;&#x2F;hi&quot;&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="url深层访问：-RequestMapping-“hello”"><a href="#url深层访问：-RequestMapping-“hello”" class="headerlink" title="url深层访问：@RequestMapping(“hello”)"></a>url深层访问：@RequestMapping(“hello”)</h2><ul>
+<li><a href="http://localhost:8081/luckymoney/hello/say" target="_blank" rel="noopener">http://localhost:8081/luckymoney/hello/say</a> url深层访问</li>
+</ul>
+<p>低级做法：不方便维护，每次写深路径</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/hello/say"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>高级做法：@RequestMapping(“hello”)</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bennyrhys.luckymoney;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Value;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.math.BigDecimal;</span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"hello"</span>)</span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    LimitConfig limitConfig;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/say"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span>  String <span class="title">hello</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"说明"</span>+limitConfig.getDescription();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="post请求访问"><a href="#post请求访问" class="headerlink" title="post请求访问"></a>post请求访问</h2><p>​    @PostMapping(“/say”)</p>
+<p>get无法接受请求，使用工具postman发送post请求</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bennyrhys.luckymoney;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Value;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.math.BigDecimal;</span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"hello"</span>)</span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    LimitConfig limitConfig;</span><br><span class="line"></span><br><span class="line"><span class="comment">//    @GetMapping("/say")</span></span><br><span class="line">    <span class="meta">@PostMapping</span>(<span class="string">"/say"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span>  String <span class="title">hello</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"说明"</span>+limitConfig.getDescription();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Get-post都行的访问"><a href="#Get-post都行的访问" class="headerlink" title="Get/post都行的访问"></a>Get/post都行的访问</h2><p>不推荐，请求要明确，都行刷流氓</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bennyrhys.luckymoney;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Value;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.math.BigDecimal;</span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"hello"</span>)</span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    LimitConfig limitConfig;</span><br><span class="line"></span><br><span class="line"><span class="comment">//    @GetMapping("/say")</span></span><br><span class="line"><span class="comment">//    @PostMapping("/say")</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/say"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span>  String <span class="title">hello</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"说明"</span>+limitConfig.getDescription();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="获取请求携带的参数"><a href="#获取请求携带的参数" class="headerlink" title="获取请求携带的参数"></a>获取请求携带的参数</h2><img data-src="luckymoney_note.assets/image-20191229173946637.png" alt="image-20191229173946637" style="zoom:33%;">
+
+
+
+<ul>
+<li>url-简洁hello/say/100</li>
+</ul>
+<p>@PathVariable(“id”) +@GetMapping(“/say/{id}”)</p>
+<p>HelloController</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bennyrhys.luckymoney;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Value;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.math.BigDecimal;</span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"hello"</span>)</span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    LimitConfig limitConfig;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/say/&#123;id&#125;"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span>  String <span class="title">hello</span><span class="params">(@PathVariable(<span class="string">"id"</span>)</span> Integer id)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"id:"</span>+id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a href="http://localhost:8081/luckymoney/hello/say/100" target="_blank" rel="noopener">http://localhost:8081/luckymoney/hello/say/100</a></p>
+<p>id:100</p>
+<ul>
+<li>url-hello/say?id=19</li>
+</ul>
+<p>@RequestParam(“id”),撤销@GetMapping(“/say”)的{id}</p>
+<p>注意：@RequestParam中id和访问say?id=19名称一致，访问的id不能为空</p>
+<p>HelloController</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bennyrhys.luckymoney;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Value;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.math.BigDecimal;</span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"hello"</span>)</span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    LimitConfig limitConfig;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/say"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span>  String <span class="title">hello</span><span class="params">(@RequestParam(<span class="string">"id"</span>)</span> Integer id)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"id:"</span>+id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a href="http://localhost:8081/luckymoney/hello/say?id=19" target="_blank" rel="noopener">http://localhost:8081/luckymoney/hello/say?id=19</a></p>
+<p>id:19</p>
+<ul>
+<li>url-hello/say?id=为空时</li>
+</ul>
+<p>设置属性非必须属性设置</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public  String hello(@RequestParam(value &#x3D; &quot;id&quot; , required &#x3D; false, defaultValue &#x3D; &quot;0&quot;) Integer id)&#123;</span><br></pre></td></tr></table></figure>
+
+<p>不传id时默认为0</p>
+<p><a href="http://localhost:8081/luckymoney/hello/say" target="_blank" rel="noopener">http://localhost:8081/luckymoney/hello/say</a></p>
+<p>id:0</p>
+<ul>
+<li>访问切换成post请求</li>
+</ul>
+<p>请求方式多样，可以跟在url-hello/say?id=后面，也可以在请求体中</p>
+<p>推荐参数 放在body的urlencode里面</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@PostMapping</span>(<span class="string">"/say"</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="git提交"><a href="#git提交" class="headerlink" title="git提交"></a>git提交</h2><p>confmoney分支 commit “controller-end”</p>
+<h1 id="【收获人生”红颜”知己】撸程序-红包收发操作数据库"><a href="#【收获人生”红颜”知己】撸程序-红包收发操作数据库" class="headerlink" title="【收获人生”红颜”知己】撸程序-红包收发操作数据库"></a>【收获人生”红颜”知己】撸程序-红包收发操作数据库</h1><h2 id="搭配方案："><a href="#搭配方案：" class="headerlink" title="搭配方案："></a>搭配方案：</h2><p>java端：spring-data-jpa：持久层配置标准，定义标准好比接口，实现此规范的产品hibernate，toplink，对spring整合，不用写一行sql语句操作</p>
+<p>数据库：mysql</p>
+<h2 id="restful-api设计"><a href="#restful-api设计" class="headerlink" title="restful-api设计"></a>restful-api设计</h2><table>
+<thead>
+<tr>
+<th>请求类型</th>
+<th>请求路径</th>
+<th>请求功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>get</td>
+<td>/luckmoneys</td>
+<td>获取红包列表</td>
+</tr>
+<tr>
+<td>post</td>
+<td>/luckmoneys</td>
+<td>创建一个红包</td>
+</tr>
+<tr>
+<td>get</td>
+<td>/luckmoneys/id</td>
+<td>通过id查询红包</td>
+</tr>
+<tr>
+<td>put</td>
+<td>/luckmoneys/id</td>
+<td>通过id更新红包</td>
+</tr>
+</tbody></table>
+<h2 id="引入pom-jpa-mysql"><a href="#引入pom-jpa-mysql" class="headerlink" title="引入pom jpa+mysql"></a>引入pom jpa+mysql</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-data-jpa&lt;&#x2F;artifactId&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;mysql&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mysql-connector-java&lt;&#x2F;artifactId&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<p>注意：不要加版本号，Springbot已经选择好了版本</p>
+<h2 id="yml配置mysql"><a href="#yml配置mysql" class="headerlink" title="yml配置mysql"></a>yml配置mysql</h2><p>先建立数据库luckmoney</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: 8081</span><br><span class="line">  servlet:</span><br><span class="line">    context-path: &#x2F;luckymoney</span><br><span class="line">limit:</span><br><span class="line">  minMoney: 0.1</span><br><span class="line">  maxMoney: 99</span><br><span class="line">  description: 最少要发$&#123;limit.minMoney&#125;元,最多发$&#123;limit.maxMoney&#125;元</span><br><span class="line">spring:</span><br><span class="line">  datasource:</span><br><span class="line">    driver-class-name: com.mysql.cj.jdbc.Driver</span><br><span class="line">    url: jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;luckmoney</span><br><span class="line">    username: root</span><br><span class="line">    password: rootroot</span><br><span class="line">  jpa:</span><br><span class="line">    hibernate:</span><br><span class="line">      ddl-auto: create</span><br><span class="line">    show-sql: true #控制台显示sql命令</span><br></pre></td></tr></table></figure>
+
+<h2 id="数据库-创建表"><a href="#数据库-创建表" class="headerlink" title="数据库-创建表"></a>数据库-创建表</h2><p>不需要执行sql</p>
+<p>创建java文件命名时首字母大写，<strong>中间不要驼峰命名</strong>，默认识别为一个单词</p>
+<p>Luckmoney.java 【空构造方法、get/set、@id导包不要错Java.presistence、id自增】</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bennyrhys.luckymoney;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.persistence.Entity;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.GeneratedValue;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.Id;</span><br><span class="line"><span class="keyword">import</span> java.math.BigDecimal;</span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Luckmoney</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Id</span></span><br><span class="line">    <span class="meta">@GeneratedValue</span> <span class="comment">//自增</span></span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> BigDecimal money;</span><br><span class="line">    <span class="keyword">private</span> String producer;<span class="comment">//发送方</span></span><br><span class="line">    <span class="keyword">private</span> String consumer;<span class="comment">//接收方</span></span><br></pre></td></tr></table></figure>
+
+<p>运行，自动创建表</p>
+<blockquote>
+<p>控制台输出sql</p>
+<p>Hibernate: drop table if exists hibernate_sequence<br>Hibernate: drop table if exists luckmoney<br>Hibernate: create table hibernate_sequence (next_val bigint) engine=MyISAM<br>Hibernate: insert into hibernate_sequence values ( 1 )<br>Hibernate: create table luckmoney (id integer not null, consumer varchar(255), money decimal(19,2), producer varchar(255), primary key (id)) engine=MyISAM</p>
+</blockquote>
+<p>填充表中数据，并关闭创建表yml配置create-&gt;update</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">jpa:</span><br><span class="line">  hibernate:</span><br><span class="line">    ddl-auto: update</span><br><span class="line">  show-sql: true #控制台显示sql命令</span><br></pre></td></tr></table></figure>
+
+<h2 id="LuckymoneyRepository接口"><a href="#LuckymoneyRepository接口" class="headerlink" title="LuckymoneyRepository接口"></a>LuckymoneyRepository接口</h2><p>Repository就是和数据连接的Dao，这样写和jpa命名一致</p>
+<p>继承JpaRepository&lt;Luckmoney,Integer&gt;<strong>数据库的实体类，和id的类型</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package com.bennyrhys.luckymoney;</span><br><span class="line"></span><br><span class="line">import org.springframework.data.jpa.repository.JpaRepository;</span><br><span class="line"></span><br><span class="line">public interface LuckymoneyRepository extends JpaRepository&lt;Luckmoney,Integer&gt; &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="LuckmoneyController"><a href="#LuckmoneyController" class="headerlink" title="LuckmoneyController"></a>LuckmoneyController</h2><p>先写好dao接口再调cotroller</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bennyrhys.luckymoney;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LuckmoneyController</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取红包列表</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Luckmoney&gt; <span class="title">list</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="列表输出"><a href="#列表输出" class="headerlink" title="列表输出"></a>列表输出</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">get：http:&#x2F;&#x2F;localhost:8081&#x2F;luckymoney&#x2F;luckymoneys</span><br><span class="line">[&#123;&quot;id&quot;:1,&quot;money&quot;:0.10,&quot;producer&quot;:&quot;李四&quot;,&quot;consumer&quot;:&quot;zhangsan&quot;&#125;,&#123;&quot;id&quot;:2,&quot;money&quot;:0.20,&quot;producer&quot;:&quot;王五&quot;,&quot;consumer&quot;:&quot;李四&quot;&#125;]</span><br><span class="line"></span><br><span class="line">post：http:&#x2F;&#x2F;localhost:8081&#x2F;luckymoney&#x2F;luckymoneys</span><br><span class="line">producer 啊本</span><br><span class="line">money 10</span><br><span class="line">&#123;</span><br><span class="line">    &quot;id&quot;: 3,</span><br><span class="line">    &quot;money&quot;: 10,</span><br><span class="line">    &quot;producer&quot;: &quot;啊本&quot;,</span><br><span class="line">    &quot;consumer&quot;: null</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">get：http:&#x2F;&#x2F;localhost:8081&#x2F;luckymoney&#x2F;luckymoneys&#x2F;2</span><br><span class="line">&#123;</span><br><span class="line">    &quot;id&quot;: 2,</span><br><span class="line">    &quot;money&quot;: 100.00,</span><br><span class="line">    &quot;producer&quot;: &quot;瑞新&quot;,</span><br><span class="line">    &quot;consumer&quot;: null</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">put：http:&#x2F;&#x2F;localhost:8081&#x2F;luckymoney&#x2F;luckymoneys&#x2F;2</span><br><span class="line">consumer 师姐</span><br><span class="line">&#123;</span><br><span class="line">    &quot;id&quot;: 2,</span><br><span class="line">    &quot;money&quot;: 1.00,</span><br><span class="line">    &quot;producer&quot;: &quot;阿本&quot;,</span><br><span class="line">    &quot;consumer&quot;: &quot;师姐&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="【搞定并发就在一起】事务就像乱点鸳鸯的丈母娘"><a href="#【搞定并发就在一起】事务就像乱点鸳鸯的丈母娘" class="headerlink" title="【搞定并发就在一起】事务就像乱点鸳鸯的丈母娘"></a>【搞定并发就在一起】事务就像乱点鸳鸯的丈母娘</h1><p>数据库事务，要么都完成要么都不做</p>
+<h2 id="LuckymoneyService"><a href="#LuckymoneyService" class="headerlink" title="LuckymoneyService"></a>LuckymoneyService</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bennyrhys.luckymoney;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.math.BigDecimal;</span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LuckymoneyService</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> LuckymoneyRepository luckymoneyRepository;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 创建两个红包</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">createTwo</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Luckmoney luckmoney = <span class="keyword">new</span> Luckmoney();</span><br><span class="line">        luckmoney.setProducer(<span class="string">"瑞新"</span>);</span><br><span class="line">        luckmoney.setMoney(<span class="keyword">new</span> BigDecimal(<span class="string">"520"</span>));</span><br><span class="line"></span><br><span class="line">        luckymoneyRepository.save(luckmoney);</span><br><span class="line">        Luckmoney luckmoney2 = <span class="keyword">new</span> Luckmoney();</span><br><span class="line">        luckmoney2.setProducer(<span class="string">"瑞新"</span>);</span><br><span class="line">        luckmoney2.setMoney(<span class="keyword">new</span> BigDecimal(<span class="string">"1314"</span>));</span><br><span class="line"></span><br><span class="line">        luckymoneyRepository.save(luckmoney2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="LuckmoneyController-1"><a href="#LuckmoneyController-1" class="headerlink" title="LuckmoneyController"></a>LuckmoneyController</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 发两个红包-测试</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@PostMapping</span>(<span class="string">"luckymoneys/two"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">creatTwo</span><span class="params">()</span></span>&#123;</span><br><span class="line">    service.createTwo();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="请求发送红包"><a href="#请求发送红包" class="headerlink" title="请求发送红包"></a>请求发送红包</h2><p><a href="http://localhost:8081/luckymoney/luckymoneys/two" target="_blank" rel="noopener">http://localhost:8081/luckymoney/luckymoneys/two</a>    状态码返回200</p>
+<blockquote>
+<p>Hibernate: select next_val as id_val from hibernate_sequence for update<br>Hibernate: update hibernate_sequence set next_val= ? where next_val=?<br>Hibernate: insert into luckmoney (consumer, money, producer, id) values (?, ?, ?, ?)<br>Hibernate: select next_val as id_val from hibernate_sequence for update<br>Hibernate: update hibernate_sequence set next_val= ? where next_val=?<br>Hibernate: insert into luckmoney (consumer, money, producer, id) values (?, ?, ?, ?)</p>
+</blockquote>
+<h2 id="配置测试环境"><a href="#配置测试环境" class="headerlink" title="配置测试环境"></a>配置测试环境</h2><p>decimal类型的金额，设置长度为五位（则整数为3小数为2）</p>
+<p>1314的红包创建报错，数值越界Out of range value for column ‘money’ at row 1</p>
+<p>写入一条520，另一条1314失败，不符合同时发生的事务要求</p>
+<h2 id="搞定并发"><a href="#搞定并发" class="headerlink" title="搞定并发"></a>搞定并发</h2><p>添加注解@Transactional,选择导入spring那个，先清空数据库，结果520依旧存入，1314失败</p>
+<ul>
+<li>事务理解：<ul>
+<li>@注解控制java事务</li>
+<li>有些数据库不支持事务，mysql有自己的事务机制（MYISAM）-&gt;(mysql支持多类型修改成innoDB实现事务)</li>
+</ul>
+</li>
+</ul>
+<p>​    </p>
+]]></content>
+  </entry>
+  <entry>
+    <title>教程概述-极客浪漫表白红包</title>
+    <url>/2019/12/29/%E6%95%99%E7%A8%8B%E6%A6%82%E8%BF%B0-%E6%9E%81%E5%AE%A2%E6%B5%AA%E6%BC%AB%E8%A1%A8%E7%99%BD%E7%BA%A2%E5%8C%85/</url>
+    <content><![CDATA[<p>[TOC]</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>SpringBoot两小时快速入门，极客表白浪漫红包</p>
+<p>信息时代最重视的是什么？是效率！企业最重视的人才是什么？是高效能人士！所谓“天下武功唯快不破 ” ，为此专门推出此教程，让你快速Get到SpringBoot实际应用技能。本教程所有代码、笔记由bennyrhys免费提供，遵循”学习其实可以很快乐“的原则，以极客浪漫情怀的”红包表白程序“为场景，贯穿微服务必学框架-SpringBoot相关内容，将初学SpringBoot的踩坑点进行指点，为同学打造麻雀虽小五脏俱全的教程。标题风趣幽默，必然让你本次的学习之旅尽兴而归。载着干货的老司机，在召唤你~</p>
+<img data-src="README.assets/image-20191229211932494.png" alt="image-20191229211932494" style="zoom:40%;">
+
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p>GitHub:<a href="https://github.com/bennyrhys/LuckyMoney-SpringBootProject" target="_blank" rel="noopener">点击预览——极客浪漫红包表白程序</a></p>
+<p>详细文档：<a href="https://bennyrhys.github.io/about/">点击搜索——极客浪漫红包表白详解</a></p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
+<li><p>【让宝宝不要输在起跑线】</p>
+<ul>
+<li>文档说明</li>
+<li>版本配置</li>
+</ul>
+</li>
+<li><p>【初识】SpringBoot-hello world</p>
+<ul>
+<li>解决打包失败</li>
+<li>配置文件<ul>
+<li>application.properties</li>
+<li>application.yml(推荐)</li>
+</ul>
+</li>
+<li>git提交 ：helloworld+yml启动及简单配置</li>
+</ul>
+</li>
+<li><p>【君子之交-淡如水】解放双手，配置红包</p>
+<ul>
+<li>手动单个配置</li>
+<li>自动多个配置红包金额【limit类限制金额范围】</li>
+</ul>
+</li>
+<li><p>生成环境开发环境划分</p>
+</li>
+<li><p>小结</p>
+</li>
+<li><p>【人生若只如初见】从“程序”入口Controller开始</p>
+<ul>
+<li>controller+thymeleaf（不推荐，前后端不分离）</li>
+<li>恢复访问@Controller+@ResponseBody</li>
+<li>多访问url同返回（名称数组）</li>
+<li>url深层访问：@RequestMapping(“hello”)</li>
+<li>post请求访问</li>
+<li>Get/post都行的访问</li>
+<li>获取请求携带的参数</li>
+<li>git提交</li>
+</ul>
+</li>
+<li><p>【收获人生”红颜”知己】撸程序-红包收发操作数据库</p>
+<ul>
+<li>搭配方案：</li>
+<li>restful-api设计</li>
+<li>引入pom jpa+mysql</li>
+<li>yml配置mysql</li>
+<li>数据库-创建</li>
+<li>LuckymoneyRepository接口</li>
+<li>LuckmoneyController</li>
+<li>列表输出</li>
+</ul>
+</li>
+<li><p>【搞定并发就在一起】事务就像乱点鸳鸯的丈母娘</p>
+<ul>
+<li>LuckymoneyService</li>
+<li>LuckmoneyController    </li>
+<li>请求发送红包</li>
+<li>配置测试环境</li>
+<li>搞定并发</li>
+</ul>
+</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
     <title>Hexo-切换一个主题</title>
     <url>/2019/12/26/Hexo-%E5%88%87%E6%8D%A2%E4%B8%80%E4%B8%AA%E4%B8%BB%E9%A2%98/</url>
     <content><![CDATA[<p>[TOC]</p>
@@ -48,7 +430,9 @@
 <!-- more -->//夹在文章中
 <h4 id="分享"><a href="#分享" class="headerlink" title="分享"></a>分享</h4><p>配置文件jiathis：true<br>已经淘汰</p>
 <h4 id="加载效果"><a href="#加载效果" class="headerlink" title="加载效果"></a>加载效果</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pace:</span><br><span class="line">  enable: true</span><br><span class="line">  # Themes list:</span><br><span class="line">  # big-counter | bounce | barber-shop | center-atom | center-circle | center-radar | center-simple</span><br><span class="line">  # corner-indicator | fill-left | flat-top | flash | loading-bar | mac-osx | material | minimal</span><br><span class="line">  theme: minimal</span><br></pre></td></tr></table></figure>
-<h4 id="字数统计，阅读时长"><a href="#字数统计，阅读时长" class="headerlink" title="字数统计，阅读时长"></a>字数统计，阅读时长</h4><h4 id="标题toc优化"><a href="#标题toc优化" class="headerlink" title="标题toc优化"></a>标题toc优化</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">toc:</span><br><span class="line">  enable: true</span><br><span class="line">  # Automatically add list number to toc.</span><br><span class="line">  number: true</span><br><span class="line">  # If true, all words will placed on next lines if header width longer then sidebar width.</span><br><span class="line">  wrap: true</span><br><span class="line">  # If true, all level of TOC in a post will be displayed, rather than the activated part of it.</span><br><span class="line">  expand_all: true</span><br><span class="line">  # Maximum heading depth of generated toc.</span><br><span class="line">  max_depth: 6</span><br></pre></td></tr></table></figure>]]></content>
+<h4 id="字数统计，阅读时长"><a href="#字数统计，阅读时长" class="headerlink" title="字数统计，阅读时长"></a>字数统计，阅读时长</h4><h4 id="标题toc优化"><a href="#标题toc优化" class="headerlink" title="标题toc优化"></a>标题toc优化</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">toc:</span><br><span class="line">  enable: true</span><br><span class="line">  # Automatically add list number to toc.</span><br><span class="line">  number: true</span><br><span class="line">  # If true, all words will placed on next lines if header width longer then sidebar width.</span><br><span class="line">  wrap: true</span><br><span class="line">  # If true, all level of TOC in a post will be displayed, rather than the activated part of it.</span><br><span class="line">  expand_all: true</span><br><span class="line">  # Maximum heading depth of generated toc.</span><br><span class="line">  max_depth: 6</span><br></pre></td></tr></table></figure>
+<h4 id="图片不显示问题"><a href="#图片不显示问题" class="headerlink" title="图片不显示问题"></a>图片不显示问题</h4><p>//设置站点配置文件<br>post_asset_folder: true<br>//下载插件</p>
+]]></content>
       <categories>
         <category>教程-博客搭建</category>
       </categories>
