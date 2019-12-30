@@ -6,7 +6,6 @@ categories: ["教程-博客搭建"]
 ---
 [TOC]
 ## Hexo提升篇-切换一个主题
-
 ### 第一轮测试-页面局部显示
 疑npm install 导致显示不全，测试二不安装依赖
 ```
@@ -20,7 +19,8 @@ theme: hexo-theme-next
 $ cd hexo-theme-next
 $ npm install
 ```
-### 第二轮测试-未安装依赖，局部显示
+### 第二轮测试-全部显示（未安装依赖，切换主题风格）
+<!-- more -->
 疑配置文件未打开。
 * 在 Hexo 中有两份主要的配置文件，其名称都是 _config.yml。 
 * 其中，一份位于站点根目录下，主要包含 Hexo 本身的配置；另一份位于主题目录下，这份配置由主题作者提供，主要用于配置主题相关的选项。
@@ -82,6 +82,20 @@ avatar: /images/header.jpg
 ```
 这是头像的路径，只需把你的头像命名为header.jpg（随便命名）放入themes/next/source/images中，将avatar的路径名改成你的头像名就OK啦！
 
+//最新方法-配置
+```
+# Sidebar Avatar
+avatar:
+  # Replace the default image and set the url here.
+  url: /images/head_logo.jpg
+  # If true, the avatar will be dispalyed in circle.
+  rounded: true
+  # If true, the avatar will be rotated with the cursor.
+  rotated: true
+
+# Posts / Categories / Tags in sidebar.
+site_state: true
+```
 #### 标签
 ```
 //命令创建
@@ -151,6 +165,11 @@ js文件放在\themes\next\source\js\src
 更新\themes\next\layout\_layout.swig文件，在末尾（在前面引用会出现找不到的bug）添加以下 js 引入代码：
 ```
 <script type="text/javascript" src="/js/src/back.js" ></script>
+
+//法二
+配置文件，不太靠谱
+canvas_nest:
+  enable: false
 ```
 #### gitalk评论
 gitalk：一个基于 Github Issue 和 Preact 开发的评论插件
@@ -216,7 +235,7 @@ reading_progress:
 //配置文件
 baidu_push: true
 
-#### 优化SEO。
+#### 优化SEO
 
 更改网站副标题（将是主要网站描述）和所有文章/页面标题的标题层次结构，以便更好地
 
@@ -224,3 +243,68 @@ seo: true //建议 true
 
 #### 搜索
 npm install hexo-generator-searchdb --save
+#### 友链
+```
+# Blog rolls
+links_settings:
+  icon: link
+  title: 友链
+  # Available values: block | inline
+  layout: block
+
+links:
+  #Title: http://yoursite.com
+  吉他易学网/EasyGuitar: https://www.996cloud.work
+```
+#### 开启打赏
+```
+reward_settings:
+  # If true, reward will be displayed in every article by default.
+  enable: true
+  animation: true
+  comment: 请作者喝杯茶～
+
+reward:
+  wechatpay: /images/wechatpay.png
+  alipay: /images/alipay.jpg
+  #bitcoin: /images/bitcoin.jpg
+
+```
+#### 开启订阅公众号 
+有些版本在，wechat属性配置，升级版没有
+#### 阅读更多
+老版本auto_excer属性配置高度
+新版替代法
+<!-- more -->//夹在文章中
+#### 分享
+配置文件jiathis：true
+已经淘汰
+#### 加载效果
+```
+pace:
+  enable: true
+  # Themes list:
+  # big-counter | bounce | barber-shop | center-atom | center-circle | center-radar | center-simple
+  # corner-indicator | fill-left | flat-top | flash | loading-bar | mac-osx | material | minimal
+  theme: minimal
+```
+#### 字数统计，阅读时长
+
+
+#### 标题toc优化
+```
+toc:
+  enable: true
+  # Automatically add list number to toc.
+  number: true
+  # If true, all words will placed on next lines if header width longer then sidebar width.
+  wrap: true
+  # If true, all level of TOC in a post will be displayed, rather than the activated part of it.
+  expand_all: true
+  # Maximum heading depth of generated toc.
+  max_depth: 6
+```
+#### 图片不显示问题
+//设置站点配置文件
+post_asset_folder: true
+//下载插件
