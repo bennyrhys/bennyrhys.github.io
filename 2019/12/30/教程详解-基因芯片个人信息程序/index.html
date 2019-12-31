@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://bennyrhys.github.io').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: true,
+    pangu: true,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="[TOC] 【别让宝宝输在起跑线上】版本配置12345678910111213141516171819202122232425262728293031323334353637383940414243bennyrhysdeMacBook-Pro:bennyrhys bennyrhys$ java -versionjava version &quot;1.8.0_121&quot;Java(TM) S">
+<meta property="og:type" content="article">
+<meta property="og:title" content="教程详解-基因芯片个人信息程序">
+<meta property="og:url" content="http://bennyrhys.github.io/2019/12/30/%E6%95%99%E7%A8%8B%E8%AF%A6%E8%A7%A3-%E5%9F%BA%E5%9B%A0%E8%8A%AF%E7%89%87%E4%B8%AA%E4%BA%BA%E4%BF%A1%E6%81%AF%E7%A8%8B%E5%BA%8F/index.html">
+<meta property="og:site_name" content="郭瑞新的官方博客">
+<meta property="og:description" content="[TOC] 【别让宝宝输在起跑线上】版本配置12345678910111213141516171819202122232425262728293031323334353637383940414243bennyrhysdeMacBook-Pro:bennyrhys bennyrhys$ java -versionjava version &quot;1.8.0_121&quot;Java(TM) S">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-12-30T07:38:44.881Z">
+<meta property="article:modified_time" content="2019-12-30T15:45:06.621Z">
+<meta property="article:author" content="郭瑞新">
+<meta property="article:tag" content="郭瑞新，bennyrhys，公众号：让我遇见相似的灵魂，JAVA零基础到高级，数据结构，框架，设计模式，微服务，中间件，大数据，网络爬虫，开源项目，阿里技术，面试经">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://bennyrhys.github.io/2019/12/30/%E6%95%99%E7%A8%8B%E8%AF%A6%E8%A7%A3-%E5%9F%BA%E5%9B%A0%E8%8A%AF%E7%89%87%E4%B8%AA%E4%BA%BA%E4%BF%A1%E6%81%AF%E7%A8%8B%E5%BA%8F/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>教程详解-基因芯片个人信息程序 | 郭瑞新的官方博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">郭瑞新的官方博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">昵称：bennyrhys<br>公众号：让我遇见相似的灵魂</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/bennyrhys" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://bennyrhys.github.io/2019/12/30/%E6%95%99%E7%A8%8B%E8%AF%A6%E8%A7%A3-%E5%9F%BA%E5%9B%A0%E8%8A%AF%E7%89%87%E4%B8%AA%E4%BA%BA%E4%BF%A1%E6%81%AF%E7%A8%8B%E5%BA%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head_logo.jpg">
+      <meta itemprop="name" content="郭瑞新">
+      <meta itemprop="description" content="专注分享JAVA全栈技术，JAVA零基础到高级，数据结构，框架，设计模式，微服务，中间件，大数据，网络爬虫，开源项目，阿里技术，面试经">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="郭瑞新的官方博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          教程详解-基因芯片个人信息程序
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-12-30 15:38:44 / 修改时间：23:45:06" itemprop="dateCreated datePublished" datetime="2019-12-30T15:38:44+08:00">2019-12-30</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>[TOC]</p>
+<h1 id="【别让宝宝输在起跑线上】版本配置"><a href="#【别让宝宝输在起跑线上】版本配置" class="headerlink" title="【别让宝宝输在起跑线上】版本配置"></a>【别让宝宝输在起跑线上】版本配置</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">bennyrhysdeMacBook-Pro:bennyrhys bennyrhys$ java -version</span><br><span class="line">java version &quot;1.8.0_121&quot;</span><br><span class="line">Java(TM) SE Runtime Environment (build 1.8.0_121-b13)</span><br><span class="line">Java HotSpot(TM) 64-Bit Server VM (build 25.121-b13, mixed mode)</span><br><span class="line">bennyrhysdeMacBook-Pro:bennyrhys bennyrhys$ mvn -v</span><br><span class="line">Apache Maven 3.6.3 (cecedd343002696d0abb50b32b541b8a6ba2883f)</span><br><span class="line"></span><br><span class="line">IDEA旗舰版</span><br><span class="line">温馨提醒：学生邮箱注册旗舰版免费使用</span><br><span class="line"></span><br><span class="line">创建springboot2.2.2-》web模块</span><br><span class="line"></span><br><span class="line">推荐：meaven镜像仓库</span><br><span class="line">vim ~&#x2F;.m2&#x2F;settings.xml </span><br><span class="line">    &lt;mirror&gt;</span><br><span class="line">      &lt;id&gt;alimaven&lt;&#x2F;id&gt;</span><br><span class="line">      &lt;name&gt;aliyun maven&lt;&#x2F;name&gt;</span><br><span class="line">      &lt;url&gt;http:&#x2F;&#x2F;maven.aliyun.com&#x2F;nexus&#x2F;content&#x2F;groups&#x2F;public&#x2F;&lt;&#x2F;url&gt;</span><br><span class="line">      &lt;mirrorOf&gt;central&lt;&#x2F;mirrorOf&gt;</span><br><span class="line">    &lt;&#x2F;mirror&gt;</span><br><span class="line">    </span><br><span class="line">&lt;!--配置profiles节点--&gt;</span><br><span class="line">  &lt;profiles&gt;</span><br><span class="line">  &lt;profile&gt;</span><br><span class="line">            &lt;id&gt;jdk-1.8&lt;&#x2F;id&gt;</span><br><span class="line">            &lt;activation&gt;</span><br><span class="line">                &lt;jdk&gt;1.8&lt;&#x2F;jdk&gt;</span><br><span class="line">            &lt;&#x2F;activation&gt;</span><br><span class="line">            &lt;repositories&gt;</span><br><span class="line">                &lt;repository&gt;</span><br><span class="line">                    &lt;id&gt;nexus&lt;&#x2F;id&gt;</span><br><span class="line">                    &lt;name&gt;local private nexus&lt;&#x2F;name&gt;</span><br><span class="line">                    &lt;url&gt;http:&#x2F;&#x2F;maven.aliyun.com&#x2F;nexus&#x2F;content&#x2F;groups&#x2F;public&#x2F;&lt;&#x2F;url&gt;</span><br><span class="line">                    &lt;releases&gt;</span><br><span class="line">                        &lt;enabled&gt;true&lt;&#x2F;enabled&gt;</span><br><span class="line">                    &lt;&#x2F;releases&gt;</span><br><span class="line">                    &lt;snapshots&gt;</span><br><span class="line">                        &lt;enabled&gt;false&lt;&#x2F;enabled&gt;</span><br><span class="line">                    &lt;&#x2F;snapshots&gt;</span><br><span class="line">                &lt;&#x2F;repository&gt;</span><br><span class="line">            &lt;&#x2F;repositories&gt;</span><br><span class="line">         </span><br><span class="line">   &lt;&#x2F;profile&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="【初识】第一个程序hello-world"><a href="#【初识】第一个程序hello-world" class="headerlink" title="【初识】第一个程序hello world"></a>【初识】第一个程序hello world</h1><p>HelloController//新建controller</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bennyrhys.girl;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMethod;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/hello"</span>, method = RequestMethod.GET)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">say</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"hello world"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>访问</p>
+<p><a href="http://localhost:8080/hello" target="_blank" rel="noopener">http://localhost:8080/hello</a></p>
+<p>输出</p>
+<p>hello world</p>
+<h1 id="【一万个哈姆雷特】花式启动程序"><a href="#【一万个哈姆雷特】花式启动程序" class="headerlink" title="【一万个哈姆雷特】花式启动程序"></a>【一万个哈姆雷特】花式启动程序</h1><blockquote>
+<p>第二种启动方式：命令行meaven</p>
+<p>mvn spring-boot:run</p>
+<p>第三种启动方式：</p>
+<p>//编译程序</p>
+<p>mvn install</p>
+<p>//进入到target目录下 girl-0.0.1-SNAPSHOT.jar启动</p>
+<p>java -jar girl-0.0.1-SNAPSHOT.jar</p>
+<p>//启动时配置切换生产环境</p>
+<p>java -jar target/girl-0.0.1-SNAPSHOT.jar –spring.profiles.active=prod</p>
+</blockquote>
+<h1 id="【君子之交-淡如水】解放双手，配置先行"><a href="#【君子之交-淡如水】解放双手，配置先行" class="headerlink" title="【君子之交-淡如水】解放双手，配置先行"></a>【君子之交-淡如水】解放双手，配置先行</h1><h2 id="配置选型"><a href="#配置选型" class="headerlink" title="配置选型"></a>配置选型</h2><p>application.properties</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">server.port&#x3D;8081</span><br><span class="line">server.servlet.context-path&#x3D;&#x2F;girl</span><br></pre></td></tr></table></figure>
+
+<p>application.yml</p>
+<p>推荐，但注意衔接留空格</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: 8081</span><br><span class="line">  servlet:</span><br><span class="line">    context-path: &#x2F;girl</span><br></pre></td></tr></table></figure>
+
+<p><a href="http://localhost:8081/girl/hello" target="_blank" rel="noopener">http://localhost:8081/girl/hello</a></p>
+<h2 id="场景模拟-个人信息"><a href="#场景模拟-个人信息" class="headerlink" title="场景模拟-个人信息"></a>场景模拟-个人信息</h2><p>girl程序，模拟人体特征，处理个人信息。</p>
+<p>当今人类文明在生物及科技的进步，极大程度推动大数据发展，人类基因芯片计划也在不断推进完成。</p>
+<p>随着人类<a href="https://baike.baidu.com/item/基因" target="_blank" rel="noopener">基因</a>组（测序）计划（ Human genome project ）的逐步实施以及分子生物学相关学科的迅猛发展，越来越多的动植物、微生物基因组序列得以测定，基因序列数据正在以前所未有的速度迅速增长。然而 , 怎样去研究如此众多基因在生命过程中所担负的功能就成了全世界生命科学工作者共同的课题。为此，建立新型杂交和<a href="https://baike.baidu.com/item/测序" target="_blank" rel="noopener">测序</a>方法以对大量的<a href="https://baike.baidu.com/item/遗传信息" target="_blank" rel="noopener">遗传信息</a>进行高效、快速的检测、分析就显得格外重要了。</p>
+<h2 id="单个配置"><a href="#单个配置" class="headerlink" title="单个配置"></a>单个配置</h2><p>application.yml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: 8080</span><br><span class="line">  servlet:</span><br><span class="line">    context-path: &#x2F;girl</span><br><span class="line"></span><br><span class="line">cupSize: B #罩杯</span><br><span class="line">age: 18 #年龄</span><br><span class="line">content: &quot;cupSize:$&#123;cupSize&#125;,age:$&#123;age&#125;&quot; #引用配置中的配置</span><br></pre></td></tr></table></figure>
+
+<p>HelloController</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bennyrhys.girl;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Value;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMethod;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line">    <span class="comment">//通过注解获取配置中的属性</span></span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;cupSize&#125;"</span>)</span><br><span class="line">    <span class="keyword">private</span> String cupSize;</span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;age&#125;"</span>)</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;content&#125;"</span>)</span><br><span class="line">    <span class="keyword">private</span> String content;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/hello"</span>, method = RequestMethod.GET)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">say</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> cupSize+<span class="string">" "</span>+age+<span class="string">"content："</span>+content;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>访问</p>
+<p><a href="http://localhost:8080/girl/hello" target="_blank" rel="noopener">http://localhost:8080/girl/hello</a></p>
+<p>输出</p>
+<p>B 18contentcupSize:B,age:18</p>
+<h2 id="git提交-单配置-master"><a href="#git提交-单配置-master" class="headerlink" title="git提交-单配置-master"></a>git提交-单配置-master</h2><blockquote>
+<p>bennyrhysdeMacBook-Pro:Idea_Demo bennyrhys$ git clone <a href="https://github.com/bennyrhys/Girl-SpringBootProject.git" target="_blank" rel="noopener">https://github.com/bennyrhys/Girl-SpringBootProject.git</a> girl</p>
+<p>Cloning into ‘girl’…</p>
+<p>remote: Enumerating objects: 6, done.</p>
+<p>remote: Counting objects: 100% (6/6), done.</p>
+<p>remote: Compressing objects: 100% (4/4), done.</p>
+<p>remote: Total 6 (delta 1), reused 0 (delta 0), pack-reused 0</p>
+<p>Unpacking objects: 100% (6/6), done.</p>
+<p>bennyrhysdeMacBook-Pro:Idea_Demo bennyrhys$ cd Girl-SpringBootProject/</p>
+<p>bennyrhysdeMacBook-Pro:Girl-SpringBootProject bennyrhys$ git status</p>
+<p>On branch master</p>
+<p>Your branch is up to date with ‘origin/master’.</p>
+<p>Untracked files:</p>
+<p>(use “git add <file>…” to include in what will be committed)</file></p>
+<p>​    girl/</p>
+<p>​    girl_note.md</p>
+<p>nothing added to commit but untracked files present (use “git add” to track)</p>
+<p>bennyrhysdeMacBook-Pro:Girl-SpringBootProject bennyrhys$ git remote</p>
+<p>origin</p>
+<p>bennyrhysdeMacBook-Pro:Girl-SpringBootProject bennyrhys$ git add .</p>
+<p>bennyrhysdeMacBook-Pro:Girl-SpringBootProject bennyrhys$ git commit -m “单配置”</p>
+<p>[master 8545dc9] 单配置</p>
+<p>7 files changed, 337 insertions(+)</p>
+<p>create mode 100644 girl/.gitignore</p>
+<p>create mode 100644 girl/pom.xml</p>
+<p>create mode 100644 girl/src/main/java/com/bennyrhys/girl/GirlApplication.java</p>
+<p>create mode 100644 girl/src/main/java/com/bennyrhys/girl/HelloController.java</p>
+<p>create mode 100644 girl/src/main/resources/application.yml</p>
+<p>create mode 100644 girl/src/test/java/com/bennyrhys/girl/GirlApplicationTests.java</p>
+<p>create mode 100644 girl_note.md</p>
+<p>bennyrhysdeMacBook-Pro:Girl-SpringBootProject bennyrhys$ git branch</p>
+<p>* master</p>
+<p>bennyrhysdeMacBook-Pro:Girl-SpringBootProject bennyrhys$ git push origin master</p>
+<p>Enumerating objects: 23, done.</p>
+<p>Counting objects: 100% (23/23), done.</p>
+<p>Delta compression using up to 4 threads</p>
+<p>Compressing objects: 100% (14/14), done.</p>
+<p>Writing objects: 100% (22/22), 4.80 KiB | 2.40 MiB/s, done.</p>
+<p>Total 22 (delta 0), reused 0 (delta 0)</p>
+<p>To <a href="https://github.com/bennyrhys/Girl-SpringBootProject.git" target="_blank" rel="noopener">https://github.com/bennyrhys/Girl-SpringBootProject.git</a></p>
+<p> d4be8b7..8545dc9 master -&gt; master</p>
+</blockquote>
+<h2 id="多个配置"><a href="#多个配置" class="headerlink" title="多个配置"></a>多个配置</h2><p>application.yml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: 8080</span><br><span class="line">  servlet:</span><br><span class="line">    context-path: &#x2F;girl</span><br><span class="line">girl:</span><br><span class="line">  cupSize: B</span><br><span class="line">  age: 18</span><br></pre></td></tr></table></figure>
+
+<p>GirlConfig //新建配置文件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bennyrhys.girl;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.context.properties.ConfigurationProperties;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="comment">//对应配置文件的girl</span></span><br><span class="line"><span class="meta">@ConfigurationProperties</span>(prefix = <span class="string">"girl"</span>)</span><br><span class="line"><span class="comment">//注入配置</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GirlConfig</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String cupSize;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getCupSize</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> cupSize;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCupSize</span><span class="params">(String cupSize)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.cupSize = cupSize;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(Integer age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>HelloController</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bennyrhys.girl;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Value;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMethod;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line">    <span class="comment">//通过注解获取配置:类中的属性</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> GirlConfig girlConfig;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/hello"</span>, method = RequestMethod.GET)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">say</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> girlConfig.getCupSize()+girlConfig.getAge();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>访问</p>
+<p><a href="http://localhost:8080/girl/hello" target="_blank" rel="noopener">http://localhost:8080/girl/hello</a></p>
+<p>输出</p>
+<p>B18</p>
+<h2 id="git提交-多配置-master"><a href="#git提交-多配置-master" class="headerlink" title="git提交-多配置-master"></a>git提交-多配置-master</h2><blockquote>
+<p>bennyrhysdeMacBook-Pro:Girl-SpringBootProject bennyrhys$ git add .</p>
+<p>bennyrhysdeMacBook-Pro:Girl-SpringBootProject bennyrhys$ git commit -m “多配置”</p>
+<p>[master 167fc1a] 多配置</p>
+<p>4 files changed, 195 insertions(+), 14 deletions(-)</p>
+<p>create mode 100644 girl/src/main/java/com/bennyrhys/girl/GirlConfig.java</p>
+<p>bennyrhysdeMacBook-Pro:Girl-SpringBootProject bennyrhys$ git push origin master</p>
+<p>Enumerating objects: 26, done.</p>
+<p>Counting objects: 100% (26/26), done.</p>
+<p>Delta compression using up to 4 threads</p>
+<p>Compressing objects: 100% (10/10), done.</p>
+<p>Writing objects: 100% (14/14), 2.37 KiB | 1.18 MiB/s, done.</p>
+<p>Total 14 (delta 3), reused 0 (delta 0)</p>
+<p>remote: Resolving deltas: 100% (3/3), completed with 3 local objects.</p>
+<p>To <a href="https://github.com/bennyrhys/Girl-SpringBootProject.git" target="_blank" rel="noopener">https://github.com/bennyrhys/Girl-SpringBootProject.git</a></p>
+<p> 8545dc9..167fc1a master -&gt; master</p>
+</blockquote>
+<h1 id="【我的命，我自己说的才算】生产-开发环境切换"><a href="#【我的命，我自己说的才算】生产-开发环境切换" class="headerlink" title="【我的命，我自己说的才算】生产/开发环境切换"></a>【我的命，我自己说的才算】生产/开发环境切换</h1><h2 id="场景模拟"><a href="#场景模拟" class="headerlink" title="场景模拟"></a>场景模拟</h2><p>dev：生产环境，先天cupSzie:B</p>
+<p>Prod:开发环境，后天想达到cupSize:F</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>application-dev.yml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: 8081</span><br><span class="line">  servlet:</span><br><span class="line">    context-path: &#x2F;girl</span><br><span class="line">girl:</span><br><span class="line">  cupSize: B</span><br><span class="line">  age: 18</span><br></pre></td></tr></table></figure>
+
+<p>application-prod.yml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: 8081</span><br><span class="line">  servlet:</span><br><span class="line">    context-path: &#x2F;girl</span><br><span class="line">girl:</span><br><span class="line">  cupSize: F</span><br><span class="line">  age: 18</span><br></pre></td></tr></table></figure>
+
+<p>application.yml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">  profiles:</span><br><span class="line">    active: prod</span><br></pre></td></tr></table></figure>
+
+<h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><p>访问</p>
+<p><a href="http://localhost:8082/girl/hello" target="_blank" rel="noopener">http://localhost:8082/girl/hello</a></p>
+<p>输出</p>
+<p>F18</p>
+<h2 id="git提交-生产环境切换"><a href="#git提交-生产环境切换" class="headerlink" title="git提交-生产环境切换"></a>git提交-生产环境切换</h2><blockquote>
+<p>bennyrhysdeMacBook-Pro:girl bennyrhys$ git add .</p>
+<p>bennyrhysdeMacBook-Pro:girl bennyrhys$ git commit -m “生产环境切换”</p>
+<p>[master 3c7eca6] 生产环境切换</p>
+<p>3 files changed, 17 insertions(+), 7 deletions(-)</p>
+<p>create mode 100644 girl/src/main/resources/application-dev.yml</p>
+<p>create mode 100644 girl/src/main/resources/application-prod.yml</p>
+<p>bennyrhysdeMacBook-Pro:girl bennyrhys$ git push origin master</p>
+<p>Enumerating objects: 15, done.</p>
+<p>Counting objects: 100% (15/15), done.</p>
+<p>Delta compression using up to 4 threads</p>
+<p>Compressing objects: 100% (8/8), done.</p>
+<p>Writing objects: 100% (9/9), 830 bytes | 830.00 KiB/s, done.</p>
+<p>Total 9 (delta 1), reused 0 (delta 0)</p>
+<p>remote: Resolving deltas: 100% (1/1), completed with 1 local object.</p>
+<p>To <a href="https://github.com/bennyrhys/Girl-SpringBootProject.git" target="_blank" rel="noopener">https://github.com/bennyrhys/Girl-SpringBootProject.git</a></p>
+<p> 167fc1a..3c7eca6 master -&gt; master</p>
+</blockquote>
+<p>#【人生若只如初见】从“程序”入口Controller开始</p>
+<table>
+<thead>
+<tr>
+<th>@Controller</th>
+<th>处理http请求</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>@RestController</td>
+<td>Spring4之后新加的注解<br>原来返回json需要@ResponseBody配合@Controller</td>
+</tr>
+<tr>
+<td>@RequestMapping</td>
+<td>配置url映射</td>
+</tr>
+</tbody></table>
+<h2 id="controller-thymeleaf"><a href="#controller-thymeleaf" class="headerlink" title="@controller+thymeleaf"></a>@controller+thymeleaf</h2><p>@controller单独写，访问时会找不到模版，必须在pom中添加thymeleaf模版依赖</p>
+<p>pom.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--        添加thymeleaf依赖--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-thymeleaf<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>HelloController</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bennyrhys.girl;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Value;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMethod;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ResponseBody;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line">    <span class="comment">//通过注解获取配置:类中的属性</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> GirlConfig girlConfig;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/hello"</span>, method = RequestMethod.GET)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">say</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//        return girlConfig.getCupSize()+girlConfig.getAge();</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"index"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>访问：</p>
+<p><a href="http://localhost:8081/girl/hello" target="_blank" rel="noopener">http://localhost:8081/girl/hello</a></p>
+<p>输出：</p>
+<p>hello thymeleaf</p>
+<h2 id="git提交-controller-thymeleaf"><a href="#git提交-controller-thymeleaf" class="headerlink" title="git提交-@controller+thymeleaf"></a>git提交-@controller+thymeleaf</h2><blockquote>
+<p>bennyrhysdeMacBook-Pro:girl bennyrhys$ git add .</p>
+<p>bennyrhysdeMacBook-Pro:girl bennyrhys$ git commit -m “@controller+thymeleaf”</p>
+<p>[master 3d23c58] @controller+thymeleaf</p>
+<p>5 files changed, 22 insertions(+), 4 deletions(-)</p>
+<p>create mode 100644 girl/src/main/resources/templates/index.html</p>
+<p>bennyrhysdeMacBook-Pro:girl bennyrhys$ git push origin master</p>
+<p>Enumerating objects: 29, done.</p>
+<p>Counting objects: 100% (29/29), done.</p>
+<p>Delta compression using up to 4 threads</p>
+<p>Compressing objects: 100% (12/12), done.</p>
+<p>Writing objects: 100% (16/16), 1.35 KiB | 692.00 KiB/s, done.</p>
+<p>Total 16 (delta 4), reused 0 (delta 0)</p>
+<p>remote: Resolving deltas: 100% (4/4), completed with 4 local objects.</p>
+<p>To <a href="https://github.com/bennyrhys/Girl-SpringBootProject.git" target="_blank" rel="noopener">https://github.com/bennyrhys/Girl-SpringBootProject.git</a></p>
+<p> 3c7eca6..3d23c58 master -&gt; master</p>
+</blockquote>
+<h2 id="RestController-ResponseBody-Controller"><a href="#RestController-ResponseBody-Controller" class="headerlink" title="@RestController=@ResponseBody+@Controller"></a>@RestController=@ResponseBody+@Controller</h2><p>主要作用见标题</p>
+<p>其次可以用在类上、方法体上</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bennyrhys.girl;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Value;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMethod;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ResponseBody;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"><span class="comment">//@ResponseBody</span></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line">    <span class="comment">//通过注解获取配置:类中的属性</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> GirlConfig girlConfig;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/hello"</span>, method = RequestMethod.GET)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">say</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> girlConfig.getCupSize()+girlConfig.getAge();</span><br><span class="line"><span class="comment">//        return "index";</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>访问</p>
+<p><a href="http://localhost:8081/girl/hello" target="_blank" rel="noopener">http://localhost:8081/girl/hello</a></p>
+<p>输出</p>
+<p>F18</p>
+<h2 id="girl-hello-girl-hi"><a href="#girl-hello-girl-hi" class="headerlink" title="girl/hello ==girl/hi"></a>girl/hello ==girl/hi</h2><p>快捷键：查看列表可用参数command+p</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(value &#x3D; &#123;&quot;&#x2F;hello&quot;,&quot;&#x2F;hi&quot;&#125;, method &#x3D; RequestMethod.GET)</span><br></pre></td></tr></table></figure>
+
+<p><a href="http://localhost:8081/girl/hi" target="_blank" rel="noopener">http://localhost:8081/girl/hi</a></p>
+<p>F18</p>
+<p><a href="http://localhost:8081/girl/hello" target="_blank" rel="noopener">http://localhost:8081/girl/hello</a></p>
+<p>F18</p>
+<h2 id="url访问一层girl-say-hi"><a href="#url访问一层girl-say-hi" class="headerlink" title="url访问一层girl/say/hi"></a>url访问一层girl/say/hi</h2><p>注解@RequestMapping(“/say”)</p>
+<p>HelloController</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bennyrhys.girl;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Value;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMethod;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ResponseBody;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/say"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line">    <span class="comment">//通过注解获取配置:类中的属性</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> GirlConfig girlConfig;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = &#123;<span class="string">"/hello"</span>,<span class="string">"/hi"</span>&#125;, method = RequestMethod.GET)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">say</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> girlConfig.getCupSize()+girlConfig.getAge();</span><br><span class="line"><span class="comment">//        return "index";</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a href="http://localhost:8081/girl/say/hi" target="_blank" rel="noopener">http://localhost:8081/girl/say/hi</a></p>
+<p>F18</p>
+<h2 id="Post访问"><a href="#Post访问" class="headerlink" title="Post访问"></a>Post访问</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value = &#123;<span class="string">"/hello"</span>,<span class="string">"/hi"</span>&#125;, method = RequestMethod.POST)</span><br></pre></td></tr></table></figure>
+
+<p>页面无法直接访问，用postman</p>
+<h2 id="get-post都可访问（不推荐）"><a href="#get-post都可访问（不推荐）" class="headerlink" title="get/post都可访问（不推荐）"></a>get/post都可访问（不推荐）</h2><p>@RequestMapping(value = {“/hello”,”/hi”})</p>
+<p>具体业务场景，要严谨</p>
+<h2 id="url参数获取"><a href="#url参数获取" class="headerlink" title="url参数获取"></a>url参数获取</h2><table>
+<thead>
+<tr>
+<th>@PathVariable</th>
+<th>获取url中数据</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>@RequestParam</td>
+<td>获取请求参数的值</td>
+</tr>
+<tr>
+<td>@GetMapping</td>
+<td>组合注解</td>
+</tr>
+</tbody></table>
+<h2 id="PathVariable-url中数据"><a href="#PathVariable-url中数据" class="headerlink" title="@PathVariable:url中数据"></a>@PathVariable:url中数据</h2><p>HelloController</p>
+<p>@RequestMapping(value = {“/hi/{id}”}，id在前后都行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">package com.bennyrhys.girl;</span><br><span class="line"></span><br><span class="line">import org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line">import org.springframework.beans.factory.annotation.Value;</span><br><span class="line">import org.springframework.stereotype.Controller;</span><br><span class="line">import org.springframework.web.bind.annotation.*;</span><br><span class="line"></span><br><span class="line">@RestController</span><br><span class="line">@RequestMapping(&quot;&#x2F;say&quot;)</span><br><span class="line">public class HelloController &#123;</span><br><span class="line">    &#x2F;&#x2F;通过注解获取配置:类中的属性</span><br><span class="line">    @Autowired</span><br><span class="line">    private GirlConfig girlConfig;</span><br><span class="line"></span><br><span class="line">    @RequestMapping(value &#x3D; &#123;&quot;&#x2F;hi&#x2F;&#123;id&#125;&quot;&#125;, method &#x3D; RequestMethod.GET)</span><br><span class="line">    public String say(@PathVariable(&quot;id&quot;) Integer id)&#123;</span><br><span class="line">&#x2F;&#x2F;        return girlConfig.getCupSize()+girlConfig.getAge();</span><br><span class="line">        return &quot;id：&quot;+id;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a href="http://localhost:8081/girl/say/hi/99" target="_blank" rel="noopener">http://localhost:8081/girl/say/hi/99</a></p>
+<p>id：99</p>
+<h2 id="RequestParam：请求参数"><a href="#RequestParam：请求参数" class="headerlink" title="@RequestParam：请求参数"></a>@RequestParam：请求参数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@RequestParam(&quot;id&quot;) Integer id  &#x2F;&#x2F;这参数的两个id不用对应，前者等同于url的id</span><br></pre></td></tr></table></figure>
+
+<p>HelloController</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bennyrhys.girl;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Value;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.*;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/say"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line">    <span class="comment">//通过注解获取配置:类中的属性</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> GirlConfig girlConfig;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = &#123;<span class="string">"/hi"</span>&#125;, method = RequestMethod.GET)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">say</span><span class="params">(@RequestParam(<span class="string">"id"</span>)</span> Integer myid)</span>&#123;</span><br><span class="line"><span class="comment">//        return girlConfig.getCupSize()+girlConfig.getAge();</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"id："</span>+myid;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a href="http://localhost:8081/girl/say/hi?id=99" target="_blank" rel="noopener">http://localhost:8081/girl/say/hi?id=99</a></p>
+<p>id：99</p>
+<h2 id="空id，设置默认值"><a href="#空id，设置默认值" class="headerlink" title="空id，设置默认值"></a>空id，设置默认值</h2><p><a href="http://localhost:8081/girl/say/hi?id=" target="_blank" rel="noopener">http://localhost:8081/girl/say/hi?id=</a></p>
+<p>id：null</p>
+<p><a href="http://localhost:8081/girl/say/hi" target="_blank" rel="noopener">http://localhost:8081/girl/say/hi</a></p>
+<p> (type=Bad Request, status=400).</p>
+<p>设置默认值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//required = false 是否必传</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">say</span><span class="params">(@RequestParam(value = <span class="string">"id"</span>, required = <span class="keyword">false</span>, defaultValue = <span class="string">"0"</span>)</span> Integer myid)</span>&#123;</span><br></pre></td></tr></table></figure>
+
+<p><a href="http://localhost:8081/girl/say/hi" target="_blank" rel="noopener">http://localhost:8081/girl/say/hi</a></p>
+<p>id：0</p>
+<h2 id="简化请求注解"><a href="#简化请求注解" class="headerlink" title="简化请求注解"></a>简化请求注解</h2><p><a href="http://localhost:8081/girl/say/hi?id=2" target="_blank" rel="noopener">http://localhost:8081/girl/say/hi?id=2</a></p>
+<p>id：2</p>
+<p>有默认值</p>
+<p><a href="http://localhost:8081/girl/say/hi" target="_blank" rel="noopener">http://localhost:8081/girl/say/hi</a></p>
+<p>id：0</p>
+<p><strong>mapping是一个系列get、post、put</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//    @RequestMapping(value = &#123;"/hi"&#125;, method = RequestMethod.GET)</span></span><br><span class="line">    <span class="meta">@GetMapping</span>(value = <span class="string">"/hi"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>HelloController</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bennyrhys.girl;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Value;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.*;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/say"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line">    <span class="comment">//通过注解获取配置:类中的属性</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> GirlConfig girlConfig;</span><br><span class="line"></span><br><span class="line"><span class="comment">//    @RequestMapping(value = &#123;"/hi"&#125;, method = RequestMethod.GET)</span></span><br><span class="line">    <span class="meta">@GetMapping</span>(value = <span class="string">"/hi"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">say</span><span class="params">(@RequestParam(value = <span class="string">"id"</span>, required = <span class="keyword">false</span>, defaultValue = <span class="string">"0"</span>)</span> Integer myid)</span>&#123;</span><br><span class="line"><span class="comment">//        return girlConfig.getCupSize()+girlConfig.getAge();</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"id："</span>+myid;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="git提交-controller"><a href="#git提交-controller" class="headerlink" title="git提交-controller"></a>git提交-controller</h2><blockquote>
+<p>bennyrhysdeMacBook-Pro:girl bennyrhys$ git add .</p>
+<p>bennyrhysdeMacBook-Pro:girl bennyrhys$ git commit -m “controller”</p>
+<p>[master b0517fe] controller</p>
+<p>1 file changed, 7 insertions(+), 9 deletions(-)</p>
+<p>bennyrhysdeMacBook-Pro:girl bennyrhys$ git push origin master</p>
+<p>Enumerating objects: 19, done.</p>
+<p>Counting objects: 100% (19/19), done.</p>
+<p>Delta compression using up to 4 threads</p>
+<p>Compressing objects: 100% (7/7), done.</p>
+<p>Writing objects: 100% (10/10), 885 bytes | 885.00 KiB/s, done.</p>
+<p>Total 10 (delta 3), reused 0 (delta 0)</p>
+<p>remote: Resolving deltas: 100% (3/3), completed with 3 local objects.</p>
+<p>To <a href="https://github.com/bennyrhys/Girl-SpringBootProject.git" target="_blank" rel="noopener">https://github.com/bennyrhys/Girl-SpringBootProject.git</a></p>
+<p> 3d23c58..b0517fe master -&gt; master</p>
+</blockquote>
+<h1 id="【从删库到跑路】撸程序-操作数据库"><a href="#【从删库到跑路】撸程序-操作数据库" class="headerlink" title="【从删库到跑路】撸程序-操作数据库"></a>【从删库到跑路】撸程序-操作数据库</h1><h2 id="spring-data-jpa-mysql"><a href="#spring-data-jpa-mysql" class="headerlink" title="spring-data-jpa+mysql"></a>spring-data-jpa+mysql</h2><p>java客户端：spring-data-jpa</p>
+<p>jpa是对象持久化标准</p>
+<p>实现这标准hibernate、toplink等</p>
+<p>spring-data-jpa，是Spring对hibernate整合</p>
+<p>数据库：mysql</p>
+<h2 id="RESTful-API设计"><a href="#RESTful-API设计" class="headerlink" title="RESTful API设计"></a>RESTful API设计</h2><table>
+<thead>
+<tr>
+<th>请求类型</th>
+<th>请求路径</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>get</td>
+<td>/girls</td>
+<td>获取女生列表</td>
+</tr>
+<tr>
+<td>post</td>
+<td>/girls</td>
+<td>创建一个女生</td>
+</tr>
+<tr>
+<td>get</td>
+<td>/girls/id</td>
+<td>通过id查询一个女生</td>
+</tr>
+<tr>
+<td>put</td>
+<td>/girls/id</td>
+<td>通过id更新一个女生</td>
+</tr>
+<tr>
+<td>delete</td>
+<td>/girls/id</td>
+<td>通过id删除一个女生</td>
+</tr>
+</tbody></table>
+<h2 id="pom依赖添加-jpa-mysql"><a href="#pom依赖添加-jpa-mysql" class="headerlink" title="pom依赖添加 jpa+mysql"></a>pom依赖添加 jpa+mysql</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--        添加jpa+mysql--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-jpa<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Error:(1, 1) java: 无法访问com.bennyrhys<br>  Error reading file /Users/bennyrhys/.m2/repository/org/springframework/boot/spring-boot-starter-data-jpa/2.2.2.RELEASE/spring-boot-starter-data-jpa-2.2.2.RELEASE.jar: error in opening zip file</p>
+<h2 id="yml配置mysql驱动-jpa创建表"><a href="#yml配置mysql驱动-jpa创建表" class="headerlink" title="yml配置mysql驱动+jpa创建表"></a>yml配置mysql驱动+jpa创建表</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: 8081</span><br><span class="line">  servlet:</span><br><span class="line">    context-path: &#x2F;girl</span><br><span class="line"></span><br><span class="line">girl:</span><br><span class="line">  cupSize: B</span><br><span class="line">  age: 18</span><br><span class="line">spring:</span><br><span class="line">  datasource:</span><br><span class="line">    driver-class-name: com.mysql.cj.jdbc.Driver</span><br><span class="line">    url: jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;girl?characterEncoding&#x3D;utf-8</span><br><span class="line">    username: root</span><br><span class="line">    password: rootroot</span><br><span class="line">  jpa:</span><br><span class="line">    hibernate:</span><br><span class="line">      ddl-auto: create #update第一次创建，后来如果有数据会保留</span><br><span class="line">    show-sql: true</span><br></pre></td></tr></table></figure>
+
+<h2 id="Girl-表字段"><a href="#Girl-表字段" class="headerlink" title="Girl //表字段"></a>Girl //表字段</h2><p>构造方法/get/set，千万不要导包错误</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> javax.persistence.Entity;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.GeneratedValue;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.Id;</span><br><span class="line"></span><br><span class="line"><span class="comment">//表示对应数据库对表</span></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Girl</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Id</span> <span class="comment">//指定唯一id</span></span><br><span class="line">    <span class="meta">@GeneratedValue</span>  <span class="comment">//自增</span></span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String cupSize;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Dao层：操作数据库"><a href="#Dao层：操作数据库" class="headerlink" title="Dao层：操作数据库"></a>Dao层：操作数据库</h2><p>GirlRepository</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bennyrhys.girl;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.data.jpa.repository.JpaRepository;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * dao</span></span><br><span class="line"><span class="comment"> * 注意命名，继承jpa，参数&lt;字段类，唯一id类型&gt;</span></span><br><span class="line"><span class="comment"> * extends JpaRepository&lt;Girl,Integer&gt;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">GirlRepository</span> <span class="keyword">extends</span> <span class="title">JpaRepository</span>&lt;<span class="title">Girl</span>,<span class="title">Integer</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">//通过年龄来查询，方法名有讲究</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Girl&gt; <span class="title">findByAge</span><span class="params">(Integer age)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="controller实现增删改查"><a href="#controller实现增删改查" class="headerlink" title="controller实现增删改查"></a>controller实现增删改查</h2><p>GirlController</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bennyrhys.girl;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.sun.org.apache.regexp.internal.RE;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Optional;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GirlController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> GirlRepository repository;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 查询所有女生列表</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     * http://localhost:8081/girl/girls</span></span><br><span class="line"><span class="comment">     * [</span></span><br><span class="line"><span class="comment">     *     &#123;</span></span><br><span class="line"><span class="comment">     *         "id": 1,</span></span><br><span class="line"><span class="comment">     *         "cupSize": "B",</span></span><br><span class="line"><span class="comment">     *         "age": 18</span></span><br><span class="line"><span class="comment">     *     &#125;</span></span><br><span class="line"><span class="comment">     * ]</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@GetMapping</span>(value = <span class="string">"/girls"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Girl&gt; <span class="title">girlList</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> repository.findAll();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 新增一个女生</span></span><br><span class="line"><span class="comment">     * http://localhost:8081/girl/girls</span></span><br><span class="line"><span class="comment">     * 注意：post请求</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * 参数</span></span><br><span class="line"><span class="comment">     * cupSize  f</span></span><br><span class="line"><span class="comment">     * age  16</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * 插入因为自增注意id冲突</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@PostMapping</span>(value = <span class="string">"/girls"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Girl <span class="title">girlAdd</span><span class="params">(@RequestParam(<span class="string">"cupSize"</span>)</span> String cupSize,</span></span><br><span class="line"><span class="function">                          @<span class="title">RequestParam</span><span class="params">(<span class="string">"age"</span>)</span> Integer age)</span>&#123;</span><br><span class="line">        Girl girl = <span class="keyword">new</span> Girl();</span><br><span class="line">        girl.setCupSize(<span class="string">"F"</span>);</span><br><span class="line">        girl.setAge(<span class="number">16</span>);</span><br><span class="line">        <span class="comment">//save返回添加对对象</span></span><br><span class="line">        <span class="keyword">return</span> repository.save(girl);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 通过id查询一个女生</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     * http://localhost:8081/girl/girl/2</span></span><br><span class="line"><span class="comment">     * &#123;</span></span><br><span class="line"><span class="comment">     *     "id": 2,</span></span><br><span class="line"><span class="comment">     *     "cupSize": "F",</span></span><br><span class="line"><span class="comment">     *     "age": 16</span></span><br><span class="line"><span class="comment">     * &#125;</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@GetMapping</span>(value = <span class="string">"/girls/&#123;id&#125;"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Girl <span class="title">girlFindById</span><span class="params">(@PathVariable(<span class="string">"id"</span>)</span> Integer id)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> repository.findById(id).orElse(<span class="keyword">null</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 更新某个id女生基因信息</span></span><br><span class="line"><span class="comment">     * http://localhost:8081/girl/girls/2</span></span><br><span class="line"><span class="comment">     * 参数</span></span><br><span class="line"><span class="comment">     * cupSize  G</span></span><br><span class="line"><span class="comment">     * age  22</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * &#123;</span></span><br><span class="line"><span class="comment">     *     "id": 2,</span></span><br><span class="line"><span class="comment">     *     "cupSize": "G",</span></span><br><span class="line"><span class="comment">     *     "age": 22</span></span><br><span class="line"><span class="comment">     * &#125;</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@PutMapping</span>(value = <span class="string">"/girls/&#123;id&#125;"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Girl <span class="title">updateGirl</span><span class="params">(@PathVariable(<span class="string">"id"</span>)</span> Integer id,</span></span><br><span class="line"><span class="function">                           @<span class="title">RequestParam</span><span class="params">(<span class="string">"cupSize"</span>)</span> String cupSize,</span></span><br><span class="line"><span class="function">                           @<span class="title">RequestParam</span><span class="params">(<span class="string">"age"</span>)</span> Integer age)</span>&#123;</span><br><span class="line">        Optional&lt;Girl&gt; optional = repository.findById(id);</span><br><span class="line">        <span class="keyword">if</span> (optional.isPresent())&#123;</span><br><span class="line">            Girl girl = optional.get();</span><br><span class="line">            girl.setAge(age);</span><br><span class="line">            girl.setCupSize(cupSize);</span><br><span class="line">            <span class="keyword">return</span> girl;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *删除某个id女生的信息</span></span><br><span class="line"><span class="comment">     * http://localhost:8081/girl/girls/2</span></span><br><span class="line"><span class="comment">     * 2</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@DeleteMapping</span>(value = <span class="string">"/girls/&#123;id&#125;"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">deleteGirlById</span><span class="params">(@PathVariable(<span class="string">"id"</span>)</span> Integer id)</span>&#123;</span><br><span class="line">        Optional&lt;Girl&gt; optional = repository.findById(id);</span><br><span class="line">        <span class="keyword">if</span> (optional.isPresent())&#123;</span><br><span class="line">            Girl girl = optional.get();</span><br><span class="line">            repository.delete(girl);</span><br><span class="line">            <span class="keyword">return</span> id;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 通过年龄查询女生列表</span></span><br><span class="line"><span class="comment">     * 先自定义dao方法</span></span><br><span class="line"><span class="comment">     * http://localhost:8081/girl/girls/age/16</span></span><br><span class="line"><span class="comment">     * [</span></span><br><span class="line"><span class="comment">     *     &#123;</span></span><br><span class="line"><span class="comment">     *         "id": 3,</span></span><br><span class="line"><span class="comment">     *         "cupSize": "F",</span></span><br><span class="line"><span class="comment">     *         "age": 16</span></span><br><span class="line"><span class="comment">     *     &#125;,</span></span><br><span class="line"><span class="comment">     *     &#123;</span></span><br><span class="line"><span class="comment">     *         "id": 4,</span></span><br><span class="line"><span class="comment">     *         "cupSize": "g",</span></span><br><span class="line"><span class="comment">     *         "age": 16</span></span><br><span class="line"><span class="comment">     *     &#125;,</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/girls/age/&#123;age&#125;"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Girl&gt; <span class="title">girlListByAge</span><span class="params">(@PathVariable(<span class="string">"age"</span>)</span> Integer age)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> repository.findByAge(age);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="【搞定并发就在一起】事务要么都完成要么都不做"><a href="#【搞定并发就在一起】事务要么都完成要么都不做" class="headerlink" title="【搞定并发就在一起】事务要么都完成要么都不做"></a>【搞定并发就在一起】事务要么都完成要么都不做</h1><h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><p>当某个名声显赫的家族要新增整个家族的女性优质基因时，为了事情不败露，必须保证同时实现基因的改变。</p>
+<p>事务：要么都完成要么都不做</p>
+<p>@Transactional //保证同时发生的注解，spring版</p>
+<h2 id="GirlService"><a href="#GirlService" class="headerlink" title="GirlService"></a>GirlService</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bennyrhys.girl;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</span><br><span class="line"><span class="keyword">import</span> org.springframework.transaction.annotation.Transactional;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GirlService</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> GirlRepository repository;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Transactional</span> <span class="comment">//保证同时发生的注解，spring版</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">changgeTwo</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Girl girl = <span class="keyword">new</span> Girl();</span><br><span class="line">        girl.setId(<span class="number">3</span>);</span><br><span class="line">        girl.setAge(<span class="number">20</span>);</span><br><span class="line">        girl.setCupSize(<span class="string">"G"</span>);</span><br><span class="line">        repository.save(girl);</span><br><span class="line"></span><br><span class="line">        Girl girl2 = <span class="keyword">new</span> Girl();</span><br><span class="line">        girl2.setId(<span class="number">4</span>);</span><br><span class="line">        girl2.setAge(<span class="number">20</span>);</span><br><span class="line">        girl2.setCupSize(<span class="string">"G"</span>);</span><br><span class="line">        repository.save(girl2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="GirlController"><a href="#GirlController" class="headerlink" title="GirlController"></a>GirlController</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 触发事务</span></span><br><span class="line"><span class="comment"> * 同时改变基因cupSize</span></span><br><span class="line"><span class="comment"> * http://localhost:8081/girl/girls/two</span></span><br><span class="line"><span class="comment"> * 数据发生改变</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@PostMapping</span>(value = <span class="string">"/girls/two"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">girlsTwo</span><span class="params">()</span></span>&#123;</span><br><span class="line">    service.changgeTwo();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>请作者喝杯茶～</div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="郭瑞新 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="郭瑞新 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/12/29/%E6%95%99%E7%A8%8B%E8%AF%A6%E8%A7%A3-%E6%9E%81%E5%AE%A2%E6%B5%AA%E6%BC%AB%E8%A1%A8%E7%99%BD%E7%BA%A2%E5%8C%85/" rel="prev" title="教程详解-极客浪漫表白红包">
+      <i class="fa fa-chevron-left"></i> 教程详解-极客浪漫表白红包
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/12/30/%E6%95%99%E7%A8%8B%E6%A6%82%E8%BF%B0-%E5%9F%BA%E5%9B%A0%E8%8A%AF%E7%89%87%E4%B8%AA%E4%BA%BA%E4%BF%A1%E6%81%AF%E7%A8%8B%E5%BA%8F/" rel="next" title="教程概述-基因芯片个人信息程序">
+      教程概述-基因芯片个人信息程序 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#【别让宝宝输在起跑线上】版本配置"><span class="nav-number">1.</span> <span class="nav-text">【别让宝宝输在起跑线上】版本配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#【初识】第一个程序hello-world"><span class="nav-number">2.</span> <span class="nav-text">【初识】第一个程序hello world</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#【一万个哈姆雷特】花式启动程序"><span class="nav-number">3.</span> <span class="nav-text">【一万个哈姆雷特】花式启动程序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#【君子之交-淡如水】解放双手，配置先行"><span class="nav-number">4.</span> <span class="nav-text">【君子之交-淡如水】解放双手，配置先行</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置选型"><span class="nav-number">4.1.</span> <span class="nav-text">配置选型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#场景模拟-个人信息"><span class="nav-number">4.2.</span> <span class="nav-text">场景模拟-个人信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单个配置"><span class="nav-number">4.3.</span> <span class="nav-text">单个配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git提交-单配置-master"><span class="nav-number">4.4.</span> <span class="nav-text">git提交-单配置-master</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多个配置"><span class="nav-number">4.5.</span> <span class="nav-text">多个配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git提交-多配置-master"><span class="nav-number">4.6.</span> <span class="nav-text">git提交-多配置-master</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#【我的命，我自己说的才算】生产-开发环境切换"><span class="nav-number">5.</span> <span class="nav-text">【我的命，我自己说的才算】生产&#x2F;开发环境切换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#场景模拟"><span class="nav-number">5.1.</span> <span class="nav-text">场景模拟</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">5.2.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#验证"><span class="nav-number">5.3.</span> <span class="nav-text">验证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git提交-生产环境切换"><span class="nav-number">5.4.</span> <span class="nav-text">git提交-生产环境切换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#controller-thymeleaf"><span class="nav-number">5.5.</span> <span class="nav-text">@controller+thymeleaf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git提交-controller-thymeleaf"><span class="nav-number">5.6.</span> <span class="nav-text">git提交-@controller+thymeleaf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RestController-ResponseBody-Controller"><span class="nav-number">5.7.</span> <span class="nav-text">@RestController&#x3D;@ResponseBody+@Controller</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#girl-hello-girl-hi"><span class="nav-number">5.8.</span> <span class="nav-text">girl&#x2F;hello &#x3D;&#x3D;girl&#x2F;hi</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#url访问一层girl-say-hi"><span class="nav-number">5.9.</span> <span class="nav-text">url访问一层girl&#x2F;say&#x2F;hi</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Post访问"><span class="nav-number">5.10.</span> <span class="nav-text">Post访问</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#get-post都可访问（不推荐）"><span class="nav-number">5.11.</span> <span class="nav-text">get&#x2F;post都可访问（不推荐）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#url参数获取"><span class="nav-number">5.12.</span> <span class="nav-text">url参数获取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PathVariable-url中数据"><span class="nav-number">5.13.</span> <span class="nav-text">@PathVariable:url中数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RequestParam：请求参数"><span class="nav-number">5.14.</span> <span class="nav-text">@RequestParam：请求参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#空id，设置默认值"><span class="nav-number">5.15.</span> <span class="nav-text">空id，设置默认值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简化请求注解"><span class="nav-number">5.16.</span> <span class="nav-text">简化请求注解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git提交-controller"><span class="nav-number">5.17.</span> <span class="nav-text">git提交-controller</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#【从删库到跑路】撸程序-操作数据库"><span class="nav-number">6.</span> <span class="nav-text">【从删库到跑路】撸程序-操作数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#spring-data-jpa-mysql"><span class="nav-number">6.1.</span> <span class="nav-text">spring-data-jpa+mysql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RESTful-API设计"><span class="nav-number">6.2.</span> <span class="nav-text">RESTful API设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pom依赖添加-jpa-mysql"><span class="nav-number">6.3.</span> <span class="nav-text">pom依赖添加 jpa+mysql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#yml配置mysql驱动-jpa创建表"><span class="nav-number">6.4.</span> <span class="nav-text">yml配置mysql驱动+jpa创建表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Girl-表字段"><span class="nav-number">6.5.</span> <span class="nav-text">Girl &#x2F;&#x2F;表字段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dao层：操作数据库"><span class="nav-number">6.6.</span> <span class="nav-text">Dao层：操作数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#controller实现增删改查"><span class="nav-number">6.7.</span> <span class="nav-text">controller实现增删改查</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#【搞定并发就在一起】事务要么都完成要么都不做"><span class="nav-number">7.</span> <span class="nav-text">【搞定并发就在一起】事务要么都完成要么都不做</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用场景"><span class="nav-number">7.1.</span> <span class="nav-text">使用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GirlService"><span class="nav-number">7.2.</span> <span class="nav-text">GirlService</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GirlController"><span class="nav-number">7.3.</span> <span class="nav-text">GirlController</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="郭瑞新"
+      src="/images/head_logo.jpg">
+  <p class="site-author-name" itemprop="name">郭瑞新</p>
+  <div class="site-description" itemprop="description">专注分享JAVA全栈技术，JAVA零基础到高级，数据结构，框架，设计模式，微服务，中间件，大数据，网络爬虫，开源项目，阿里技术，面试经</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/bennyrhys" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;bennyrhys" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/weixin_43469680" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_43469680" rel="noopener" target="_blank"><i class="fa fa-fw fa-contao"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/2389992466" title="QQ → 2389992466"><i class="fa fa-fw fa-qq"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/bennyrhys-sir" title="WC → bennyrhys-sir"><i class="fa fa-fw fa-weixin"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:bennyrhys@163.com" title="E-Mail → mailto:bennyrhys@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.996cloud.work/" title="https:&#x2F;&#x2F;www.996cloud.work" rel="noopener" target="_blank">吉他易学网/EasyGuitar</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">郭瑞新</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+  <script src="//code.tidio.co/d706tnk5yjw116zqvzgvxfuglt8b2s2y.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout: 3000,
+        priority: true,
+        ignores: [uri => uri.includes('#'),uri => uri == 'http://bennyrhys.github.io/2019/12/30/%E6%95%99%E7%A8%8B%E8%AF%A6%E8%A7%A3-%E5%9F%BA%E5%9B%A0%E8%8A%AF%E7%89%87%E4%B8%AA%E4%BA%BA%E4%BF%A1%E6%81%AF%E7%A8%8B%E5%BA%8F/',]
+      });
+      });
+  </script>
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: '152515de43eada8e083b',
+      clientSecret: '1ee2994d96e2d4a5684188df17a49fe8e9a6c3d6',
+      repo: 'bennyrhys_gitalk.github.io',
+      owner: 'bennyrhys',
+      admin: ['bennyrhys'],
+      id: '346f809ed251d01994405345d3997575',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
+<script type="text/javascript" src="/js/src/back.js" ></script>

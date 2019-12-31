@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://bennyrhys.github.io').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: true,
+    pangu: true,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="[TOC]  作者：bennyrhys@163.com  @Valid表单验证背景假设拦截所有未满18周岁的少女，禁止添加。 整理代码建包规整代码  domain  Girl   controller  GirlController HelloController   service  GirlService   repository  GirlRepository   properties  G">
+<meta property="og:type" content="article">
+<meta property="og:title" content="教程详解-SpringBoot之web进阶">
+<meta property="og:url" content="http://bennyrhys.github.io/2019/12/31/%E6%95%99%E7%A8%8B%E8%AF%A6%E8%A7%A3-SpringBoot%E4%B9%8Bweb%E8%BF%9B%E9%98%B6/index.html">
+<meta property="og:site_name" content="郭瑞新的官方博客">
+<meta property="og:description" content="[TOC]  作者：bennyrhys@163.com  @Valid表单验证背景假设拦截所有未满18周岁的少女，禁止添加。 整理代码建包规整代码  domain  Girl   controller  GirlController HelloController   service  GirlService   repository  GirlRepository   properties  G">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-12-31T00:09:08.591Z">
+<meta property="article:modified_time" content="2019-12-31T10:44:56.941Z">
+<meta property="article:author" content="郭瑞新">
+<meta property="article:tag" content="郭瑞新，bennyrhys，公众号：让我遇见相似的灵魂，JAVA零基础到高级，数据结构，框架，设计模式，微服务，中间件，大数据，网络爬虫，开源项目，阿里技术，面试经">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://bennyrhys.github.io/2019/12/31/%E6%95%99%E7%A8%8B%E8%AF%A6%E8%A7%A3-SpringBoot%E4%B9%8Bweb%E8%BF%9B%E9%98%B6/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>教程详解-SpringBoot之web进阶 | 郭瑞新的官方博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">郭瑞新的官方博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">昵称：bennyrhys<br>公众号：让我遇见相似的灵魂</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/bennyrhys" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://bennyrhys.github.io/2019/12/31/%E6%95%99%E7%A8%8B%E8%AF%A6%E8%A7%A3-SpringBoot%E4%B9%8Bweb%E8%BF%9B%E9%98%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head_logo.jpg">
+      <meta itemprop="name" content="郭瑞新">
+      <meta itemprop="description" content="专注分享JAVA全栈技术，JAVA零基础到高级，数据结构，框架，设计模式，微服务，中间件，大数据，网络爬虫，开源项目，阿里技术，面试经">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="郭瑞新的官方博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          教程详解-SpringBoot之web进阶
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-12-31 08:09:08 / 修改时间：18:44:56" itemprop="dateCreated datePublished" datetime="2019-12-31T08:09:08+08:00">2019-12-31</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>[TOC]</p>
+<blockquote>
+<p>作者：<a href="mailto:bennyrhys@163.com">bennyrhys@163.com</a></p>
+</blockquote>
+<h1 id="Valid表单验证"><a href="#Valid表单验证" class="headerlink" title="@Valid表单验证"></a>@Valid表单验证</h1><h2 id="背景假设"><a href="#背景假设" class="headerlink" title="背景假设"></a>背景假设</h2><p>拦截所有未满18周岁的少女，禁止添加。</p>
+<h2 id="整理代码"><a href="#整理代码" class="headerlink" title="整理代码"></a>整理代码</h2><p>建包规整代码</p>
+<ul>
+<li><p>domain</p>
+<ul>
+<li>Girl</li>
+</ul>
+</li>
+<li><p>controller</p>
+<ul>
+<li>GirlController</li>
+<li>HelloController</li>
+</ul>
+</li>
+<li><p>service</p>
+<ul>
+<li>GirlService</li>
+</ul>
+</li>
+<li><p>repository</p>
+<ul>
+<li>GirlRepository</li>
+</ul>
+</li>
+<li><p>properties</p>
+<ul>
+<li>GirlConfig</li>
+</ul>
+</li>
+<li><p>GirlApplication</p>
+</li>
+</ul>
+<h2 id="git提交"><a href="#git提交" class="headerlink" title="git提交"></a>git提交</h2><blockquote>
+<p>git commit -m “代码包整理”</p>
+</blockquote>
+<h2 id="新增少女：参数换成对象"><a href="#新增少女：参数换成对象" class="headerlink" title="新增少女：参数换成对象"></a>新增少女：参数换成对象</h2><p>GirlController </p>
+<p>//原本参数获取太过繁琐</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestParam</span>(<span class="string">"cupSize"</span>) String cupSize,</span><br><span class="line"><span class="meta">@RequestParam</span>(<span class="string">"age"</span>) Integer age</span><br></pre></td></tr></table></figure>
+
+<p>//修改参数，传入对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 新增一个女生</span></span><br><span class="line"><span class="comment"> * http://localhost:8081/girl/girls</span></span><br><span class="line"><span class="comment"> * 注意：post请求</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 参数</span></span><br><span class="line"><span class="comment"> * cupSize  f</span></span><br><span class="line"><span class="comment"> * age  16</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 插入因为自增注意id冲突</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@PostMapping</span>(value = <span class="string">"/girls"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Girl <span class="title">girlAdd</span><span class="params">(Girl girl)</span></span>&#123;</span><br><span class="line">    girl.setCupSize(girl.getCupSize());</span><br><span class="line">    girl.setAge(girl.getAge());</span><br><span class="line">    <span class="comment">//save返回添加对对象</span></span><br><span class="line">    <span class="keyword">return</span> repository.save(girl);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>//测试</p>
+<p><a href="http://localhost:8081/girl/girls" target="_blank" rel="noopener">http://localhost:8081/girl/girls</a></p>
+<p>{</p>
+<p>​    “id”: 8,</p>
+<p>​    “cupSize”: “C”,</p>
+<p>​    “age”: 22</p>
+<p>}</p>
+<h2 id="对象：字段进行限制"><a href="#对象：字段进行限制" class="headerlink" title="对象：字段进行限制"></a>对象：字段进行限制</h2><p>Girl</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Min</span>(value = <span class="number">18</span>, message = <span class="string">"未成年少女禁止入内"</span>)</span><br><span class="line"><span class="keyword">private</span> Integer age;</span><br></pre></td></tr></table></figure>
+
+<p>GirlController</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 新增一个女生</span></span><br><span class="line"><span class="comment"> * http://localhost:8081/girl/girls</span></span><br><span class="line"><span class="comment"> * 注意：post请求</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 参数</span></span><br><span class="line"><span class="comment"> * cupSize  f</span></span><br><span class="line"><span class="comment"> * age  16</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 插入因为自增注意id冲突</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@PostMapping</span>(value = <span class="string">"/girls"</span>)</span><br><span class="line"><span class="comment">//@Valid表示要验证的是这个对象 BindingResult返回验证信息</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Girl <span class="title">girlAdd</span><span class="params">(@Valid Girl girl, BindingResult bindingResult)</span></span>&#123;</span><br><span class="line">    <span class="comment">//判断是否发生错误</span></span><br><span class="line">    <span class="keyword">if</span> (bindingResult.hasErrors())&#123;</span><br><span class="line">        <span class="comment">//打印错误信息</span></span><br><span class="line">        System.out.println(bindingResult.getFieldError().getDefaultMessage());</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    girl.setCupSize(girl.getCupSize());</span><br><span class="line">    girl.setAge(girl.getAge());</span><br><span class="line">    <span class="comment">//save返回添加对对象</span></span><br><span class="line">    <span class="keyword">return</span> repository.save(girl);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>请求postman</p>
+<p><a href="http://localhost:8081/girl/girls" target="_blank" rel="noopener">http://localhost:8081/girl/girls</a></p>
+<p>参数age小于18时提示禁止信息</p>
+<p>控制台输出</p>
+<blockquote>
+<p>2019-12-31 09:15:01.151  INFO 1327 — [nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 9 ms<br>Hibernate: select next_val as id_val from hibernate_sequence for update<br>Hibernate: update hibernate_sequence set next_val= ? where next_val=?<br>Hibernate: insert into girl (age, cup_size, id) values (?, ?, ?)<br>Hibernate: select next_val as id_val from hibernate_sequence for update<br>Hibernate: update hibernate_sequence set next_val= ? where next_val=?<br>Hibernate: insert into girl (age, cup_size, id) values (?, ?, ?)<br>未成年少女禁止入内</p>
+</blockquote>
+<h2 id="git提交-1"><a href="#git提交-1" class="headerlink" title="git提交"></a>git提交</h2><blockquote>
+<p>git commit -m “@Valid表单验证”</p>
+</blockquote>
+<h1 id="AOP统一处理请求日志"><a href="#AOP统一处理请求日志" class="headerlink" title="AOP统一处理请求日志"></a>AOP统一处理请求日志</h1><h2 id="AOP，IOC防误区简述"><a href="#AOP，IOC防误区简述" class="headerlink" title="AOP，IOC防误区简述"></a>AOP，IOC防误区简述</h2><ul>
+<li>AOP编程范式<ul>
+<li>编程范式，与语言无关，是一种设计思想</li>
+<li>面向切面（AOP）、面向对象（OOP）【java、c++、c#】、面向过程（POP）【c】</li>
+<li>如果说面向对象：垂直切割成各自独立对象，面向切面：就是<strong>抽取通用业务逻辑</strong></li>
+</ul>
+</li>
+</ul>
+<h2 id="背景假设-1"><a href="#背景假设-1" class="headerlink" title="背景假设"></a>背景假设</h2><ul>
+<li>登陆后获得权限调用方法<ul>
+<li>传统直接想到每个方法if判断（不可行，不能每个都加太麻烦）</li>
+<li>controller加构造方法if（不可行，spring启动时调用构造方法，后期http请求不会调用构造方法）</li>
+<li>AOP（推荐，统一进行验证）</li>
+</ul>
+</li>
+</ul>
+<h2 id="pom依赖"><a href="#pom依赖" class="headerlink" title="pom依赖"></a>pom依赖</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--        添加aop依赖，无需在启动类加注解--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-aop<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="新建aspect拦截"><a href="#新建aspect拦截" class="headerlink" title="新建aspect拦截"></a>新建aspect拦截</h2><ul>
+<li>aspect包<ul>
+<li>HttpAspect.java</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bennyrhys.girl.aspect;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Aspect;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Before;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Aspect</span> <span class="comment">//aop标识</span></span><br><span class="line"><span class="meta">@Component</span> <span class="comment">//添加到容器</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HttpAspect</span> </span>&#123;</span><br><span class="line">    <span class="comment">//拦截方法：加两个..表示任何参数都会被拦截</span></span><br><span class="line">    <span class="meta">@Before</span>(<span class="string">"execution(public * com.bennyrhys.girl.controller.GirlController.girlList(..))"</span>)</span><br><span class="line">    <span class="comment">//先定方法不然没上方提示</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">log</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"llllllll"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>检测类下所有方法/*</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Before</span>(<span class="string">"execution(public * com.bennyrhys.girl.controller.GirlController.*(..))"</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="验证拦截"><a href="#验证拦截" class="headerlink" title="验证拦截"></a>验证拦截</h2><p>查询列表</p>
+<p><a href="http://localhost:8081/girl/girls" target="_blank" rel="noopener">http://localhost:8081/girl/girls</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#123;&quot;id&quot;:3,&quot;cupSize&quot;:&quot;G&quot;,&quot;age&quot;:20&#125;,&#123;&quot;id&quot;:4,&quot;cupSize&quot;:&quot;G&quot;,&quot;age&quot;:20&#125;,&#123;&quot;id&quot;:5,&quot;cupSize&quot;:&quot;F&quot;,&quot;age&quot;:22&#125;,&#123;&quot;id&quot;:6,&quot;cupSize&quot;:&quot;F&quot;,&quot;age&quot;:16&#125;,&#123;&quot;id&quot;:7,&quot;cupSize&quot;:&quot;F&quot;,&quot;age&quot;:16&#125;,&#123;&quot;id&quot;:8,&quot;cupSize&quot;:&quot;C&quot;,&quot;age&quot;:22&#125;,&#123;&quot;id&quot;:9,&quot;cupSize&quot;:&quot;C&quot;,&quot;age&quot;:20&#125;,&#123;&quot;id&quot;:10,&quot;cupSize&quot;:&quot;C&quot;,&quot;age&quot;:18&#125;]</span><br></pre></td></tr></table></figure>
+
+<p>控制台</p>
+<blockquote>
+<p>llllllll //被过滤<br>Hibernate: select girl0_.id as id1_0_, girl0_.age as age2_0_, girl0_.cup_size as cup_size3_0_ from girl girl0_</p>
+</blockquote>
+<p>增加少女</p>
+<p><a href="http://localhost:8081/girl/girls" target="_blank" rel="noopener">http://localhost:8081/girl/girls</a></p>
+<blockquote>
+<p>//未被过滤检测</p>
+<p>Hibernate: select next_val as id_val from hibernate_sequence for update<br>Hibernate: update hibernate_sequence set next_val= ? where next_val=?<br>Hibernate: insert into girl (age, cup_size, id) values (?, ?, ?)</p>
+</blockquote>
+<h2 id="拦截顺序"><a href="#拦截顺序" class="headerlink" title="拦截顺序"></a>拦截顺序</h2><p>HttpAspect</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bennyrhys.girl.aspect;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.After;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Aspect;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Before;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Aspect</span> <span class="comment">//aop标识</span></span><br><span class="line"><span class="meta">@Component</span> <span class="comment">//添加到容器</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HttpAspect</span> </span>&#123;</span><br><span class="line">    <span class="comment">//@Before方法执行之前就执行了</span></span><br><span class="line">    <span class="comment">//拦截方法：加两个..表示任何参数都会被拦截</span></span><br><span class="line">    <span class="meta">@Before</span>(<span class="string">"execution(public * com.bennyrhys.girl.controller.GirlController.*(..))"</span>)</span><br><span class="line">    <span class="comment">//先定方法不然没上方提示</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">log</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"llllllll"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@After</span>(<span class="string">"execution(public * com.bennyrhys.girl.controller.GirlController.*(..))"</span>)</span><br><span class="line">    <span class="comment">//先定方法不然没上方提示</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doAfter</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"22222222"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>GirlController</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 查询所有女生列表</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> * http://localhost:8081/girl/girls</span></span><br><span class="line"><span class="comment"> * [</span></span><br><span class="line"><span class="comment"> *     &#123;</span></span><br><span class="line"><span class="comment"> *         "id": 1,</span></span><br><span class="line"><span class="comment"> *         "cupSize": "B",</span></span><br><span class="line"><span class="comment"> *         "age": 18</span></span><br><span class="line"><span class="comment"> *     &#125;</span></span><br><span class="line"><span class="comment"> * ]</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@GetMapping</span>(value = <span class="string">"/girls"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Girl&gt; <span class="title">girlList</span><span class="params">()</span></span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"girlList测试检测顺序"</span>);</span><br><span class="line">    <span class="keyword">return</span> repository.findAll();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>控制台打印</p>
+<blockquote>
+<p>llllllll<br>girlList测试检测顺序<br>Hibernate: select girl0_.id as id1_0_, girl0_.age as age2_0_, girl0_.cup_size as cup_size3_0_ from girl girl0_<br>22222222</p>
+</blockquote>
+<h2 id="简化拦截代码"><a href="#简化拦截代码" class="headerlink" title="简化拦截代码"></a>简化拦截代码</h2><p>HttpAspect</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bennyrhys.girl.aspect;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.After;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Aspect;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Before;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Pointcut;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Aspect</span> <span class="comment">//aop标识</span></span><br><span class="line"><span class="meta">@Component</span> <span class="comment">//添加到容器</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HttpAspect</span> </span>&#123;</span><br><span class="line">    <span class="comment">//提取公共方法</span></span><br><span class="line">    <span class="comment">//拦截方法：加两个..表示任何参数都会被拦截</span></span><br><span class="line">    <span class="meta">@Pointcut</span>(<span class="string">"execution(public * com.bennyrhys.girl.controller.GirlController.*(..))"</span>)</span><br><span class="line">    <span class="comment">//先定方法不然没上方提示</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">log</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"1111"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//@Before方法执行之前就执行了</span></span><br><span class="line">    <span class="meta">@Before</span>(<span class="string">"log()"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doBefore</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"11111111"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@After</span>(<span class="string">"log()"</span>)</span><br><span class="line">    <span class="comment">//先定方法不然没上方提示</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doAfter</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"22222222"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>控制台</p>
+<blockquote>
+<p><a href="http://localhost:8081/girl/girls" target="_blank" rel="noopener">http://localhost:8081/girl/girls</a></p>
+<p>11111111<br>girlList测试检测顺序<br>Hibernate: select girl0_.id as id1_0_, girl0_.age as age2_0_, girl0_.cup_size as cup_size3_0_ from girl girl0_<br>22222222</p>
+</blockquote>
+<h2 id="日志替换print输出"><a href="#日志替换print输出" class="headerlink" title="日志替换print输出"></a>日志替换print输出</h2><p><strong>HttpAspect</strong></p>
+<p>//日志输出slf4j <strong>注意类名切换</strong><br>    private final static Logger logger = LoggerFactory.getLogger(HttpAspect.class);</p>
+<p>//打印</p>
+<p> logger.info(“222222222”);</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bennyrhys.girl.aspect;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.After;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Aspect;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Before;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Pointcut;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Aspect</span> <span class="comment">//aop标识</span></span><br><span class="line"><span class="meta">@Component</span> <span class="comment">//添加到容器</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HttpAspect</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//日志输出slf4j</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> Logger logger = LoggerFactory.getLogger(HttpAspect<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//提取公共方法</span></span><br><span class="line">    <span class="comment">//拦截方法：加两个..表示任何参数都会被拦截</span></span><br><span class="line">    <span class="meta">@Pointcut</span>(<span class="string">"execution(public * com.bennyrhys.girl.controller.GirlController.*(..))"</span>)</span><br><span class="line">    <span class="comment">//先定方法不然没上方提示</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">log</span><span class="params">()</span></span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//@Before方法执行之前就执行了</span></span><br><span class="line">    <span class="meta">@Before</span>(<span class="string">"log()"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doBefore</span><span class="params">()</span></span>&#123;</span><br><span class="line">        logger.info(<span class="string">"111111111"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@After</span>(<span class="string">"log()"</span>)</span><br><span class="line">    <span class="comment">//先定方法不然没上方提示</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doAfter</span><span class="params">()</span></span>&#123;</span><br><span class="line">        logger.info(<span class="string">"222222222"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>GirlController</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//日志输出slf4j</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> Logger logger = LoggerFactory.getLogger(GirlController<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        logger.info(<span class="string">"girlList测试检测顺序"</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>2019-12-31 10:07:19.744  INFO 1684 — [nio-8081-exec-1] com.bennyrhys.girl.aspect.HttpAspect     : </p>
+<p>111111111<br>2019-12-31 10:07:19.749  INFO 1684 — [nio-8081-exec-1] c.b.girl.controller.GirlController       : girlList测试检测顺序<br>Hibernate: select girl0_.id as id1_0_, girl0_.age as age2_0_, girl0_.cup_size as cup_size3_0_ from girl girl0_<br>2019-12-31 10:07:19.851  INFO 1684 — [nio-8081-exec-1] com.bennyrhys.girl.aspect.HttpAspect     : 222222222</p>
+</blockquote>
+<h2 id="日志获取请求信息"><a href="#日志获取请求信息" class="headerlink" title="日志获取请求信息"></a>日志获取请求信息</h2><p>HttpAspect</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bennyrhys.girl.aspect;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.JoinPoint;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.After;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Aspect;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Before;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Pointcut;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.context.request.RequestAttributes;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.context.request.RequestContextHolder;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.context.request.ServletRequestAttributes;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Aspect</span> <span class="comment">//aop标识</span></span><br><span class="line"><span class="meta">@Component</span> <span class="comment">//添加到容器</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HttpAspect</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//日志输出slf4j 注意类名切换</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> Logger logger = LoggerFactory.getLogger(HttpAspect<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//提取公共方法</span></span><br><span class="line">    <span class="comment">//拦截方法：加两个..表示任何参数都会被拦截</span></span><br><span class="line">    <span class="meta">@Pointcut</span>(<span class="string">"execution(public * com.bennyrhys.girl.controller.GirlController.*(..))"</span>)</span><br><span class="line">    <span class="comment">//先定方法不然没上方提示</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">log</span><span class="params">()</span></span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//@Before方法执行之前就执行了</span></span><br><span class="line">    <span class="meta">@Before</span>(<span class="string">"log()"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doBefore</span><span class="params">(JoinPoint joinPoint)</span></span>&#123;</span><br><span class="line">        <span class="comment">//此处强转</span></span><br><span class="line">        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();</span><br><span class="line">        <span class="comment">//import javax.servlet.http.HttpServletRequest;</span></span><br><span class="line">        HttpServletRequest request = attributes.getRequest();</span><br><span class="line">        <span class="comment">//url</span></span><br><span class="line">        logger.info(<span class="string">"url=&#123;&#125;"</span>, request.getRequestURL());</span><br><span class="line">        <span class="comment">//method</span></span><br><span class="line">        logger.info(<span class="string">"method=&#123;&#125;"</span>,request.getMethod());</span><br><span class="line">        <span class="comment">//ip</span></span><br><span class="line">        logger.info(<span class="string">"ip=&#123;&#125;"</span>,request.getRemoteAddr());</span><br><span class="line">        <span class="comment">//类方法 参数传入doBefore(JoinPoint joinPoint)</span></span><br><span class="line">        <span class="comment">//类名：getDeclaringTypeName类方法：getName</span></span><br><span class="line">        logger.info(<span class="string">"class_method=&#123;&#125;"</span>, joinPoint.getSignature().getDeclaringTypeName()+<span class="string">"."</span>+joinPoint.getSignature().getName());</span><br><span class="line">        <span class="comment">//参数</span></span><br><span class="line">        logger.info(<span class="string">"args=&#123;&#125;"</span>, joinPoint.getArgs());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@After</span>(<span class="string">"log()"</span>)</span><br><span class="line">    <span class="comment">//先定方法不然没上方提示</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doAfter</span><span class="params">()</span></span>&#123;</span><br><span class="line">        logger.info(<span class="string">"222222222"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>控制台</p>
+<blockquote>
+<p>2019-12-31 10:27:11.554  INFO 1816 — [nio-8081-exec-1] com.bennyrhys.girl.aspect.HttpAspect     : url=<a href="http://localhost:8081/girl/girls/6" target="_blank" rel="noopener">http://localhost:8081/girl/girls/6</a><br>2019-12-31 10:27:11.554  INFO 1816 — [nio-8081-exec-1] com.bennyrhys.girl.aspect.HttpAspect     : method=GET<br>2019-12-31 10:27:11.554  INFO 1816 — [nio-8081-exec-1] com.bennyrhys.girl.aspect.HttpAspect     : ip=0:0:0:0:0:0:0:1<br>2019-12-31 10:27:11.555  INFO 1816 — [nio-8081-exec-1] com.bennyrhys.girl.aspect.HttpAspect     : class_method=com.bennyrhys.girl.controller.GirlController.girlFindById<br>2019-12-31 10:27:11.555  INFO 1816 — [nio-8081-exec-1] com.bennyrhys.girl.aspect.HttpAspect     : args=6<br>Hibernate: select girl0_.id as id1_0_0_, girl0_.age as age2_0_0_, girl0_.cup_size as cup_size3_0_0_ from girl girl0_ where girl0_.id=?<br>2019-12-31 10:27:11.603  INFO 1816 — [nio-8081-exec-1] com.bennyrhys.girl.aspect.HttpAspect     : 222222222</p>
+</blockquote>
+<h2 id="日志获取响应信息"><a href="#日志获取响应信息" class="headerlink" title="日志获取响应信息"></a>日志获取响应信息</h2><p>HttpAspect</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//日志获取响应信息</span></span><br><span class="line"><span class="comment">//入参：returning 注意：toString方法，否则输出是对象</span></span><br><span class="line"><span class="meta">@AfterReturning</span>(returning = <span class="string">"object"</span>, pointcut = <span class="string">"log()"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doAfterReturning</span><span class="params">(Object object)</span></span>&#123;</span><br><span class="line">    logger.info(<span class="string">"response=&#123;&#125;"</span>, object.toString());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>控制台</p>
+<blockquote>
+<p>2019-12-31 10:36:42.905  INFO 1885 — [nio-8081-exec-1] com.bennyrhys.girl.aspect.HttpAspect     : url=<a href="http://localhost:8081/girl/girls/6" target="_blank" rel="noopener">http://localhost:8081/girl/girls/6</a><br>2019-12-31 10:36:42.905  INFO 1885 — [nio-8081-exec-1] com.bennyrhys.girl.aspect.HttpAspect     : method=GET<br>2019-12-31 10:36:42.905  INFO 1885 — [nio-8081-exec-1] com.bennyrhys.girl.aspect.HttpAspect     : ip=0:0:0:0:0:0:0:1<br>2019-12-31 10:36:42.907  INFO 1885 — [nio-8081-exec-1] com.bennyrhys.girl.aspect.HttpAspect     : class_method=com.bennyrhys.girl.controller.GirlController.girlFindById<br>2019-12-31 10:36:42.907  INFO 1885 — [nio-8081-exec-1] com.bennyrhys.girl.aspect.HttpAspect     : args=6<br>Hibernate: select girl0_.id as id1_0_0_, girl0_.age as age2_0_0_, girl0_.cup_size as cup_size3_0_0_ from girl girl0_ where girl0_.id=?<br>2019-12-31 10:36:42.952  INFO 1885 — [nio-8081-exec-1] com.bennyrhys.girl.aspect.HttpAspect     : 222222222<br>2019-12-31 10:36:42.952  INFO 1885 — [nio-8081-exec-1] com.bennyrhys.girl.aspect.HttpAspect     : response=Girl{id=6, cupSize=’F’, age=16}</p>
+</blockquote>
+<h2 id="git提交-2"><a href="#git提交-2" class="headerlink" title="git提交"></a>git提交</h2><blockquote>
+<p>“AOP日志”</p>
+</blockquote>
+<h1 id="统一异常处理"><a href="#统一异常处理" class="headerlink" title="统一异常处理"></a>统一异常处理</h1><h2 id="封装返回值json"><a href="#封装返回值json" class="headerlink" title="封装返回值json"></a>封装返回值json</h2><p>新建Result</p>
+<ul>
+<li>domain包<ul>
+<li>Result.java</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bennyrhys.girl.domain;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * http请求返回对最外层对象</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">//get/set</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Result</span>&lt;<span class="title">T</span>&gt; </span>&#123;<span class="comment">//具体内容用范型表示</span></span><br><span class="line">    <span class="comment">//错误码</span></span><br><span class="line">    <span class="keyword">private</span> Integer code;</span><br><span class="line">    <span class="comment">//提示信息</span></span><br><span class="line">    <span class="keyword">private</span> String msg;</span><br><span class="line">    <span class="comment">//具体内容</span></span><br><span class="line">    <span class="keyword">private</span> T data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>GirlController</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 新增一个女生</span></span><br><span class="line"><span class="comment"> * http://localhost:8081/girl/girls</span></span><br><span class="line"><span class="comment"> * 注意：post请求</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 参数</span></span><br><span class="line"><span class="comment"> * cupSize  f</span></span><br><span class="line"><span class="comment"> * age  16</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 插入因为自增注意id冲突</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@PostMapping</span>(value = <span class="string">"/girls"</span>)</span><br><span class="line"><span class="comment">//@Valid表示要验证的是这个对象 BindingResult返回验证信息</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Result&lt;Girl&gt; <span class="title">girlAdd</span><span class="params">(@Valid Girl girl, BindingResult bindingResult)</span></span>&#123;</span><br><span class="line">    <span class="comment">//判断是否发生错误</span></span><br><span class="line">    <span class="keyword">if</span> (bindingResult.hasErrors())&#123;</span><br><span class="line">        <span class="comment">//打印错误信息</span></span><br><span class="line">        Result result = <span class="keyword">new</span> Result();</span><br><span class="line">        result.setCode(<span class="number">1</span>);</span><br><span class="line">        result.setMsg(bindingResult.getFieldError().getDefaultMessage());</span><br><span class="line">        result.setData(<span class="keyword">null</span>);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">    girl.setCupSize(girl.getCupSize());</span><br><span class="line">    girl.setAge(girl.getAge());</span><br><span class="line">    <span class="comment">//save返回添加对对象</span></span><br><span class="line"></span><br><span class="line">    Result result =  <span class="keyword">new</span> Result();</span><br><span class="line">    result.setCode(<span class="number">0</span>);</span><br><span class="line">    result.setMsg(<span class="string">"成功"</span>);</span><br><span class="line">    result.setData(repository.save(girl));</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="验证返回json"><a href="#验证返回json" class="headerlink" title="验证返回json"></a>验证返回json</h2><p>访问：失败</p>
+<p><a href="http://localhost:8081/girl/girls" target="_blank" rel="noopener">http://localhost:8081/girl/girls</a></p>
+<p>参数</p>
+<p>cupSize    D</p>
+<p>age    17</p>
+<p>响应信息</p>
+<blockquote>
+<p>{</p>
+<p>​    “code”: 1,</p>
+<p>​    “msg”: “未成年少女禁止入内”,</p>
+<p>​    “data”: null</p>
+<p>}</p>
+</blockquote>
+<p>参数</p>
+<p>访问：成功</p>
+<p><a href="http://localhost:8081/girl/girls" target="_blank" rel="noopener">http://localhost:8081/girl/girls</a></p>
+<p>参数</p>
+<p>cupSize    D</p>
+<p>age    18</p>
+<p>响应信息</p>
+<blockquote>
+<p>{</p>
+<p>​    “code”: 0,</p>
+<p>​    “msg”: “成功”,</p>
+<p>​    “data”: {</p>
+<p>​        “id”: 14,</p>
+<p>​        “cupSize”: “D”,</p>
+<p>​        “age”: 18</p>
+<p>​    }</p>
+<p>}</p>
+</blockquote>
+<h2 id="代码优化-减少重复"><a href="#代码优化-减少重复" class="headerlink" title="代码优化-减少重复"></a>代码优化-减少重复</h2><p>新建</p>
+<ul>
+<li>utils包<ul>
+<li>ResultUtil.java</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bennyrhys.girl.utils;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.bennyrhys.girl.domain.Result;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ResultUtil</span> </span>&#123;</span><br><span class="line">    <span class="comment">//成功-返回结果</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Result <span class="title">success</span><span class="params">(Object object)</span></span>&#123;</span><br><span class="line">        Result result = <span class="keyword">new</span> Result();</span><br><span class="line">        result.setCode(<span class="number">0</span>);</span><br><span class="line">        result.setMsg(<span class="string">"成功"</span>);</span><br><span class="line">        result.setData(object);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//成功-没有返回结果</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Result <span class="title">success</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> success(<span class="keyword">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//失败</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Result <span class="title">error</span><span class="params">(Integer code,String msg)</span></span>&#123;</span><br><span class="line">        Result result = <span class="keyword">new</span> Result();</span><br><span class="line">        result.setCode(code);</span><br><span class="line">        result.setMsg(msg);</span><br><span class="line">        <span class="keyword">return</span>  result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>GirlController</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 新增一个女生</span></span><br><span class="line"><span class="comment"> * http://localhost:8081/girl/girls</span></span><br><span class="line"><span class="comment"> * 注意：post请求</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 参数</span></span><br><span class="line"><span class="comment"> * cupSize  f</span></span><br><span class="line"><span class="comment"> * age  16</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 插入因为自增注意id冲突</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@PostMapping</span>(value = <span class="string">"/girls"</span>)</span><br><span class="line"><span class="comment">//@Valid表示要验证的是这个对象 BindingResult返回验证信息</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Result&lt;Girl&gt; <span class="title">girlAdd</span><span class="params">(@Valid Girl girl, BindingResult bindingResult)</span></span>&#123;</span><br><span class="line">    <span class="comment">//判断是否发生错误</span></span><br><span class="line">    <span class="keyword">if</span> (bindingResult.hasErrors())&#123;</span><br><span class="line">        <span class="comment">//打印错误信息</span></span><br><span class="line">        <span class="keyword">return</span> ResultUtil.error(<span class="number">1</span>,bindingResult.getFieldError().getDefaultMessage());</span><br><span class="line">    &#125;</span><br><span class="line">    girl.setCupSize(girl.getCupSize());</span><br><span class="line">    girl.setAge(girl.getAge());</span><br><span class="line">    <span class="comment">//save返回添加对对象</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ResultUtil.success(repository.save(girl));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="背景假设-2"><a href="#背景假设-2" class="headerlink" title="背景假设"></a>背景假设</h2><p>获取女生年龄做判断</p>
+<p>【    ，10），返回“应该在上小学”</p>
+<p>【10，16），返回“可能在上初中”</p>
+<h2 id="业务分析"><a href="#业务分析" class="headerlink" title="业务分析"></a>业务分析</h2><p>要如何把信息返回界面？</p>
+<p>一般不是简单的一个方法就直接返回页面，业务逻辑复杂，因此一次判断类似一次表单验证，后续还有其他逻辑跟随</p>
+<ul>
+<li>controller判断打标记返回，service继续根据不同标记进行（可以，繁琐，标记乱）</li>
+<li>统一处理,从service-》if抛异常，controller继续抛异常（推荐）</li>
+</ul>
+<h2 id="判断信息-外抛异常获取"><a href="#判断信息-外抛异常获取" class="headerlink" title="判断信息-外抛异常获取"></a>判断信息-外抛异常获取</h2><p>GirlService</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 获取女生年龄做判断</span></span><br><span class="line"><span class="comment"> * 【   ，10），返回“应该在上小学”</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 【10，16），返回“可能在上初中”</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getAge</span><span class="params">(Integer id)</span><span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">    Optional&lt;Girl&gt; optional = repository.findById(id);</span><br><span class="line">    <span class="keyword">if</span> (optional.isPresent())&#123;</span><br><span class="line">        Girl girl = optional.get();</span><br><span class="line">        Integer age = girl.getAge();</span><br><span class="line">        <span class="keyword">if</span>(age &lt; <span class="number">10</span>)&#123;</span><br><span class="line">            <span class="comment">//【    ，10），返回“应该在上小学”</span></span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">"应该在上小学"</span>);</span><br><span class="line"></span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span> (age &gt;= <span class="number">10</span> &amp;&amp; age &lt;<span class="number">16</span>)&#123;</span><br><span class="line">            <span class="comment">//【10，16），返回“可能在上初中”</span></span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">"可能在上初中"</span>);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>GirlController</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 获取女生年龄做判断</span></span><br><span class="line"><span class="comment"> * 【   ，10），返回“应该在上小学”</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 【10，16），返回“可能在上初中”</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@GetMapping</span>(value = <span class="string">"/girls/getAge/&#123;id&#125;"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getAge</span><span class="params">(@PathVariable(<span class="string">"id"</span>)</span> Integer id)<span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">    <span class="comment">//逻辑在service中判断</span></span><br><span class="line">    service.getAge(id);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>访问</p>
+<p><a href="http://localhost:8081/girl/girls/getAge/3" target="_blank" rel="noopener">http://localhost:8081/girl/girls/getAge/3</a></p>
+<p>响应异常信息</p>
+<blockquote>
+<p>{</p>
+<p>​    “timestamp”: “2019-12-31T08:41:32.890+0000”,</p>
+<p>​    “status”: 500,</p>
+<p>​    “error”: “Internal Server Error”,</p>
+<p>​    “message”: “应该在上小学”,</p>
+<p>​    “path”: “/girl/girls/getAge/3”</p>
+<p>}</p>
+</blockquote>
+<p>控制台</p>
+<blockquote>
+<p>java.lang.Exception: 应该在上小学</p>
+</blockquote>
+<h2 id="git提交-判断信息-外抛异常获取"><a href="#git提交-判断信息-外抛异常获取" class="headerlink" title="git提交-判断信息-外抛异常获取"></a>git提交-判断信息-外抛异常获取</h2><h2 id="捕获异常封装返回json"><a href="#捕获异常封装返回json" class="headerlink" title="捕获异常封装返回json"></a>捕获异常封装返回json</h2><p>新建</p>
+<ul>
+<li>handle包<ul>
+<li>ExceptionHandle.java</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bennyrhys.girl.handle;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.bennyrhys.girl.domain.Result;</span><br><span class="line"><span class="keyword">import</span> com.bennyrhys.girl.utils.ResultUtil;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ControllerAdvice;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ExceptionHandler;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ResponseBody;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 异常捕获</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@ControllerAdvice</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExceptionHandle</span> </span>&#123;</span><br><span class="line">    <span class="comment">//声明捕获哪个类</span></span><br><span class="line">    <span class="meta">@ExceptionHandler</span>(value = Exception<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class">    @<span class="title">ResponseBody</span> //因为要返回给浏览器，上面又没写@<span class="title">restcontroller</span></span></span><br><span class="line"><span class="class">    <span class="title">public</span> <span class="title">Result</span> <span class="title">handle</span>(<span class="title">Exception</span> <span class="title">e</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> ResultUtil.error(<span class="number">100</span>,e.getMessage());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>响应捕获后的封装信息</p>
+<blockquote>
+<p>//<strong>不足之处返回code都是100</strong>，在exception中只能传一个msg</p>
+<p><a href="http://localhost:8081/girl/girls/getAge/3" target="_blank" rel="noopener">http://localhost:8081/girl/girls/getAge/3</a></p>
+<p>{</p>
+<p>​    “code”: 100,</p>
+<p>​    “msg”: “应该在上小学”,</p>
+<p>​    “data”: null</p>
+<p>}</p>
+<p><a href="http://localhost:8081/girl/girls/getAge/4" target="_blank" rel="noopener">http://localhost:8081/girl/girls/getAge/4</a></p>
+<p>{</p>
+<p>​    “code”: 100,</p>
+<p>​    “msg”: “可能在上初中”,</p>
+<p>​    “data”: null</p>
+<p>}</p>
+</blockquote>
+<h2 id="重写Exception-多状态码"><a href="#重写Exception-多状态码" class="headerlink" title="重写Exception-多状态码"></a>重写Exception-多状态码</h2><p>创建</p>
+<ul>
+<li>exception包<ul>
+<li>GirlException.java</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bennyrhys.girl.exception;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 重写Exception-多状态码</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 注意：</span></span><br><span class="line"><span class="comment"> * 继承RuntimeException</span></span><br><span class="line"><span class="comment"> * 因为spring事务回滚针对RuntimeException，而RuntimeException继承Exception。</span></span><br><span class="line"><span class="comment"> * Exception不回滚</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GirlException</span> <span class="keyword">extends</span> <span class="title">RuntimeException</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Integer code;</span><br><span class="line">    <span class="comment">//get/set/构造</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">GirlException</span><span class="params">(Integer code,String message)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//添加字段message，父类本身就会传一个message进去</span></span><br><span class="line">        <span class="keyword">super</span>(message);</span><br><span class="line">        <span class="keyword">this</span>.code = code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCode</span><span class="params">(Integer code)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.code = code;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>GirlService:抛出GirlException</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 获取女生年龄做判断</span></span><br><span class="line"><span class="comment"> * 【   ，10），返回“应该在上小学”</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 【10，16），返回“可能在上初中”</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getAge</span><span class="params">(Integer id)</span><span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">    Optional&lt;Girl&gt; optional = repository.findById(id);</span><br><span class="line">    <span class="keyword">if</span> (optional.isPresent())&#123;</span><br><span class="line">        Girl girl = optional.get();</span><br><span class="line">        Integer age = girl.getAge();</span><br><span class="line">        <span class="keyword">if</span>(age &lt; <span class="number">10</span>)&#123;</span><br><span class="line">            <span class="comment">//【    ，10），返回“应该在上小学”</span></span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> GirlException(<span class="number">100</span>,<span class="string">"应该在上小学"</span>);</span><br><span class="line"></span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span> (age &gt;= <span class="number">10</span> &amp;&amp; age &lt;<span class="number">16</span>)&#123;</span><br><span class="line">            <span class="comment">//【10，16），返回“可能在上初中”</span></span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> GirlException(<span class="number">101</span>,<span class="string">"可能在上初中"</span>);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>ExceptionHandle：捕获时判断是否是自己定义的GirlException抛出异常</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bennyrhys.girl.handle;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.bennyrhys.girl.domain.Result;</span><br><span class="line"><span class="keyword">import</span> com.bennyrhys.girl.exception.GirlException;</span><br><span class="line"><span class="keyword">import</span> com.bennyrhys.girl.utils.ResultUtil;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ControllerAdvice;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ExceptionHandler;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ResponseBody;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 异常捕获</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@ControllerAdvice</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExceptionHandle</span> </span>&#123;</span><br><span class="line">    <span class="comment">//声明捕获哪个类</span></span><br><span class="line">    <span class="meta">@ExceptionHandler</span>(value = Exception<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class">    @<span class="title">ResponseBody</span> //因为要返回给浏览器，上面又没写@<span class="title">restcontroller</span></span></span><br><span class="line"><span class="class">    <span class="title">public</span> <span class="title">Result</span> <span class="title">handle</span>(<span class="title">Exception</span> <span class="title">e</span>)</span>&#123;</span><br><span class="line">        <span class="comment">//捕获时，判断一下异常是否是自己定义的GirlException</span></span><br><span class="line">        <span class="keyword">if</span> (e <span class="keyword">instanceof</span> GirlException)&#123;</span><br><span class="line">            GirlException girlException = (GirlException) e;</span><br><span class="line">            <span class="keyword">return</span> ResultUtil.error(girlException.getCode(),girlException.getMessage());</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> ResultUtil.error(-<span class="number">1</span>,<span class="string">"未知错误"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>验证</p>
+<blockquote>
+<p><a href="http://localhost:8081/girl/girls/getAge/3" target="_blank" rel="noopener">http://localhost:8081/girl/girls/getAge/3</a></p>
+<p>{</p>
+<p>​    “code”: 100,</p>
+<p>​    “msg”: “应该在上小学”,</p>
+<p>​    “data”: null</p>
+<p>}</p>
+<p><a href="http://localhost:8081/girl/girls/getAge/4" target="_blank" rel="noopener">http://localhost:8081/girl/girls/getAge/4</a></p>
+<p>{</p>
+<p>​    “code”: 101,</p>
+<p>​    “msg”: “可能在上初中”,</p>
+<p>​    “data”: null</p>
+<p>}</p>
+<p><a href="http://localhost:8081/girl/girls/getAge/5" target="_blank" rel="noopener">http://localhost:8081/girl/girls/getAge/5</a></p>
+<p>{</p>
+<p>​    “code”: -1,</p>
+<p>​    “msg”: “未知错误”,</p>
+<p>​    “data”: null</p>
+<p>}</p>
+</blockquote>
+<h2 id="未知异常排除-打日志"><a href="#未知异常排除-打日志" class="headerlink" title="未知异常排除-打日志"></a>未知异常排除-打日志</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//日志</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> Logger logger = LoggerFactory.getLogger(ExceptionHandle<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//将未知异常通过日志排除</span></span><br><span class="line">            logger.error(<span class="string">"[系统异常]=&#123;&#125;"</span>,e);</span><br></pre></td></tr></table></figure>
+
+<p>ExceptionHandle</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bennyrhys.girl.handle;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.bennyrhys.girl.domain.Result;</span><br><span class="line"><span class="keyword">import</span> com.bennyrhys.girl.exception.GirlException;</span><br><span class="line"><span class="keyword">import</span> com.bennyrhys.girl.utils.ResultUtil;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ControllerAdvice;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ExceptionHandler;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ResponseBody;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 异常捕获</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@ControllerAdvice</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExceptionHandle</span> </span>&#123;</span><br><span class="line">    <span class="comment">//日志</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> Logger logger = LoggerFactory.getLogger(ExceptionHandle<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//声明捕获哪个类</span></span><br><span class="line">    <span class="meta">@ExceptionHandler</span>(value = Exception<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class">    @<span class="title">ResponseBody</span> //因为要返回给浏览器，上面又没写@<span class="title">restcontroller</span></span></span><br><span class="line"><span class="class">    <span class="title">public</span> <span class="title">Result</span> <span class="title">handle</span>(<span class="title">Exception</span> <span class="title">e</span>)</span>&#123;</span><br><span class="line">        <span class="comment">//捕获时，判断一下异常是否是自己定义的GirlException</span></span><br><span class="line">        <span class="keyword">if</span> (e <span class="keyword">instanceof</span> GirlException)&#123;</span><br><span class="line">            GirlException girlException = (GirlException) e;</span><br><span class="line">            <span class="keyword">return</span> ResultUtil.error(girlException.getCode(),girlException.getMessage());</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">//将未知异常通过日志排除</span></span><br><span class="line">            logger.error(<span class="string">"[系统异常]=&#123;&#125;"</span>,e);</span><br><span class="line">            <span class="keyword">return</span> ResultUtil.error(-<span class="number">1</span>,<span class="string">"未知错误"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="管理异常code和msg-枚举"><a href="#管理异常code和msg-枚举" class="headerlink" title="管理异常code和msg-枚举"></a>管理异常code和msg-枚举</h2><p>创建枚举</p>
+<ul>
+<li>enums包<ul>
+<li>ResultEnum.java</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bennyrhys.girl.enums;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 管理异常code和msg-枚举</span></span><br><span class="line"><span class="comment"> * 注意：枚举类型文件</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> ResultEnum &#123;</span><br><span class="line">    UNKNOW_ERROR(-<span class="number">1</span>,<span class="string">"未知错误"</span>),</span><br><span class="line">    SUCCESS(<span class="number">0</span>,<span class="string">"成功"</span>),</span><br><span class="line">    PRIMARY_SCHOOL(<span class="number">100</span>,<span class="string">"可能小学"</span>),</span><br><span class="line">    MIDDLE_SCHOOL(<span class="number">101</span>,<span class="string">"可能中学"</span>),</span><br><span class="line">    ;</span><br><span class="line">    <span class="keyword">private</span> Integer code;</span><br><span class="line">    <span class="keyword">private</span> String msg;</span><br><span class="line"><span class="comment">//    构造方法（两个参数），只get方法(因为枚举都是直接用构造方法创建，不用再set了)</span></span><br><span class="line"></span><br><span class="line">    ResultEnum(Integer code, String msg) &#123;</span><br><span class="line">        <span class="keyword">this</span>.code = code;</span><br><span class="line">        <span class="keyword">this</span>.msg = msg;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getMsg</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> msg;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>GirlService: 返回枚举的类型，GirlException返回值处理避免爆红</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(age &lt; <span class="number">10</span>)&#123;</span><br><span class="line">    <span class="comment">//【    ，10），返回“应该在上小学”</span></span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> GirlException(ResultEnum.PRIMARY_SCHOOL);</span><br><span class="line"></span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span> (age &gt;= <span class="number">10</span> &amp;&amp; age &lt;<span class="number">16</span>)&#123;</span><br><span class="line">    <span class="comment">//【10，16），返回“可能在上初中”</span></span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> GirlException(ResultEnum.MIDDLE_SCHOOL);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>GirlException</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">GirlException</span><span class="params">(ResultEnum resultEnum)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//添加字段message，父类本身就会传一个message进去</span></span><br><span class="line">    <span class="keyword">super</span>(resultEnum.getMsg());</span><br><span class="line">    <span class="keyword">this</span>.code = resultEnum.getCode();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>验证</p>
+<blockquote>
+<p><a href="http://localhost:8081/girl/girls/getAge/3" target="_blank" rel="noopener">http://localhost:8081/girl/girls/getAge/3</a></p>
+<p>{</p>
+<p>​    “code”: 100,</p>
+<p>​    “msg”: “可能小学”,</p>
+<p>​    “data”: null</p>
+<p>}</p>
+<p><a href="http://localhost:8081/girl/girls/getAge/4" target="_blank" rel="noopener">http://localhost:8081/girl/girls/getAge/4</a></p>
+<p>{</p>
+<p>​    “code”: 101,</p>
+<p>​    “msg”: “可能中学”,</p>
+<p>​    “data”: null</p>
+<p>}</p>
+<p><a href="http://localhost:8081/girl/girls/getAge/5" target="_blank" rel="noopener">http://localhost:8081/girl/girls/getAge/5</a></p>
+<p>{</p>
+<p>​    “code”: -1,</p>
+<p>​    “msg”: “未知错误”,</p>
+<p>​    “data”: null</p>
+<p>}</p>
+</blockquote>
+<h2 id="git提交-异常处理-枚举"><a href="#git提交-异常处理-枚举" class="headerlink" title="git提交-异常处理-枚举"></a>git提交-异常处理-枚举</h2><h1 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h1><h2 id="测试service"><a href="#测试service" class="headerlink" title="测试service"></a>测试service</h2><p>GirlService</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 测试service</span></span><br><span class="line"><span class="comment"> * 通过id查询一个女生信息并返回</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Girl <span class="title">findOne</span><span class="params">(Integer id)</span></span>&#123;</span><br><span class="line">    Optional&lt;Girl&gt; optional = repository.findById(id);</span><br><span class="line">    <span class="keyword">if</span> (optional.isPresent())&#123;</span><br><span class="line">        Girl girl = optional.get();</span><br><span class="line">        <span class="keyword">return</span> girl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>法一：GirlServiceTest //手动test包下创建</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bennyrhys.girl;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.bennyrhys.girl.domain.Girl;</span><br><span class="line"><span class="keyword">import</span> com.bennyrhys.girl.service.GirlService;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.Assertions;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.Test;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.test.context.SpringBootTest;</span><br><span class="line"><span class="keyword">import</span> org.springframework.util.Assert;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootTest</span> <span class="comment">//启动整个spring工程</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GirlServiceTest</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> GirlService girlService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">findOneTest</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Girl girl = girlService.findOne(<span class="number">3</span>);</span><br><span class="line">      <span class="comment">//断言比较，测试通过 新版本适用Assertions</span></span><br><span class="line">        Assertions.assertEquals(<span class="number">9</span>,girl.getAge());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>法二：service方法上goto-》test    自动创建</p>
+<p>test包下自动创建</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bennyrhys.girl.service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.junit.jupiter.api.Assertions.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 自动创建的测试unit5</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GirlServiceTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">findOne</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="测试API"><a href="#测试API" class="headerlink" title="测试API"></a>测试API</h2><p>contoller-》getlist-〉goto自动创建</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bennyrhys.girl.controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.Test;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.test.context.SpringBootTest;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.web.servlet.MockMvc;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.web.servlet.request.MockMvcRequestBuilders;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.web.servlet.result.MockMvcResultMatchers;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.junit.jupiter.api.Assertions.*;</span><br><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="meta">@AutoConfigureMockMvc</span> <span class="comment">//检测api</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GirlControllerTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> GirlController girlController;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> MockMvc mvc;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">girlList</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"><span class="comment">//        不是这样测试，这样测试没有报错，但没检测到api及请求类型</span></span><br><span class="line"><span class="comment">//        girlController.girlList();</span></span><br><span class="line">        mvc.perform(MockMvcRequestBuilders.get(<span class="string">"/girls"</span>))</span><br><span class="line">                .andExpect(MockMvcResultMatchers.status().isOk()) <span class="comment">//期望返回状态码200，测试通过</span></span><br><span class="line">                .andExpect(MockMvcResultMatchers.content().string(<span class="string">"abc"</span>)); <span class="comment">//期望返回string=abc，测试肯定不通过</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 检测abc返回，控制台输出</span></span><br><span class="line"><span class="comment"> * Expected :abc</span></span><br><span class="line"><span class="comment"> * Actual   :[&#123;"id":3,"cupSize":"G","age":9&#125;,&#123;"id":4,"cupSize":"G","age":15&#125;,&#123;"id":5,"cupSize":"F","age":22&#125;,&#123;"id":6,"cupSize":"F","age":16&#125;,&#123;"id":7,"cupSize":"F","age":16&#125;,&#123;"id":8,"cupSize":"C","age":22&#125;,&#123;"id":9,"cupSize":"C","age":20&#125;,&#123;"id":10,"cupSize":"C","age":18&#125;,&#123;"id":11,"cupSize":"D","age":19&#125;,&#123;"id":12,"cupSize":"D","age":18&#125;,&#123;"id":13,"cupSize":"D","age":18&#125;,&#123;"id":14,"cupSize":"D","age":18&#125;,&#123;"id":15,"cupSize":"D","age":18&#125;]</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="测试用例每个都要手动？"><a href="#测试用例每个都要手动？" class="headerlink" title="测试用例每个都要手动？"></a>测试用例每个都要手动？</h2><p>不需要，打包时自动测试统计成功失败</p>
+<blockquote>
+<p>//项目根目录命令打包自动检测</p>
+<p>mvn clean package</p>
+<p>//之前故意放了一个错误测试</p>
+<p>[ERROR] Failures: </p>
+<p>[ERROR]  GirlControllerTest.girlList:27 Response content expected:<abc> but was:&lt;[{“id”:3,”cupSize”:”G”,”age”:9},{“id”:4,”cupSize”:”G”,”age”:15},{“id”:5,”cupSize”:”F”,”age”:22},{“id”:6,”cupSize”:”F”,”age”:16},{“id”:7,”cupSize”:”F”,”age”:16},{“id”:8,”cupSize”:”C”,”age”:22},{“id”:9,”cupSize”:”C”,”age”:20},{“id”:10,”cupSize”:”C”,”age”:18},{“id”:11,”cupSize”:”D”,”age”:19},{“id”:12,”cupSize”:”D”,”age”:18},{“id”:13,”cupSize”:”D”,”age”:18},{“id”:14,”cupSize”:”D”,”age”:18},{“id”:15,”cupSize”:”D”,”age”:18}]&gt;</abc></p>
+<p>[INFO] </p>
+<p>[ERROR] Tests run: 4, Failures: 1, Errors: 0, Skipped: 0</p>
+<p>//改正错误test</p>
+<p>[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0</p>
+<p>[INFO] </p>
+<p>[INFO] </p>
+<p>[INFO] — maven-jar-plugin:3.1.2:jar (default-jar) @ girl —</p>
+<p>[INFO] Building jar: /Users/bennyrhys/Documents/Idea_Demo/GirlPlus-SpringBootProject/girl/target/girl-0.0.1-SNAPSHOT.jar</p>
+<p>[INFO] </p>
+<p>[INFO] — spring-boot-maven-plugin:2.2.2.RELEASE:repackage (repackage) @ girl —</p>
+<p>[INFO] Replacing main artifact with repackaged archive</p>
+<p>[INFO] ————————————————————————</p>
+<p>[INFO] BUILD SUCCESS</p>
+</blockquote>
+<p>跳过单元测试</p>
+<blockquote>
+<p>//根目录下meaven命令</p>
+<p> mvn clean package -Dmaven.test.skip=true</p>
+<p>//跳过测试，直接打包成功</p>
+<p>[INFO] BUILD SUCCESS</p>
+<p>[INFO] ————————————————————————</p>
+<p>[INFO] Total time: 3.761 s</p>
+<p>[INFO] Finished at: 2019-12-31T18:43:07+08:00</p>
+<p>[INFO] ————————————————————————</p>
+<p>bennyrhysdeMacBook-Pro:girl bennyrhys$ </p>
+</blockquote>
+<h2 id="git提交-单元测试"><a href="#git提交-单元测试" class="headerlink" title="git提交-单元测试"></a>git提交-单元测试</h2>
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>请作者喝杯茶～</div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="郭瑞新 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="郭瑞新 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/12/30/%E6%95%99%E7%A8%8B%E6%A6%82%E8%BF%B0-%E5%9F%BA%E5%9B%A0%E8%8A%AF%E7%89%87%E4%B8%AA%E4%BA%BA%E4%BF%A1%E6%81%AF%E7%A8%8B%E5%BA%8F/" rel="prev" title="教程概述-基因芯片个人信息程序">
+      <i class="fa fa-chevron-left"></i> 教程概述-基因芯片个人信息程序
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/12/31/%E6%95%99%E7%A8%8B%E6%A6%82%E8%BF%B0-SpringBoot%E4%B9%8Bweb%E8%BF%9B%E9%98%B6/" rel="next" title="教程概述-SpringBoot之web进阶">
+      教程概述-SpringBoot之web进阶 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Valid表单验证"><span class="nav-number">1.</span> <span class="nav-text">@Valid表单验证</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景假设"><span class="nav-number">1.1.</span> <span class="nav-text">背景假设</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#整理代码"><span class="nav-number">1.2.</span> <span class="nav-text">整理代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git提交"><span class="nav-number">1.3.</span> <span class="nav-text">git提交</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新增少女：参数换成对象"><span class="nav-number">1.4.</span> <span class="nav-text">新增少女：参数换成对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象：字段进行限制"><span class="nav-number">1.5.</span> <span class="nav-text">对象：字段进行限制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git提交-1"><span class="nav-number">1.6.</span> <span class="nav-text">git提交</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AOP统一处理请求日志"><span class="nav-number">2.</span> <span class="nav-text">AOP统一处理请求日志</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#AOP，IOC防误区简述"><span class="nav-number">2.1.</span> <span class="nav-text">AOP，IOC防误区简述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#背景假设-1"><span class="nav-number">2.2.</span> <span class="nav-text">背景假设</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pom依赖"><span class="nav-number">2.3.</span> <span class="nav-text">pom依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新建aspect拦截"><span class="nav-number">2.4.</span> <span class="nav-text">新建aspect拦截</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#验证拦截"><span class="nav-number">2.5.</span> <span class="nav-text">验证拦截</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拦截顺序"><span class="nav-number">2.6.</span> <span class="nav-text">拦截顺序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简化拦截代码"><span class="nav-number">2.7.</span> <span class="nav-text">简化拦截代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#日志替换print输出"><span class="nav-number">2.8.</span> <span class="nav-text">日志替换print输出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#日志获取请求信息"><span class="nav-number">2.9.</span> <span class="nav-text">日志获取请求信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#日志获取响应信息"><span class="nav-number">2.10.</span> <span class="nav-text">日志获取响应信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git提交-2"><span class="nav-number">2.11.</span> <span class="nav-text">git提交</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#统一异常处理"><span class="nav-number">3.</span> <span class="nav-text">统一异常处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#封装返回值json"><span class="nav-number">3.1.</span> <span class="nav-text">封装返回值json</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#验证返回json"><span class="nav-number">3.2.</span> <span class="nav-text">验证返回json</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码优化-减少重复"><span class="nav-number">3.3.</span> <span class="nav-text">代码优化-减少重复</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#背景假设-2"><span class="nav-number">3.4.</span> <span class="nav-text">背景假设</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#业务分析"><span class="nav-number">3.5.</span> <span class="nav-text">业务分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判断信息-外抛异常获取"><span class="nav-number">3.6.</span> <span class="nav-text">判断信息-外抛异常获取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git提交-判断信息-外抛异常获取"><span class="nav-number">3.7.</span> <span class="nav-text">git提交-判断信息-外抛异常获取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#捕获异常封装返回json"><span class="nav-number">3.8.</span> <span class="nav-text">捕获异常封装返回json</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重写Exception-多状态码"><span class="nav-number">3.9.</span> <span class="nav-text">重写Exception-多状态码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#未知异常排除-打日志"><span class="nav-number">3.10.</span> <span class="nav-text">未知异常排除-打日志</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#管理异常code和msg-枚举"><span class="nav-number">3.11.</span> <span class="nav-text">管理异常code和msg-枚举</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git提交-异常处理-枚举"><span class="nav-number">3.12.</span> <span class="nav-text">git提交-异常处理-枚举</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#单元测试"><span class="nav-number">4.</span> <span class="nav-text">单元测试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#测试service"><span class="nav-number">4.1.</span> <span class="nav-text">测试service</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试API"><span class="nav-number">4.2.</span> <span class="nav-text">测试API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试用例每个都要手动？"><span class="nav-number">4.3.</span> <span class="nav-text">测试用例每个都要手动？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git提交-单元测试"><span class="nav-number">4.4.</span> <span class="nav-text">git提交-单元测试</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="郭瑞新"
+      src="/images/head_logo.jpg">
+  <p class="site-author-name" itemprop="name">郭瑞新</p>
+  <div class="site-description" itemprop="description">专注分享JAVA全栈技术，JAVA零基础到高级，数据结构，框架，设计模式，微服务，中间件，大数据，网络爬虫，开源项目，阿里技术，面试经</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/bennyrhys" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;bennyrhys" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/weixin_43469680" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_43469680" rel="noopener" target="_blank"><i class="fa fa-fw fa-contao"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/2389992466" title="QQ → 2389992466"><i class="fa fa-fw fa-qq"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/bennyrhys-sir" title="WC → bennyrhys-sir"><i class="fa fa-fw fa-weixin"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:bennyrhys@163.com" title="E-Mail → mailto:bennyrhys@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.996cloud.work/" title="https:&#x2F;&#x2F;www.996cloud.work" rel="noopener" target="_blank">吉他易学网/EasyGuitar</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">郭瑞新</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+  <script src="//code.tidio.co/d706tnk5yjw116zqvzgvxfuglt8b2s2y.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout: 3000,
+        priority: true,
+        ignores: [uri => uri.includes('#'),uri => uri == 'http://bennyrhys.github.io/2019/12/31/%E6%95%99%E7%A8%8B%E8%AF%A6%E8%A7%A3-SpringBoot%E4%B9%8Bweb%E8%BF%9B%E9%98%B6/',]
+      });
+      });
+  </script>
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: '152515de43eada8e083b',
+      clientSecret: '1ee2994d96e2d4a5684188df17a49fe8e9a6c3d6',
+      repo: 'bennyrhys_gitalk.github.io',
+      owner: 'bennyrhys',
+      admin: ['bennyrhys'],
+      id: 'c7874ce16d6ca9787425be4363138ffe',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
+<script type="text/javascript" src="/js/src/back.js" ></script>
